@@ -6,11 +6,11 @@ public class FPSController : MonoBehaviour
 {
     #region ïœêî
     float x, z;
-    float speed = 0.1f;
+    public float speed = 0.1f;
 
-    public GameObject cam;
-    Quaternion cameraRot, characterRot;
-    float Xsensityvity = 3f, Ysensityvity = 3f;
+    public GameObject fpscam , tpscam;
+    Quaternion fpscameraRot, tpscameraRot, characterRot;
+    public float Xsensityvity = 3f, Ysensityvity = 3f;
 
     bool cursorLock = true;
 
@@ -21,7 +21,8 @@ public class FPSController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cameraRot = cam.transform.localRotation;
+        fpscameraRot = fpscam.transform.localRotation;
+        tpscameraRot = tpscam.transform.localRotation;
         characterRot = transform.localRotation;
     }
 
@@ -31,16 +32,21 @@ public class FPSController : MonoBehaviour
         float xRot = Input.GetAxis("Mouse X") * Ysensityvity;
         float yRot = Input.GetAxis("Mouse Y") * Xsensityvity;
 
-        cameraRot *= Quaternion.Euler(-yRot, 0, 0);
+        fpscameraRot *= Quaternion.Euler(-yRot, 0, 0);
+        tpscameraRot *= Quaternion.Euler(-yRot, 0, 0);
         characterRot *= Quaternion.Euler(0, xRot, 0);
 
         //UpdateÇÃíÜÇ≈çÏê¨ÇµÇΩä÷êîÇåƒÇ‘
-        cameraRot = ClampRotation(cameraRot);
+        fpscameraRot = ClampRotation(fpscameraRot);
+        tpscameraRot = ClampRotation(tpscameraRot);
 
-        cam.transform.localRotation = cameraRot;
+        fpscam.transform.localRotation = fpscameraRot;
+        tpscam.transform.localRotation = tpscameraRot;
         transform.localRotation = characterRot;
 
         UpdateCursorLock();
+
+        CameraChange();
     }
 
     private void FixedUpdate()
@@ -93,5 +99,18 @@ public class FPSController : MonoBehaviour
         q.x = Mathf.Tan(angleX * Mathf.Deg2Rad * 0.5f);
 
         return q;
+    }
+
+    public void CameraChange()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            tpscam.gameObject.SetActive(true);
+            fpscam.gameObject.SetActive(false);
+        }
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            fpscam.gameObject.SetActive(true);
+            tpscam.gameObject.SetActive(false);        }
     }
 }
