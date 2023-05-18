@@ -7,6 +7,13 @@ public class FPSController : MonoBehaviour
     #region ïœêî
     float x, z;
     public float speed = 0.1f;
+    private float currentSpeed;
+    public float dashSpeed;
+    private int dashForce = 3;
+
+    private Rigidbody rb;
+    private int upForce = 300;
+    private bool isGround;
 
     public GameObject fpscam , tpscam;
     Quaternion fpscameraRot, tpscameraRot, characterRot;
@@ -24,6 +31,7 @@ public class FPSController : MonoBehaviour
         fpscameraRot = fpscam.transform.localRotation;
         tpscameraRot = tpscam.transform.localRotation;
         characterRot = transform.localRotation;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -44,6 +52,20 @@ public class FPSController : MonoBehaviour
         tpscam.transform.localRotation = tpscameraRot;
         transform.localRotation = characterRot;
 
+        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        {
+            rb.AddForce(new Vector3(0, upForce, 0));
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = dashSpeed;
+        }
+        else
+        {
+            currentSpeed = speed;
+        }
+
         UpdateCursorLock();
 
         CameraChange();
@@ -54,8 +76,8 @@ public class FPSController : MonoBehaviour
         x = 0;
         z = 0;
 
-        x = Input.GetAxisRaw("Horizontal") * speed;
-        z = Input.GetAxisRaw("Vertical") * speed;
+        x = Input.GetAxisRaw("Horizontal") * currentSpeed;
+        z = Input.GetAxisRaw("Vertical") * currentSpeed;
 
         transform.position += this.transform.forward * z + this.transform.transform.right * x;
     }
@@ -112,5 +134,19 @@ public class FPSController : MonoBehaviour
         {
             fpscam.gameObject.SetActive(true);
             tpscam.gameObject.SetActive(false);        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.name == "ground")
+        {
+            isGround = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "ground")
+            isGround = false;
     }
 }
