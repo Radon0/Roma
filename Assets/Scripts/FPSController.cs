@@ -15,6 +15,8 @@ public class FPSController : MonoBehaviour
     private int upForce = 300;
     private bool isGround;
 
+    private Animator anim;
+
     public GameObject fpscam , tpscam;
     Quaternion fpscameraRot, tpscameraRot, characterRot;
     public float Xsensityvity = 3f, Ysensityvity = 3f;
@@ -32,6 +34,7 @@ public class FPSController : MonoBehaviour
         tpscameraRot = tpscam.transform.localRotation;
         characterRot = transform.localRotation;
         rb = GetComponent<Rigidbody>();
+        anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -60,6 +63,10 @@ public class FPSController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             currentSpeed = dashSpeed;
+        }
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            anim.SetBool("Attack", true);
         }
         else
         {
