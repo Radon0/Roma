@@ -5,13 +5,28 @@ using UnityEngine;
 public class HPController : MonoBehaviour
 {
     public float Hp;
+    bool isDead;
+
+    private void Start()
+    {
+        isDead = false;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Weapon")
         {
-            Debug.Log("ìñÇΩÇ¡ÇΩÅI");
             Hp -= 1;
+
+            Debug.Log("HP = " + Hp);
+        }
+    }
+
+    private void Update()
+    {
+        if(Hp<=0)
+        {
+            isDead = true;
         }
     }
 }
