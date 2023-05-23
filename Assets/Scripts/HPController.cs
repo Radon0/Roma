@@ -6,15 +6,12 @@ public class HPController : MonoBehaviour
 {
     public float Hp;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.gameObject.tag == "Weapon")
+        {
+            Debug.Log("ìñÇΩÇ¡ÇΩÅI");
+            Hp -= 1;
+        }
     }
 }
