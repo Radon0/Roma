@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Oshima/Scene/Title.unity
+    guid: e4aaf7703497ebe4cad302eba79a483a
+  - enabled: 1
+    path: Assets/Oshima/Scene/HP.unity
+    guid: 2f36895db0d6fa24881853472367165f
   m_configObjects: {}
