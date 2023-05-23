@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Title : MonoBehaviour
+public class Mode : MonoBehaviour
 {
+    // Start is called before the first frame update
     public void ClickStartButton()
     {
-        SceneManager.LoadScene("Mode");//次に移行するシーン
+        SceneManager.LoadScene("HP");//次に移行するシーン
     }
 }
