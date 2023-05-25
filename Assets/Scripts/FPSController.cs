@@ -55,22 +55,28 @@ public class FPSController : MonoBehaviour
         tpscam.transform.localRotation = tpscameraRot;
         transform.localRotation = characterRot;
 
+        //ジャンプ
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
             rb.AddForce(new Vector3(0, upForce, 0));
         }
 
+        //ダッシュ
         if (Input.GetKey(KeyCode.LeftShift))
         {
             currentSpeed = dashSpeed;
-        }
-        if(Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            anim.SetBool("Attack", true);
+            anim.SetBool("Run", true);
+            anim.SetBool("Wark", false);
         }
         else
         {
             currentSpeed = speed;
+        }
+
+        //攻撃
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            anim.SetBool("Attack", true);
         }
 
         UpdateCursorLock();
@@ -85,6 +91,11 @@ public class FPSController : MonoBehaviour
 
         x = Input.GetAxisRaw("Horizontal") * currentSpeed;
         z = Input.GetAxisRaw("Vertical") * currentSpeed;
+
+        if (x != 0 || z != 0)
+        {
+            anim.SetBool("Walk", true);
+        }
 
         transform.position += this.transform.forward * z + this.transform.transform.right * x;
     }
