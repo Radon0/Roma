@@ -97,6 +97,10 @@ public class FPSController : MonoBehaviour
         {
             anim.SetBool("Walk", true);
         }
+        else
+        {
+            anim.SetBool("Walk", false);
+        }
 
         transform.position += this.transform.forward * z + this.transform.transform.right * x;
     }
