@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
-  dashSpeed: 0
+  dashSpeed: 0.4
   fpscam: {fileID: 1337438725}
   tpscam: {fileID: 963804605}
   Xsensityvity: 3

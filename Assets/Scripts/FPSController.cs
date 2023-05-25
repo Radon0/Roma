@@ -71,6 +71,7 @@ public class FPSController : MonoBehaviour
         else
         {
             currentSpeed = speed;
+            anim.SetBool("Run", false);
         }
 
         //UŒ‚
