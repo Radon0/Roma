@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class HPController : MonoBehaviour
 {
-    public float Hp;
+    public float Hp;    
     bool isDead;
+    public GameObject HPObject;//HPuiのゲームオブジェクト
+    public Hpui HpuiScript;
 
     private void Start()
     {
@@ -17,11 +19,10 @@ public class HPController : MonoBehaviour
         if (collision.gameObject.tag == "Weapon")
         {
             Hp -= 1;
-
+            HpuiScript.HPUI(Hp);
             Debug.Log("HP = " + Hp);
         }
     }
-
     private void Update()
     {
         if(Hp<=0)

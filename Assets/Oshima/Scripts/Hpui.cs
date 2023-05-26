@@ -8,18 +8,14 @@ public class Hpui : MonoBehaviour
       GameObject CharacterGameobject;
     void Start() // Start is called before the first frame update
     {
-        //CharacterGameobject.GetComponent<>().HpUiScript = GetComponent<Hpui>();
-        //キャラクターのコンポーネントを入れて
+        CharacterGameobject = GameObject.FindWithTag("Player").GetComponent<HPController>().HPObject;
+        CharacterGameobject.GetComponent<HPController>().HpuiScript = GetComponent<Hpui>();
         HpSlider = GetComponent<Slider>();
-        HpSlider.value = 3;
+        HpSlider.value = 10;//HPと同じ量にする
     }
 
-    public void HPUI(int Damege)
+    public void HPUI(float Hp)
     {
-        HpSlider.value -= Damege;
-        if (HpSlider.value == 0)
-        {
-            Destroy(gameObject);
-        }
+        HpSlider.value =Hp ;
     }
 }
