@@ -19,7 +19,7 @@ public class HPController : MonoBehaviour
         if (collision.gameObject.tag == "Weapon")
         {
             Hp -= 1;
-            HpuiScript.HPUI(Hp);
+            //HpuiScript.HPUI(Hp);
             Debug.Log("HP = " + Hp);
         }
     }

@@ -93,6 +93,7 @@ public class FPSController : MonoBehaviour
         x = Input.GetAxisRaw("Horizontal") * currentSpeed;
         z = Input.GetAxisRaw("Vertical") * currentSpeed;
 
+
         if (x != 0 || z != 0)
         {
             anim.SetBool("Walk", true);
