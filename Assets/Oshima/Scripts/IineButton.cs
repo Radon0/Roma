@@ -12,7 +12,6 @@ public class IineButton : MonoBehaviour
     {
         _slider = GameObject.Find("Slider").GetComponent<Slider>();
     }
-
     // Update is called once per frame
     public void Onclick()
     {    IineButom += 1;

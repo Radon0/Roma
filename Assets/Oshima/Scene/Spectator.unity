@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7953e2c9ee68493468abddcc29f704df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gimick: {fileID: 0}
 --- !u!54 &340834819
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -370,6 +371,10 @@ PrefabInstance:
       propertyPath: iineSlider
       value: 
       objectReference: {fileID: 1903151562}
+    - target: {fileID: 5842054270780434608, guid: 4220593741da97d48af9d886b192b628, type: 3}
+      propertyPath: myList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5842054270780434608, guid: 4220593741da97d48af9d886b192b628, type: 3}
       propertyPath: myList.Array.data[0]
       value: 

@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Click : MonoBehaviour
 {
-    private Vector3 defaultPos;
     private Material mat;
+   // public BoxCollider Box;
     private Rigidbody rb;
-
     private void Start()
     {
+       // Box = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;//リジットボディをの機能をオフ
-        defaultPos = transform.position;
-        mat = GetComponent<MeshRenderer>().material;
     }
+   
+    
     //　押された時
     private void OnMouseDown()
     {
-        mat.color = Color.red;
+        rb.isKinematic = true;
     }
     //　ドラッグされた時
     private void OnMouseDrag()
@@ -34,18 +34,20 @@ public class Click : MonoBehaviour
     {
         transform.localScale /= 1.5f;
     }
-    private void OnMouseOver()    //　上にいる時
-    {
-        Debug.Log("OnMouseOver");
-    }    
+    //private void OnMouseOver()    //　上にいる時
+    //{
+        
+    //}
     private void OnMouseUp()//　離した時
     {
+       // Box.enabled = false;
         rb.isKinematic = false;//リジットボディをオン
     }   
-    private void OnMouseUpAsButton() //　オブジェクト上で話した時
-    {
-        mat.color = Color.gray;
-    }
+    //  private void OnMouseUpAsButton() //　オブジェクト上ではなした時
+    //{
+      //rb.isKinematic = false;
+      //mat.color = Color.gray;
+    //}
 }
 
 

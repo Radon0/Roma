@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Iine : MonoBehaviour
 {
-    public Button iinebutton;
     Slider IineSlider;
     public float timer;
     bool time=false;
