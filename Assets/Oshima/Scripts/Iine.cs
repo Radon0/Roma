@@ -2,23 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class Iine : MonoBehaviour
 {
-    // Start is called before the first frame update
     Slider IineSlider;
-    GameObject CharacterGameobject;
-    void Start() // Start is called before the first frame update
+    public float timer;
+    bool time=false;
+    
+    // Start is called before the first frame update
+    void Start()
     {
-        CharacterGameobject = GameObject.FindWithTag("IineButton").GetComponent<IineButton>().iineObject;
-        CharacterGameobject.GetComponent<IineButton>().IineScript = GetComponent<Iine>();
-        IineSlider = GetComponent<Slider>();
-        IineSlider.value = 10;
+        IineSlider = GetComponent<Slider>();       
     }
-
-    public void Iinesu(float IineButom)
+    // Update is called once per frame
+    void Update()
     {
-        IineSlider.value = IineButom;
+        if (time == false)
+        {
+            timer += Time.deltaTime;
+            IineSlider.value = timer;
+
+            if (IineSlider.maxValue < timer)
+            {
+                time = true;
+            }
+
+        }
     }
 }
-

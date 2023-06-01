@@ -6,8 +6,8 @@ public class HPController : MonoBehaviour
 {
     public float Hp;    
     bool isDead;
-    public GameObject HPObject;//HPuiのゲームオブジェクト
-    public Hpui HpuiScript;
+    public GameObject HPObject;//HPuiの参照するゲームオブジェクト
+    public Hpui HpuiScript;//
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class HPController : MonoBehaviour
         if (collision.gameObject.tag == "Weapon")
         {
             Hp -= 1;
-            //HpuiScript.HPUI(Hp);
+            HpuiScript.HPUI(Hp);
             Debug.Log("HP = " + Hp);
         }
     }
