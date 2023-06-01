@@ -162,7 +162,7 @@ public class FPSController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "ground")
+        if (other.gameObject.tag == "Ground")
         {
             isGround = true;
         }
@@ -170,7 +170,7 @@ public class FPSController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "ground")
+        if (other.gameObject.tag == "Ground")
             isGround = false;
     }
 }
