@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &10862393 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1107251179411923161, guid: 4220593741da97d48af9d886b192b628, type: 3}
+  m_PrefabInstance: {fileID: 960536871}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &340834813
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +146,8 @@ GameObject:
   - component: {fileID: 340834816}
   - component: {fileID: 340834815}
   - component: {fileID: 340834814}
+  - component: {fileID: 340834818}
+  - component: {fileID: 340834819}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -218,6 +231,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &340834818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340834813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7953e2c9ee68493468abddcc29f704df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &340834819
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340834813}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &552562332 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6114070874656083482, guid: 4220593741da97d48af9d886b192b628, type: 3}
@@ -337,9 +378,13 @@ PrefabInstance:
       propertyPath: time
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5967667767096340216, guid: 4220593741da97d48af9d886b192b628, type: 3}
+      propertyPath: iinebutton
+      value: 
+      objectReference: {fileID: 10862393}
     - target: {fileID: 6114070874298100569, guid: 4220593741da97d48af9d886b192b628, type: 3}
       propertyPath: m_MaxValue
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6114070874298100569, guid: 4220593741da97d48af9d886b192b628, type: 3}
       propertyPath: m_Direction
