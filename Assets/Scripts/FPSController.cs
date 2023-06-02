@@ -12,8 +12,9 @@ public class FPSController : MonoBehaviour
     private int dashForce = 3;
 
     private Rigidbody rb;
-    private int upForce = 300;
+    public int jumpForce = 300;
     private bool isGround;
+    private bool isJump;
 
     private Animator anim;
 
@@ -58,7 +59,9 @@ public class FPSController : MonoBehaviour
         //ジャンプ
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
-            rb.AddForce(new Vector3(0, upForce, 0));
+            rb.AddForce(new Vector3(0, jumpForce, 0));
+            anim.SetBool("Jump",true);
+            isGround = false;
         }
 
         //ダッシュ
@@ -154,28 +157,35 @@ public class FPSController : MonoBehaviour
 
     public void CameraChange()
     {
+        //一人称視点から三人称視点の切り替え
         if(Input.GetKeyDown(KeyCode.P))
         {
             tpscam.gameObject.SetActive(true);
             fpscam.gameObject.SetActive(false);
         }
+        //三人称視点から一人称視点の切り替え
         if(Input.GetKeyDown(KeyCode.L))
         {
             fpscam.gameObject.SetActive(true);
             tpscam.gameObject.SetActive(false);        }
     }
 
+    //プレイヤーの足元にあるSphereColliderで判定を取っている
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Ground")
         {
             isGround = true;
+            //Debug.Log("当たっている");
+            anim.SetBool("Jump",false);
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Ground")
+        {
             isGround = false;
+            //Debug.Log("当たっていない");
+        }
     }
 }
