@@ -6,7 +6,7 @@ public class Iine : MonoBehaviour
 {
     Slider IineSlider;
     public float timer;
-    bool time=false;
+    bool time = false;
     
     // Start is called before the first frame update
     void Start()
@@ -22,13 +22,16 @@ public class Iine : MonoBehaviour
         {
             timer += Time.deltaTime;                     
             IineSlider.value = timer;
-            
-            if (IineSlider.maxValue < timer)
+
+            if (IineSlider.maxValue < timer)//MaxValue‚æ‚èTime.deltaTime‚ª‘å‚«‚¢‚Ætrue
             {
                 time = true;
-              
-            }  
-            
+                timer = 0;
+            }        
+        }
+        else if (IineSlider.value == 0)//buttom‚Å‰Ÿ‚³‚êvalue‚ðƒŠƒZƒbƒg‚³‚ê‚½Žž
+        {
+            time = false;
         }
     }
 }

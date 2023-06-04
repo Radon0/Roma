@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Click : MonoBehaviour
 {
-    private Material mat;
+    //private Material mat;
    // public BoxCollider Box;
     private Rigidbody rb;
     private void Start()
