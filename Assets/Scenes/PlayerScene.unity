@@ -6779,6 +6779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   dashSpeed: 0.4
+  jumpForce: 300
   fpscam: {fileID: 1337438725}
   tpscam: {fileID: 963804605}
   Xsensityvity: 3
@@ -6887,8 +6888,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &1204674656
-BoxCollider:
+--- !u!135 &1204674656
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6898,10 +6899,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.06, y: 0.03, z: 0.21}
-  m_Center: {x: 1.29, y: 0.005, z: -0.87}
---- !u!65 &1204674657
-BoxCollider:
+  m_Radius: 0.2
+  m_Center: {x: -0.94, y: 0.14, z: 0.84}
+--- !u!135 &1204674657
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6911,8 +6912,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.13, y: 0.03, z: 0.15}
-  m_Center: {x: -0.85, y: 0.005, z: 1.16}
+  m_Radius: 0.2
+  m_Center: {x: 0.9, y: 0.14, z: -0.79}
 --- !u!1 &1208224317 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8633552626721689613, guid: 0b81e131bff122f4a8c179f3ec15b844, type: 3}

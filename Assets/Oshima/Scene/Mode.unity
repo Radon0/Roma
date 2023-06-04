@@ -372,6 +372,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7185713599712849288, guid: 3eb62e5cf5f2e1142b01f388350ba190, type: 3}
+      propertyPath: m_Text
+      value: Gladiator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185713599712849288, guid: 3eb62e5cf5f2e1142b01f388350ba190, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 6ea830d031ef4bf4a8d2ba309d93d28e, type: 3}
     - target: {fileID: 7185713600105869738, guid: 3eb62e5cf5f2e1142b01f388350ba190, type: 3}
       propertyPath: m_Name
       value: Canvas_Mode
@@ -460,5 +468,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7185713600841219458, guid: 3eb62e5cf5f2e1142b01f388350ba190, type: 3}
+      propertyPath: m_Text
+      value: Spectators
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185713600841219458, guid: 3eb62e5cf5f2e1142b01f388350ba190, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 6ea830d031ef4bf4a8d2ba309d93d28e, type: 3}
+    - target: {fileID: 7185713601521005701, guid: 3eb62e5cf5f2e1142b01f388350ba190, type: 3}
+      propertyPath: m_Text
+      value: MODE
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185713601521005701, guid: 3eb62e5cf5f2e1142b01f388350ba190, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 6ea830d031ef4bf4a8d2ba309d93d28e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3eb62e5cf5f2e1142b01f388350ba190, type: 3}
