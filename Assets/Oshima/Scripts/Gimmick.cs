@@ -6,14 +6,23 @@ public class Gimmick : MonoBehaviour
 {
     [SerializeField] Slider iineSlider;   
     public GameObject gimmick;
+    private Vector3 defaultPos;
+    private Vector3 defaultLocate;
     //public List<GameObject> myList= new List<GameObject>();//一応複数のギミックをやれるようにはしている        
+    private void Start()
+    {
+        gimmick.transform.position = new Vector3(0, 0, 0);   
+        defaultPos =gimmick.transform.position;
+      
+    }
     public void ClickStartButton()
     {   
-        if (iineSlider.value==10)//スライダーのvalueが30の時にギミック表示
+        if (iineSlider.value==10)//スライダーのvalueが10の時にギミック表示
         {
+            gimmick.transform.position = defaultPos;
             //myList[0].SetActive(true);
             Instantiate(gimmick);
-            gimmick.SetActive(true);
+            gimmick.SetActive(true);         
             iineSlider.value = 0;           
            
         }
