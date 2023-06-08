@@ -9,6 +9,6 @@ public class Spectator : MonoBehaviour
     // Start is called before the first frame update
     public void ClickStartButton()
     {
-        SceneManager.LoadScene("Spectator");//次に移行するシーン
+        SceneManager.LoadScene("Vote");//次に移行するシーン
     }
 }

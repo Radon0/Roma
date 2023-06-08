@@ -17,8 +17,8 @@ public class LimitTime : MonoBehaviour
 	//　前回Update時の秒数
 	private float oldSeconds;
 	private Text timerText;
-	[SerializeField] Text callText;//時間が過ぎた時
-	[SerializeField] GameObject call;
+	[SerializeField] Text callText;//時間が過ぎた時の文字
+	[SerializeField] GameObject call;//時間が過ぎた時のゲームオブジェクト
 	void Start()
 	{
 		call.SetActive(false);
