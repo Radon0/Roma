@@ -93,8 +93,14 @@ public class FPSController : MonoBehaviour
         x = 0;
         z = 0;
 
-        x = Input.GetAxisRaw("Horizontal") * currentSpeed;
-        z = Input.GetAxisRaw("Vertical") * currentSpeed * 0.8f;
+        x = Input.GetAxisRaw("Horizontal") * currentSpeed * 0.4f;
+        z = Input.GetAxisRaw("Vertical") * currentSpeed;
+
+        //Œã‚ë•à‚«‚ð’x‚­‚·‚é‚½‚ß
+        if(z < 0)
+        {
+            z *= 0.25f;
+        }
 
         if (x != 0 || z != 0)
         {
@@ -105,6 +111,7 @@ public class FPSController : MonoBehaviour
             anim.SetBool("Walk", false);
         }
 
+        //ŽÎ‚ß•à‚«‚à“¯‚¶‹——£‚É‚·‚é
         if (x != 0 && z != 0)
         {
             x /= 1.41421356f;
