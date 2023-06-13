@@ -31,7 +31,8 @@ public class PlayerAttack : MonoBehaviour
             //一定時間後にコライダーの機能をオフにする
             Invoke("ColliderReset", 0.3f);
         }
-        else if(Input.GetMouseButtonUp(0))
+        
+        if(Input.GetMouseButtonUp(0))
         {
             animator.SetBool("NormalFrontAttack", false);
         }
