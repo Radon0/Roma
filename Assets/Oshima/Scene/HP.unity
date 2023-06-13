@@ -395,7 +395,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3790096573452218995, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
       propertyPath: Readytime
-      value: 3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228468101356534439, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
+      propertyPath: m_Value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228468101356534439, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
+      propertyPath: m_MaxValue
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
@@ -596,7 +604,7 @@ GameObject:
   - component: {fileID: 1839278368}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

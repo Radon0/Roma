@@ -29,6 +29,7 @@ public class LimitTime : MonoBehaviour
 		timerText = GetComponentInChildren<Text>();
 	}
 
+
 	void Update()
 	{
 		//@§ŒÀŠÔ‚ª0•bˆÈ‰º‚È‚ç‰½‚à‚µ‚È‚¢
