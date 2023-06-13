@@ -42,18 +42,17 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         thisTransform = transform;  //transformをキャッシュ(高速化)
-        
+
 
         InitEnemy();
     }
 
     private void Update()
     {
-        if(isDead)
+        if (isDead)
         {
             return;
         }
-
         Move();
         UpdateAnimator();
     }
@@ -66,14 +65,15 @@ public class EnemyController : MonoBehaviour
     //被ダメージ処理
     public void Damage(int value)
     {
-        if(value<=0)
+        if (value <= 0)
         {
             return;
         }
 
         Hp -= value;
+        Debug.Log(Hp);
 
-        if(Hp<=0)
+        if (Hp <= 0)
         {
             Dead();
         }
@@ -99,7 +99,7 @@ public class EnemyController : MonoBehaviour
 
     void Move()
     {
-        navmeshAgent.SetDestination(target.position);    
+        navmeshAgent.SetDestination(target.position);
     }
 
     //アニメーターのアップデート処理
