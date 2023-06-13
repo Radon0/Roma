@@ -9,9 +9,7 @@ public class PlayerAttack : MonoBehaviour
     //右手のコライダー
     public Collider RightHandCollider;
 
-    EnemyController e;
-
-    int damage;
+    public int damage = 10;
 
     private void Start()
     {
@@ -26,12 +24,9 @@ public class PlayerAttack : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             animator.SetBool("NormalFrontAttack", true);
-            damage = 5;
 
             //右手コライダーをオンにする
             RightHandCollider.enabled = true;
-
-            e.Damage(damage);
 
             //一定時間後にコライダーの機能をオフにする
             Invoke("ColliderReset", 0.3f);

@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class EnemyHit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    EnemyController enemy;
+    PlayerAttack attack;
 
-    // Update is called once per frame
-    void Update()
+    int damage;
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.CompareTag("Enemy"))
+        {
+            //damage = 5;
+            //enemy.Damage(damage);
+            Debug.Log("a");
+        }
     }
 }

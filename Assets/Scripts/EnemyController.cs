@@ -71,7 +71,6 @@ public class EnemyController : MonoBehaviour
         }
 
         Hp -= value;
-        Debug.Log(Hp);
 
         if (Hp <= 0)
         {
