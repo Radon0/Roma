@@ -24,18 +24,18 @@ public class EnemyController : MonoBehaviour
     readonly int DeadHash = Animator.StringToHash("Dead");
 
     bool isDead = false;
-    int hp = 0;
+    int EnemyHp = 0;
     Transform thisTransform;
 
-    public int Hp
+    public int EnemyHpControll
     {
         set
         {
-            hp = Mathf.Clamp(value, 0, maxHp);
+            EnemyHp = Mathf.Clamp(value, 0, maxHp);
         }
         get
         {
-            return hp;
+            return EnemyHp;
         }
     }
 
@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour
 
     void InitEnemy()
     {
-        Hp = maxHp;
+        EnemyHp = maxHp;
     }
 
     //îÌÉ_ÉÅÅ[ÉWèàóù
@@ -70,9 +70,9 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        Hp -= value;
+        EnemyHp -= value;
 
-        if (Hp <= 0)
+        if (EnemyHp <= 0)
         {
             Dead();
         }

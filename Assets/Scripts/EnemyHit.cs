@@ -9,13 +9,13 @@ public class EnemyHit : MonoBehaviour
 
     int damage;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Enemy"))
-        {
-            //damage = 5;
-            //enemy.Damage(damage);
-            Debug.Log("a");
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.CompareTag("Enemy"))
+    //    {
+    //        //damage = 5;
+    //        //enemy.Damage(damage);
+    //        Debug.Log("a");
+    //    }
+    //}
 }
