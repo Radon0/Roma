@@ -6,9 +6,15 @@ public class PlayerAttack : MonoBehaviour
 {
     private Animator animator;
 
+    [Header("攻撃時コライダー")]
     //右手のコライダー
-    public Collider RightHandCollider;
+    [SerializeField] Collider RightHandCollider;
+    //左手のコライダー
+    [SerializeField] Collider LeftHandCollider;
+    //右足のコライダー
+    [SerializeField] Collider RightLegCollider;
 
+    [Space()]
     public int damage = 10;
 
     private void Start()
@@ -25,11 +31,32 @@ public class PlayerAttack : MonoBehaviour
         {
             animator.SetTrigger("NormalFrontAttack");
 
-            //右手コライダーをオンにする
-            RightHandCollider.enabled = true;
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("NormalFrontAttack"))
+            {
+                //右手コライダーをオンにする
+                RightHandCollider.enabled = true;
 
-            //一定時間後にコライダーの機能をオフにする
-            Invoke("ColliderReset", 0.3f);
+                //一定時間後にコライダーの機能をオフにする
+                Invoke("ColliderReset", 0.3f);
+            }
+
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("NormalFrontAttack01"))
+            {
+                //左手コライダーをオンにする
+                LeftHandCollider.enabled = true;
+
+                //一定時間後にコライダーの機能をオフにする
+                Invoke("ColliderReset", 0.3f);
+            }
+
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("NormalFrontAttack02"))
+            {
+                //右足コライダーをオンにする
+                RightLegCollider.enabled = true;
+
+                //一定時間後にコライダーの機能をオフにする
+                Invoke("ColliderReset", 0.3f);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.I))
@@ -51,5 +78,7 @@ public class PlayerAttack : MonoBehaviour
     private void ColliderReset()
     {
         RightHandCollider.enabled = false;
+        LeftHandCollider.enabled = false;
+        RightLegCollider.enabled = false;
     }
 }
