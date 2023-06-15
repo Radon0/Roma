@@ -23,18 +23,13 @@ public class PlayerAttack : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            animator.SetBool("NormalFrontAttack", true);
+            animator.SetTrigger("NormalFrontAttack");
 
             //右手コライダーをオンにする
             RightHandCollider.enabled = true;
 
             //一定時間後にコライダーの機能をオフにする
             Invoke("ColliderReset", 0.3f);
-        }
-        
-        if(Input.GetMouseButtonUp(0))
-        {
-            animator.SetBool("NormalFrontAttack", false);
         }
 
         if (Input.GetKeyDown(KeyCode.I))
