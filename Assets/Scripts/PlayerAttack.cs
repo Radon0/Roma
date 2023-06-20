@@ -6,13 +6,18 @@ public class PlayerAttack : MonoBehaviour
 {
     private Animator animator;
 
-    [Header("攻撃時コライダー")]
-    //右手のコライダー
-    [SerializeField] Collider RightHandCollider;
-    //左手のコライダー
-    [SerializeField] Collider LeftHandCollider;
-    //右足のコライダー
-    [SerializeField] Collider RightLegCollider;
+    Collider RightHandCollider;
+    Collider LeftHandCollider;
+    Collider RightFootCollider;
+
+    GameObject RightHand;
+    GameObject LeftHand;
+    GameObject RightFoot;
+
+    GameObject armature, root, hips, spine, chest;
+    GameObject shoulderL, upperarmL, lowerarmL;
+    GameObject shoulderR, upperarmR, lowerarmR;
+    GameObject upperlegR, lowerlegR;
 
     [Space()]
     public int damage = 10;
@@ -21,13 +26,24 @@ public class PlayerAttack : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
+        FindComponent();
+
+        RightHand = lowerarmR.GetComponent<Transform>().transform.GetChild(0).gameObject;
+        RightHandCollider = RightHand.GetComponent<SphereCollider>();
+
+        LeftHand = lowerarmL.GetComponent<Transform>().transform.GetChild(0).gameObject;
+        LeftHandCollider = LeftHand.GetComponent<SphereCollider>();
+
+        RightFoot = lowerlegR.GetComponent<Transform>().transform.GetChild(0).gameObject;
+        RightFootCollider = RightFoot.GetComponent<SphereCollider>();
+
         //右手のコライダーを取得
         //RightHandCollider = GetComponent<SphereCollider>();
     }
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("NormalFrontAttack");
 
@@ -52,26 +68,11 @@ public class PlayerAttack : MonoBehaviour
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("NormalFrontAttack02"))
             {
                 //右足コライダーをオンにする
-                RightLegCollider.enabled = true;
+                RightFootCollider.enabled = true;
 
                 //一定時間後にコライダーの機能をオフにする
                 Invoke("ColliderReset", 0.3f);
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            animator.SetBool("Jab", true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            animator.SetBool("Hikick", true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            animator.SetBool("Spinkick", true);
         }
     }
 
@@ -79,6 +80,27 @@ public class PlayerAttack : MonoBehaviour
     {
         RightHandCollider.enabled = false;
         LeftHandCollider.enabled = false;
-        RightLegCollider.enabled = false;
+        RightFootCollider.enabled = false;
+    }
+
+    private void FindComponent()
+    {
+        armature = transform.GetChild(0).gameObject;
+        root = armature.GetComponent<Transform>().transform.GetChild(0).gameObject;
+        hips = root.GetComponent<Transform>().transform.GetChild(0).gameObject;
+        spine = hips.GetComponent<Transform>().transform.GetChild(1).gameObject;
+        chest = spine.GetComponent<Transform>().transform.GetChild(0).gameObject;
+
+        shoulderR = chest.GetComponent<Transform>().transform.GetChild(4).gameObject;
+        upperarmR = shoulderR.GetComponent<Transform>().transform.GetChild(0).gameObject;
+        lowerarmR = upperarmR.GetComponent<Transform>().transform.GetChild(0).gameObject;
+
+        shoulderL = chest.GetComponent<Transform>().transform.GetChild(3).gameObject;
+        upperarmL = shoulderL.GetComponent<Transform>().transform.GetChild(0).gameObject;
+        lowerarmL = upperarmL.GetComponent<Transform>().transform.GetChild(0).gameObject;
+
+        upperlegR = hips.GetComponent<Transform>().transform.GetChild(3).gameObject;
+        lowerlegR = upperlegR.GetComponent<Transform>().transform.GetChild(0).gameObject;
+
     }
 }

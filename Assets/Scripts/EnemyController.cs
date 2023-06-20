@@ -106,4 +106,12 @@ public class EnemyController : MonoBehaviour
     {
         animator.SetFloat(SpeedHash, navmeshAgent.desiredVelocity.magnitude);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag=="AttackEnemy")
+        {
+            Debug.Log("‰Eè‚ª“–‚½‚Á‚½I");
+        }
+    }
 }
