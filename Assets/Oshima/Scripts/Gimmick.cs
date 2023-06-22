@@ -5,58 +5,49 @@ using UnityEngine.UI;
 public class Gimmick : MonoBehaviour
 {
     [SerializeField] Slider iineSlider;
-    public GameObject gimmick;
-    //private Vector3 defaultPos;
-    //private Vector3 defaultLocate;
+    //public GameObject gimmick;
+    private Vector3 defaultPos;
+    private Vector3 defaultLocate;
     public List<GameObject> myList = new List<GameObject>();//一応複数のギミックをやれるようにはしている        
     private int GimimckCount;
 
     private void Start()
     {
-        //gimmick.transform.localPosition = new Vector3(0, 0, 0);
-        //gimmick.transform.position = new Vector3(0, 0, 0);
-        //defaultPos = gimmick.transform.position;
-        //defaultLocate = gimmick.transform.localPosition;
+        defaultPos = new Vector3(3, 0, 0);//位置
+        defaultLocate = new Vector3(0, 0, 0);//回転
     }
     public void ClickStartButton()
     {         //valueの値でcaseを変えている
         switch (iineSlider.value)
         {
             case 10:
+
                 GimimckCount += 1;
-                //gimmick.transform.localPosition = defaultLocate;
-                //gimmick.transform.position = defaultPos;
-                if (GimimckCount <= 3)
+                if (GimimckCount <= 3)//3回ギミック表示
                 {
-                    //Instantiate(gimmick);
-                    //gimmick.SetActive(true);
                     Instantiate(myList[0]);
+                    myList[0].transform.position = defaultPos;
+
                 }
                 iineSlider.value = 0;
                 break;
+
             case 20:
-
                 GimimckCount += 1;
-                //gimmick.transform.localPosition = defaultLocate;
-                //gimmick.transform.position = defaultPos;
                 if (GimimckCount <= 3)
                 {
-                    //Instantiate(gimmick);
-                    //gimmick.SetActive(true);
                     Instantiate(myList[1]);
+                    myList[1].transform.position = defaultPos;
                 }
                 iineSlider.value = 0;
                 break;
-            case 30:
 
+            case 30:
                 GimimckCount += 1;
-                //gimmick.transform.localPosition = defaultLocate;
-                //gimmick.transform.position = defaultPos;
                 if (GimimckCount <= 3)
                 {
-                    //Instantiate(gimmick);
-                    //gimmick.SetActive(true);
                     Instantiate(myList[2]);
+                    myList[2].transform.position = defaultPos;
                 }
                 iineSlider.value = 0;
                 break;

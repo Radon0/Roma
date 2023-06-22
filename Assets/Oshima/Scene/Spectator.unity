@@ -558,6 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iineSlider: {fileID: 1347331311}
+  gimmick: {fileID: 0}
   myList:
   - {fileID: 0}
   - {fileID: 0}
@@ -1759,6 +1760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iineSlider: {fileID: 346942398}
+  gimmick: {fileID: 0}
   myList:
   - {fileID: 0}
   - {fileID: 9076753377233721811, guid: 0750399b0bdc3b64c87918ad72ab265e, type: 3}
