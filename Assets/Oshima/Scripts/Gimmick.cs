@@ -8,13 +8,15 @@ public class Gimmick : MonoBehaviour
     //public GameObject gimmick;
     private Vector3 defaultPos;
     private Vector3 defaultLocate;
+    private Vector3 defaultScale;
     public List<GameObject> myList = new List<GameObject>();//一応複数のギミックをやれるようにはしている        
     private int GimimckCount;
 
     private void Start()
     {
-        defaultPos = new Vector3(3, 0, 0);//位置
+        defaultPos = new Vector3(0, 55, -10);//位置
         defaultLocate = new Vector3(0, 0, 0);//回転
+        defaultScale = new Vector3(1, 1, 1);//スケール
     }
     public void ClickStartButton()
     {         //valueの値でcaseを変えている
