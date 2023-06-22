@@ -11,7 +11,6 @@ public class Ready : MonoBehaviour
 	public Text timerText;//戦闘での制限時間
 	[SerializeField] Text GoText;//Ready時間が過ぎた時の文字
     [SerializeField] GameObject Gocall;//Ready時間が過ぎた時のゲームオブジェクト
-
     private float totalTime;
 	//　制限時間（分）
 	[SerializeField]

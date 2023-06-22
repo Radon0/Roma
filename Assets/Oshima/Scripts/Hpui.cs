@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Hpui : MonoBehaviour
-{     Slider HpSlider;
-      GameObject CharacterGameobject;
+{
+    Slider HpSlider;
+    GameObject CharacterGameobject;
     void Start() // Start is called before the first frame update
     {
         CharacterGameobject = GameObject.FindWithTag("Player").GetComponent<HPController>().HPObject;
@@ -16,6 +17,6 @@ public class Hpui : MonoBehaviour
 
     public void HPUI(float Hp)
     {
-        HpSlider.value =Hp ;
+        HpSlider.value = Hp;
     }
 }
