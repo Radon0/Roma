@@ -2699,6 +2699,27 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1348232906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3248707755899253291, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
+  m_PrefabInstance: {fileID: 2437806035100137562}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1348232909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348232906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c43344fbed926024586d21cf5001e900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combo1time: 0
+  combo2time: 0
+  combo3time: 0
+  damage: 10
 --- !u!43 &1372661881
 Mesh:
   m_ObjectHideFlags: 0
@@ -4247,5 +4268,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: AttackEnemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2437806034115336248, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
