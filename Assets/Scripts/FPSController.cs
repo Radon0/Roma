@@ -99,6 +99,7 @@ public class FPSController : MonoBehaviour
         if (x != 0 || z != 0)
         {
             anim.SetBool("Walk", true);
+            
         }
         else
         {
