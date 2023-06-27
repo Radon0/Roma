@@ -118,7 +118,7 @@ public class FPSController : MonoBehaviour
             }
             else if (x == 0 && z > 0)
             {
-                anim.SetBool("Walk", false);
+                //anim.SetBool("Walk", false);
                 canDash = true;
                 Debug.Log("‘O‚É•à‚­");
             }
@@ -127,8 +127,8 @@ public class FPSController : MonoBehaviour
         {
             Debug.Log("Ž~‚Ü‚Á‚½");
             anim.SetBool("Walk", false);
-            anim.SetBool("WalkSide", true);
-            anim.SetBool("WalkBack", true);
+            anim.SetBool("WalkSide", false);
+            anim.SetBool("WalkBack", false);
         }
 
         if (x != 0 && z != 0)
