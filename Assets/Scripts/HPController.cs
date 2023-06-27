@@ -6,7 +6,6 @@ public class HPController : MonoBehaviour
 {
     public float Hp;    
     bool isDead;
-    public GameObject HPObject;//HPuiの参照するゲームオブジェクト
     public Hpui HpuiScript;//
 
     private void Start()

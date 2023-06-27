@@ -8,7 +8,7 @@ public class Votetime : MonoBehaviour
 {
     public float time = 3.0f;
     public Text timerText;
-        void Update()
+    void Update()
     {
         if (0 < time)
         {
@@ -18,7 +18,7 @@ public class Votetime : MonoBehaviour
         else if (time < 0)
         {
             SceneManager.LoadScene("Spectator");
-            
+
         }
     }
 }

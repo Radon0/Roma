@@ -110,6 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7953e2c9ee68493468abddcc29f704df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Readytime: 30
+  ReadyText: {fileID: 7363222095673386000, guid: 9a1813187c965144188c0cea22ffe295, type: 3}
+  EndText: {fileID: 2054206756301249472, guid: 81baa753e6a8cda4abcdab9a806c43b8, type: 3}
+  Endcall: {fileID: 8272934757819295083, guid: 81baa753e6a8cda4abcdab9a806c43b8, type: 3}
+  Gmame: {fileID: 150252592317881335, guid: 9a1813187c965144188c0cea22ffe295, type: 3}
 --- !u!54 &9076753377233721901
 Rigidbody:
   m_ObjectHideFlags: 0
