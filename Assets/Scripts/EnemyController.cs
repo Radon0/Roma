@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     Transform target = null;
     [SerializeField]
-    CapsuleCollider capsuleCollider = null;
+    BoxCollider boxCollider = null;
     [SerializeField, Min(0)]
     int maxHp = 3;
     [SerializeField]
@@ -82,7 +82,7 @@ public class EnemyController : MonoBehaviour
     void Dead()
     {
         isDead = true;
-        capsuleCollider.enabled = false;
+        boxCollider.enabled = false;
         animator.SetBool(DeadHash, true);
 
         StartCoroutine(nameof(DeadTimer));

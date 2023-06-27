@@ -9,12 +9,13 @@ public class FPSController : MonoBehaviour
     public float speed = 0.1f;
     private float currentSpeed;
     public float dashSpeed;
-    private int dashForce = 3;
+    //private int dashForce = 3;
 
     private Rigidbody rb;
     public int jumpForce = 300;
     private bool isGround;
-    private bool isJump;
+    //private bool isJump;
+    private bool canDash = false;
 
     private Animator anim;
 
@@ -41,6 +42,7 @@ public class FPSController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         float xRot = Input.GetAxis("Mouse X") * Ysensityvity;
         float yRot = Input.GetAxis("Mouse Y") * Xsensityvity;
 
@@ -65,11 +67,11 @@ public class FPSController : MonoBehaviour
         }
 
         //É_ÉbÉVÉÖ
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && canDash == true)
         {
             currentSpeed = dashSpeed;
             anim.SetBool("Run", true);
-            anim.SetBool("Wark", false);
+            //anim.SetBool("Walk", false);
         }
         else
         {
@@ -78,10 +80,10 @@ public class FPSController : MonoBehaviour
         }
 
         //çUåÇ
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            anim.SetBool("Attack", true);
-        }
+        //if (Input.GetKeyDown(KeyCode.Mouse0))
+        //{
+        //    anim.SetBool("Attack", true);
+        //}
 
         UpdateCursorLock();
 
@@ -93,17 +95,40 @@ public class FPSController : MonoBehaviour
         x = 0;
         z = 0;
 
+        canDash = false;
+
         x = Input.GetAxisRaw("Horizontal") * currentSpeed;
         z = Input.GetAxisRaw("Vertical") * currentSpeed * 0.8f;
+
 
         if (x != 0 || z != 0)
         {
             anim.SetBool("Walk", true);
-            
+            if (x != 0 && z == 0)
+            {
+                anim.SetBool("Walk", false);
+                anim.SetBool("WalkSide", true);
+                Debug.Log("â°Ç…ï‡Ç≠");
+            }
+            else if (x == 0 && z < 0)
+            {
+                anim.SetBool("Walk", false);
+                anim.SetBool("WalkBack", true);
+                Debug.Log("å„ÇÎÇ…ï‡Ç≠");
+            }
+            else if (x == 0 && z > 0)
+            {
+                anim.SetBool("Walk", false);
+                canDash = true;
+                Debug.Log("ëOÇ…ï‡Ç≠");
+            }
         }
         else
         {
+            Debug.Log("é~Ç‹Ç¡ÇΩ");
             anim.SetBool("Walk", false);
+            anim.SetBool("WalkSide", true);
+            anim.SetBool("WalkBack", true);
         }
 
         if (x != 0 && z != 0)
