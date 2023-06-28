@@ -49,6 +49,15 @@ public class PlayerAttackKari : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetMouseButton(1))
+        {
+            animator.SetBool("AttackUp", true);
+
+            RightFootCollider.enabled = true;
+            Invoke("ColliderReset", 0.1f);
+            Invoke("AnimStop", 0.5f);
+        }
+
         if(Input.GetMouseButtonDown(0) && !cancombo && !combo1enable && !combo2enable)
         { cancombo = true; }
 
@@ -167,6 +176,11 @@ public class PlayerAttackKari : MonoBehaviour
         RightHandCollider.enabled = false;
         LeftHandCollider.enabled = false;
         RightFootCollider.enabled = false;
+    }
+
+    private void AnimStop()
+    {
+        animator.SetBool("AttackUp", false);
     }
 
     private void FindComponent()

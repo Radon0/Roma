@@ -108,24 +108,20 @@ public class FPSController : MonoBehaviour
             {
                 anim.SetBool("Walk", false);
                 anim.SetBool("WalkSide", true);
-                Debug.Log("‰¡‚É•à‚­");
             }
             else if (x == 0 && z < 0)
             {
                 anim.SetBool("Walk", false);
                 anim.SetBool("WalkBack", true);
-                Debug.Log("Œã‚ë‚É•à‚­");
             }
             else if (x == 0 && z > 0)
             {
                 //anim.SetBool("Walk", false);
                 canDash = true;
-                Debug.Log("‘O‚É•à‚­");
             }
         }
         else
         {
-            Debug.Log("Ž~‚Ü‚Á‚½");
             anim.SetBool("Walk", false);
             anim.SetBool("WalkSide", false);
             anim.SetBool("WalkBack", false);
