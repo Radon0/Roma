@@ -10,7 +10,9 @@ public class Gimmick : MonoBehaviour
     private Vector3 defaultLocate;
     private Vector3 defaultScale;
     public List<GameObject> myList = new List<GameObject>();//一応複数のギミックをやれるようにはしている        
-    private int GimimckCount;
+    private int GimimckCount;//ギミックの表示回数
+    public float startTime;
+    public bool isTimerStarted = false;
 
     private void Start()
     {
@@ -19,11 +21,11 @@ public class Gimmick : MonoBehaviour
         defaultScale = new Vector3(1, 1, 1);//スケール
     }
     public void ClickStartButton()
-    {         //valueの値でcaseを変えている
+    {           // 開始時間
         switch (iineSlider.value)
-        {
+        {         
             case 10:
-
+                //isTimerStarted = true;
                 GimimckCount += 1;
                 if (GimimckCount <= 3)//3回ギミック表示
                 {
@@ -33,9 +35,9 @@ public class Gimmick : MonoBehaviour
                 }
                 iineSlider.value = 0;
                 break;
-
             case 20:
                 GimimckCount += 1;
+                //isTimerStarted = true;
                 if (GimimckCount <= 3)
                 {
                     Instantiate(myList[1]);
@@ -43,8 +45,8 @@ public class Gimmick : MonoBehaviour
                 }
                 iineSlider.value = 0;
                 break;
-
             case 30:
+                //isTimerStarted = true;
                 GimimckCount += 1;
                 if (GimimckCount <= 3)
                 {
@@ -55,4 +57,20 @@ public class Gimmick : MonoBehaviour
                 break;
         }
     }
+    //void Update()
+    //{
+    //    // タイマーが開始していない場合は処理をしない
+    //    if (isTimerStarted==true)
+    //    {
+    //        // 経過時間を計算（現在時間 - 開始時間）
+    //        startTime = iineSlider.maxValue;
+    //        startTime -= Time.deltaTime;
+
+    //    if (startTime <= 0f)
+    //    {
+    //        isTimerStarted = false;
+    //    }
+    //}
+
+    //}
 }
