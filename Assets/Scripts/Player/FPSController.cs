@@ -119,6 +119,15 @@ public class FPSController : MonoBehaviour
                 //anim.SetBool("Walk", false);
                 canDash = true;
             }
+            else
+            {
+                anim.SetBool("WalkBack", false);
+                if (x != 0 && z > 0)
+                {
+                    anim.SetBool("WalkSide", false);
+                    canDash = true;
+                }
+            }
         }
         else
         {
