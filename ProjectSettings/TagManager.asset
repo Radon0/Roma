@@ -9,6 +9,7 @@ TagManager:
   - IineButton
   - Enemy
   - AttackEnemy
+  - AttackPlayer
   layers:
   - Default
   - TransparentFX
