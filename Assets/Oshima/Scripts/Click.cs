@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Click : MonoBehaviour
+public class Click :MonoBehaviour
 {
     private Rigidbody rb;
     public float Readytime;//Žn‚Ü‚éŽžŠÔ

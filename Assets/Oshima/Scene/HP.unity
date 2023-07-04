@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 991ab648dce890e479b3e1ab10192c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1537213754}
 --- !u!1 &419594833
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +950,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343543030}
   m_CullTransparentMesh: 1
+--- !u!1 &1537213754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6647632424068530743, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
+  m_PrefabInstance: {fileID: 1902421688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1577123445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,9 +1292,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3819589779111194879, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 95
+      objectReference: {fileID: 0}
     - target: {fileID: 6647632424068530743, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935157104399496455, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 95
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
