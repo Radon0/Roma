@@ -255,7 +255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &923708296453493246
 RectTransform:
   m_ObjectHideFlags: 0
@@ -272,7 +272,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6, y: 397.1}
+  m_AnchoredPosition: {x: 130, y: 400}
   m_SizeDelta: {x: 475, y: 205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7411474520922635011
@@ -316,7 +316,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 00:00
+  m_Text: 00
 --- !u!114 &3373485924133772009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +368,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 94.400024, y: 15}
+  m_AnchoredPosition: {x: 95, y: 15}
   m_SizeDelta: {x: 900, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3024397724073623399
@@ -426,14 +426,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Readytime: 3
-  ReadyText: {fileID: 7481250036601532277}
   timerText: {fileID: 2377323512638318627}
   GoText: {fileID: 6830449048300460551}
   Gocall: {fileID: 258207168121514098}
-  minute: 0
-  seconds: 5
+  totalTime: 0
   callText: {fileID: 5910285986566877167}
   call: {fileID: 1023190486369768359}
+  toatl: {fileID: 1106737635212534022}
 --- !u!1 &1760198005434558538
 GameObject:
   m_ObjectHideFlags: 0

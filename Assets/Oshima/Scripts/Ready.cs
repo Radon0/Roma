@@ -8,29 +8,31 @@ public class Ready : MonoBehaviour
 {
     public float Readytime = 3.0f;//始まる時間
     private Text ReadyText;//
-	public Text timerText;//戦闘での制限時間
-	[SerializeField] Text GoText;//Ready時間が過ぎた時の文字
+    public Text timerText;//戦闘での制限時間
+    [SerializeField] Text GoText;//Ready時間が過ぎた時の文字
     [SerializeField] GameObject Gocall;//Ready時間が過ぎた時のゲームオブジェクト
-    private float totalTime;
-	//　制限時間（分）
-	[SerializeField]
-	private int minute;
+    public float totalTime;
+    ////　制限時間（分）
+    //[SerializeField]
+    //private int minute;
     //　制限時間（秒）
-    [SerializeField]
-	private float seconds;
-	//　前回Update時の秒数
-	private float oldSeconds;
+    //   [SerializeField]
+    //private float seconds;
+    ////　前回Update時の秒数
+    //private float oldSeconds;
 
-	[SerializeField] Text callText;//時間が過ぎた時の文字
-	[SerializeField] GameObject call;//時間が過ぎた時のゲームオブジェクト
-	
+    [SerializeField] Text callText;//時間が過ぎた時の文字
+    [SerializeField] GameObject call;//時間が過ぎた時のゲームオブジェクト
+    [SerializeField] GameObject toatl;
     void Start()
     {
-		Gocall.SetActive(false);
-        totalTime = minute * 60 + seconds;
-        oldSeconds = 0f;		
-		ReadyText = GetComponent<Text>();		
-	}
+        Gocall.SetActive(false);
+        toatl.SetActive(false);
+        //totalTime = /*minute*/ * 60 + seconds;
+        /*oldSeconds = 0f*/
+        ;
+        ReadyText = GetComponent<Text>();
+    }
     void Update()
     {
         if (1 < Readytime)
@@ -40,37 +42,49 @@ public class Ready : MonoBehaviour
         }
         else if (Readytime <= 1f)
         {
-         ReadyText.enabled = false;
-         Gocall.SetActive(true);
-         GoText.text = "GO!!";
-		 Destroy(GoText, 2f);
-	
+            ReadyText.enabled = false;
+            Gocall.SetActive(true);
+            GoText.text = "GO!!";
+            Destroy(GoText, 2f);
+
         }
         if (!GoText)
-		{
-			//　一旦トータルの制限時間を計測；
-			totalTime = minute * 60 + seconds;
-			totalTime -= Time.deltaTime;
+        {
+            toatl.SetActive(true);
+            totalTime -= Time.deltaTime;
+            timerText.text = totalTime.ToString("00");
 
-			//　再設定
-			minute = (int)totalTime / 60;
-			seconds = totalTime - minute * 60;
+            if (totalTime <= 0f)
+            {
+                call.SetActive(true);
+                timerText.enabled = false;
+                callText.text = "TIME UP";
+                Destroy(this, 3f);
 
-			//　タイマー表示用UIテキストに時間を表示する
-			if ((int)seconds != (int)oldSeconds)
-			{
-				timerText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
-			}
-			oldSeconds = seconds;
-			//　制限時間以下になったらコンソールに『制限時間終了』という文字列を表示する
-			if (totalTime <= 0f)
-			{
-				call.SetActive(true);
-				timerText.enabled = false;
-				callText.text = "TIME UP";
+            }
+            //　一旦トータルの制限時間を計測；
+            //totalTime = minute * 60 + seconds;
+            //totalTime -= Time.deltaTime;
 
-			}
-		}
-	}
+            ////　再設定
+            //minute = (int)totalTime / 60;
+            //seconds = totalTime - minute * 60;
+
+            //　タイマー表示用UIテキストに時間を表示する
+            //	if ((int)seconds != (int)oldSeconds)
+            //	{
+            //		timerText.text =((int)seconds).ToString("00");
+            //	}
+            //	oldSeconds = seconds;
+            //	//　制限時間以下になったらコンソールに『制限時間終了』という文字列を表示する
+            //	if (totalTime <= 0f)
+            //	{
+            //		call.SetActive(true);
+            //		timerText.enabled = false;
+            //		callText.text = "TIME UP";
+
+            //	}       
+        }
+    }
 }
 
