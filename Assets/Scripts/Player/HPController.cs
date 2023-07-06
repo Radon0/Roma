@@ -24,7 +24,7 @@ public class HPController : MonoBehaviour
     }
     private void Update()
     {
-        if(Hp<=0)
+        if(Hp <= 0)
         {
             isDead = true;
         }
