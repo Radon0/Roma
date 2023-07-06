@@ -5,12 +5,15 @@ using UnityEngine;
 public class HPController : MonoBehaviour
 {
     public float Hp;    
-    bool isDead;
+    public bool isDead;
     public Hpui HpuiScript;//
+
+    Animator anim;
 
     private void Start()
     {
         isDead = false;
+        anim = gameObject.GetComponent<Animator>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,6 +30,7 @@ public class HPController : MonoBehaviour
         if(Hp <= 0)
         {
             isDead = true;
+            anim.SetBool("Death", true);
         }
     }
 }

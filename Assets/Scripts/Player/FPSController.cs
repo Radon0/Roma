@@ -18,6 +18,7 @@ public class FPSController : MonoBehaviour
     private bool canDash = false;
 
     private Animator anim;
+    private HPController HpController;
 
     public GameObject fpscam , tpscam;
     Quaternion fpscameraRot, tpscameraRot, characterRot;

@@ -9,7 +9,7 @@ public class HitCheck : MonoBehaviour
         if(other.gameObject.tag=="AttackEnemy")
         {
             Debug.Log("ìñÇΩÇ¡ÇΩÅI");
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
 }
