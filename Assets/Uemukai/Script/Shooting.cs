@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+
     public GameObject bulletPrefab;
     public float shotSpeed;
-    public int shotCount = 10;
+    public int shotCount = 30;
     private float shotInterval;
+
     void Update()
     {
-        if(Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
+
             shotInterval += 1;
 
-            if(shotInterval % 5 == 0 && shotCount > 0)
+            if (shotInterval % 5 == 0 && shotCount > 0)
             {
                 shotCount -= 1;
 
@@ -27,7 +30,8 @@ public class Shooting : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
-            shotCount = 2;
+            shotCount = 30;
         }
     }
 }
+ 
