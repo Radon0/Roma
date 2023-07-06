@@ -191,14 +191,17 @@ public class FPSController : MonoBehaviour
         //一人称視点から三人称視点の切り替え
         if(Input.GetKeyDown(KeyCode.P))
         {
-            tpscam.gameObject.SetActive(true);
-            fpscam.gameObject.SetActive(false);
+            if (fpscam.gameObject.activeSelf==true)
+            {
+                fpscam.gameObject.SetActive(false);
+                tpscam.gameObject.SetActive(true);
+            }
+            else
+            {
+                tpscam.gameObject.SetActive(false);
+                fpscam.gameObject.SetActive(true);
+            }
         }
-        //三人称視点から一人称視点の切り替え
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            fpscam.gameObject.SetActive(true);
-            tpscam.gameObject.SetActive(false);        }
     }
 
     //プレイヤーの足元にあるSphereColliderで判定を取っている
