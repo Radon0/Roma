@@ -288,8 +288,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9076753377233721811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 55, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -12, y: 55, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 6702435554275706611}
   m_Father: {fileID: 0}
@@ -374,6 +374,10 @@ MonoBehaviour:
   ReadyText: {fileID: 8974613673346075440}
   EndText: {fileID: 1511543742429007523}
   Endcall: {fileID: 3080076666528437051}
+  targetObject: {fileID: 9076753377233721811}
+  rotationSpeed: {x: 0.1, y: 0.2}
+  reverse: 0
+  Drag: 0
 --- !u!54 &9076753377233721901
 Rigidbody:
   m_ObjectHideFlags: 0
