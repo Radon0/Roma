@@ -11,12 +11,11 @@ public class Gimmick : MonoBehaviour
     private Vector3 defaultScale;
     public List<GameObject> myList = new List<GameObject>();//一応複数のギミックをやれるようにはしている        
     private int GimimckCount;//ギミックの表示回数
-    public float startTime;
-    public bool isTimerStarted = false;
+
 
     private void Start()
     {
-        defaultPos = new Vector3(0, 55, -10);//位置
+        defaultPos = new Vector3(-12, 55, 0);//位置
         defaultLocate = new Vector3(0, 0, 0);//回転
         defaultScale = new Vector3(1, 1, 1);//スケール
     }
@@ -26,7 +25,7 @@ public class Gimmick : MonoBehaviour
         {         
             case 10:
                 GimimckCount += 1;
-                if (GimimckCount <= 3)//3回ギミック表示
+                if (GimimckCount <= 6)//3回ギミック表示
                 {
                     Instantiate(myList[0]);
                     myList[0].transform.position = defaultPos;
