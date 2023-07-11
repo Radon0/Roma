@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class EnemyShot : MonoBehaviour
 {
-    public GameObject shellprefab;
+    public GameObject ShellPrefab;
     public AudioClip sound;
     private int count;
     void Update()
     {
         count += 1;
-        if (count % 60 == 0)
+        if (count % 200 == 0)
+        //î≠éÀä‘äuF
         {
-            GameObject shell = Instantiate(shellprefab, transform.position, Quaternion.identity);
-            Rigidbody shellRb = shell.GetComponent<Rigidbody>();
+            GameObject Shell = Instantiate(ShellPrefab, transform.position, Quaternion.identity);
+            Rigidbody shellRb = Shell.GetComponent<Rigidbody>();
 
-            shellRb.AddForce(transform.forward * 500);
+            shellRb.AddForce(transform.forward * 1000);
+            //íeë¨ê›íË
 
             AudioSource.PlayClipAtPoint(sound, transform.position);
 
-            Destroy(shell, 5.0f);
+            //Destroy(Shell, 5.0f);
+            //íeÇåÇÇ¡ÇΩå„Ç…îjâÛÇ∑ÇÈF è„éËÇ≠Ç¢Ç©Ç»Ç¢ÇÃÇ≈ShellDestroyÇçÏê¨
         }
     }
 }
