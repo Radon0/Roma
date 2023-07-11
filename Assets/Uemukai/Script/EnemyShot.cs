@@ -10,7 +10,7 @@ public class EnemyShot : MonoBehaviour
     void Update()
     {
         count += 1;
-        if (count % 200 == 0)
+        if (count % 250 == 0)
         //”­ŽËŠÔŠuF
         {
             GameObject Shell = Instantiate(ShellPrefab, transform.position, Quaternion.identity);
