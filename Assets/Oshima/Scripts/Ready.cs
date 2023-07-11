@@ -60,14 +60,14 @@ public class Ready : MonoBehaviour
             {
                 call.SetActive(true);
                 timerText.enabled = false;
-                callText.text = "LOSE";
+                callText.text = "YOULOSE";
                 Destroy(this, 3f);
             }
             else if (Enemy.isDead == true)
             {
                 call.SetActive(true);
                 timerText.enabled = false;
-                callText.text = "WIN";
+                callText.text = "YOUWIN";
                 Destroy(this, 3f);
             }
             else if (totalTime <= 0f)
