@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
     readonly int AttackHash = Animator.StringToHash("Attack");
     readonly int DeadHash = Animator.StringToHash("Dead");
 
-    bool isDead = false;
+    public bool isDead = false;
     int EnemyHp = 0;
     Transform thisTransform;
 

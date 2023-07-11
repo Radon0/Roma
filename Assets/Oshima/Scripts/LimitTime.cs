@@ -19,6 +19,7 @@ public class LimitTime : MonoBehaviour
 	private Text timerText;
 	[SerializeField] Text callText;//時間が過ぎた時の文字
 	[SerializeField] GameObject call;//時間が過ぎた時のゲームオブジェクト
+
 	
 	
 	void Start()

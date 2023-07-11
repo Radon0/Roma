@@ -24,6 +24,8 @@ public class Ready : MonoBehaviour
     [SerializeField] Text callText;//時間が過ぎた時の文字
     [SerializeField] GameObject call;//時間が過ぎた時のゲームオブジェクト
     [SerializeField] GameObject toatl;
+    public HPController hpScript;//勝ち負け判定
+    public EnemyController Enemy;
     void Start()
     {
         Gocall.SetActive(false);
@@ -54,7 +56,21 @@ public class Ready : MonoBehaviour
             totalTime -= Time.deltaTime;
             timerText.text = totalTime.ToString("00");
 
-            if (totalTime <= 0f)
+            if (hpScript.isDead == true)//死んだとき
+            {
+                call.SetActive(true);
+                timerText.enabled = false;
+                callText.text = "LOSE";
+                Destroy(this, 3f);
+            }
+            else if (Enemy.isDead == true)
+            {
+                call.SetActive(true);
+                timerText.enabled = false;
+                callText.text = "WIN";
+                Destroy(this, 3f);
+            }
+            else if (totalTime <= 0f)
             {
                 call.SetActive(true);
                 timerText.enabled = false;
@@ -62,6 +78,7 @@ public class Ready : MonoBehaviour
                 Destroy(this, 3f);
 
             }
+
             //　一旦トータルの制限時間を計測；
             //totalTime = minute * 60 + seconds;
             //totalTime -= Time.deltaTime;
@@ -83,8 +100,10 @@ public class Ready : MonoBehaviour
             //		timerText.enabled = false;
             //		callText.text = "TIME UP";
 
-            //	}       
+            //	}
+
         }
     }
 }
+
 

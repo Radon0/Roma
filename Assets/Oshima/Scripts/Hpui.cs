@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Hpui : MonoBehaviour
 {
-    Slider HpSlider;
+     Slider HpSlider;
+    
     void Start() // Start is called before the first frame update
     {
         HpSlider = GetComponent<Slider>();

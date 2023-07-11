@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,6 @@ public class HPController : MonoBehaviour
     public float Hp;    
     public bool isDead;
     public Hpui HpuiScript;//
-
     Animator anim;
 
     private void Start()
@@ -16,7 +16,7 @@ public class HPController : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Weapon")
         {
@@ -33,4 +33,5 @@ public class HPController : MonoBehaviour
             anim.SetBool("Death", true);
         }
     }
+
 }

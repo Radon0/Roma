@@ -12,7 +12,7 @@ public class Click : MonoBehaviour
     public Text ReadyText;//
     [SerializeField] Text EndText;//Ready時間が過ぎた時の文字
     [SerializeField] GameObject Endcall;//Ready時間が過ぎた時のゲームオブジェクト
-    private bool Gmick = false;
+    public bool Gmick = false;
     Vector3 nowmouseposi;
     Vector3 diffposi;
     public GameObject targetObject;
@@ -24,14 +24,19 @@ public class Click : MonoBehaviour
     private Vector2 lastMousePosition;
     private void Start()
     {
-        mainCamera = Camera.main;
+        //mainCamera = Camera.main;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;//リジットボディをの機能をオフ
         Endcall.SetActive(false);
     }
+    void OnCollisionEnter(Collision collision)//地面に接触したとき回転
+    {
+        Debug.Log("当たった");
+        Drag = false;
+    }
     void Update()
     {
-        if (Drag == false&&Gmick==false)
+        if (Gmick == false & Drag == true)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -84,17 +89,20 @@ public class Click : MonoBehaviour
     //押された時
     private void OnMouseDown()
     {
+        Drag = false;
         if (Gmick == false)
         {
+
             rb.isKinematic = true;
         }
     }
     //ドラッグされた時
     private void OnMouseDrag()
     {
+        Drag = false;
         if (Gmick == false)
         {
-            Drag = true;
+
             //Vector3 nowmouseposi;
             //Vector3 diffposi;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -113,23 +121,25 @@ public class Click : MonoBehaviour
     }
     private void OnMouseEnter()//　入ってきた時
     {
+        Drag = true;
         if (Gmick == false)
         {
-            Drag = false;
+
             transform.localScale *= 1.5f;
         }
     }
     private void OnMouseExit()  //　出ていったとき
     {
+        Drag = true;
         if (Gmick == false)
         {
-            Drag = false;
+
             transform.localScale /= 1.5f;
         }
     }
     private void OnMouseUp()//　離した時
     {
-        Drag = false;
+        Drag = true;
         rb.isKinematic = false;
     }
     //private void OnMouseUpAsButton() //　オブジェクト上ではなした時
@@ -149,6 +159,43 @@ public class Click : MonoBehaviour
     //    // 押下終了　フラグを落とす
     //    Gmick =true;
     //    _nowMousePosi = Vector3.zero;
+    //}
+
+    //    Drag = true;
+    //    if (Gmick == false & Drag == true)
+    //    {
+    //        if (Input.GetMouseButtonDown(0))
+    //        {
+    //            lastMousePosition = Input.mousePosition;
+    //        }
+    //        else if (Input.GetMouseButton(0))
+    //        {
+    //            if (!reverse)
+    //            {
+    //                var x = (Input.mousePosition.y - lastMousePosition.y);
+    //                //var y = (lastMousePosition.x - Input.mousePosition.x);
+
+    //                var newAngle = Vector3.zero;
+    //                newAngle.x = x * rotationSpeed.x;
+    //                //newAngle.y = y * rotationSpeed.y;
+
+    //                targetObject.transform.Rotate(newAngle);
+    //                lastMousePosition = Input.mousePosition;
+    //            }
+    //            else
+    //            {
+    //                var x = (lastMousePosition.y - Input.mousePosition.y);
+    //                //var y = (Input.mousePosition.x - lastMousePosition.x);
+
+    //                var newAngle = Vector3.zero;
+    //                newAngle.x = x * rotationSpeed.x;
+    //                //newAngle.y = y * rotationSpeed.y;
+
+    //                targetObject.transform.Rotate(newAngle);
+    //                lastMousePosition = Input.mousePosition;
+    //            }
+    //        }
+    //    }
     //}
 }
 
