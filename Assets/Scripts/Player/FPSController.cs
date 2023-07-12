@@ -5,20 +5,19 @@ using UnityEngine;
 public class FPSController : MonoBehaviour
 {
     #region ïœêî
-    float x, z;
+    public float playerX;
+    public float playerZ;
     public float speed = 0.1f;
-    private float currentSpeed;
     public float dashSpeed;
-    //private int dashForce = 3;
+    public int jumpForce = 300;
 
     private Rigidbody rb;
-    public int jumpForce = 300;
-    private bool isGround;
-    //private bool isJump;
-    private bool canDash = false;
-
     private Animator anim;
     private Ready ready;
+    private float currentSpeed;
+    private bool isGround;
+    private bool canDash = false;
+
 
     public GameObject fpscam , tpscam;
     Quaternion fpscameraRot, tpscameraRot, characterRot;
@@ -62,6 +61,8 @@ public class FPSController : MonoBehaviour
         //ÉWÉÉÉìÉv
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
+            anim.SetBool("Run", false);
+            anim.SetBool("Walk", false);
             rb.AddForce(new Vector3(0, jumpForce, 0));
             anim.SetBool("Jump",true);
             isGround = false;
@@ -93,37 +94,38 @@ public class FPSController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        x = 0;
-        z = 0;
+        playerX = 0;
+        playerZ = 0;
 
         canDash = false;
 
-        x = Input.GetAxisRaw("Horizontal") * currentSpeed;
-        z = Input.GetAxisRaw("Vertical") * currentSpeed * 0.8f;
+        playerX = Input.GetAxisRaw("Horizontal") * currentSpeed;
+        playerZ = Input.GetAxisRaw("Vertical") * currentSpeed;
 
 
-        if (x != 0 || z != 0)
+        if (playerX != 0 || playerZ != 0)
         {
             anim.SetBool("Walk", true);
-            if (x != 0 && z == 0)
+            if (playerX != 0 && playerZ == 0)
             {
                 anim.SetBool("Walk", false);
                 anim.SetBool("WalkSide", true);
             }
-            else if (x == 0 && z < 0)
+            else if (playerX == 0 && playerZ < 0)
             {
                 anim.SetBool("Walk", false);
+                anim.SetBool("WalkSide", false);
                 anim.SetBool("WalkBack", true);
             }
-            else if (x == 0 && z > 0)
+            else if (playerX == 0 && playerZ > 0)
             {
-                //anim.SetBool("Walk", false);
+                anim.SetBool("WalkBack", true);
                 canDash = true;
             }
             else
             {
                 anim.SetBool("WalkBack", false);
-                if (x != 0 && z > 0)
+                if (playerX != 0 && playerZ > 0)
                 {
                     anim.SetBool("WalkSide", false);
                     canDash = true;
@@ -137,13 +139,13 @@ public class FPSController : MonoBehaviour
             anim.SetBool("WalkBack", false);
         }
 
-        if (x != 0 && z != 0)
+        if (playerX != 0 && playerZ != 0)
         {
-            x /= 1.41421356f;
-            z /= 1.41421356f;
+            playerX /= 1.41421356f;
+            playerZ /= 1.41421356f;
         }
 
-        transform.position += this.transform.forward * z * 0.8f + this.transform.transform.right * x;
+        transform.position += this.transform.forward * playerZ + this.transform.transform.right * playerX;
     }
 
     public void UpdateCursorLock()
