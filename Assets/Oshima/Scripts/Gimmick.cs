@@ -20,12 +20,12 @@ public class Gimmick : MonoBehaviour
         defaultScale = new Vector3(1, 1, 1);//スケール
     }
     public void ClickStartButton()
-    {           // 開始時間
+    {           
         switch (iineSlider.value)
         {         
             case 10:
                 GimimckCount += 1;
-                if (GimimckCount <= 6)//3回ギミック表示
+                if (GimimckCount <= 6)//6回ギミック表示
                 {
                     Instantiate(myList[0]);
                     myList[0].transform.position = defaultPos;

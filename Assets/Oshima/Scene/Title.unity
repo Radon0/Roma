@@ -409,11 +409,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 500c3d76893d6f1488d0a3269ab5b33f, type: 3}
     - target: {fileID: 2318125086696922745, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318125086696922745, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318125086696922745, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318125086696922745, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318125086696922745, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
       propertyPath: m_Maskable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2318125086696922745, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
       propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320955503769320678, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
+      propertyPath: m_CullTransparentMesh
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2696595389708929411, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
@@ -472,6 +492,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 4637691610687866724, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6878965924662261747, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
       propertyPath: m_Type
       value: 2
@@ -492,6 +516,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 7279753584865253058, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7279753584865253058, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
       propertyPath: m_FillAmount
       value: 1
@@ -583,6 +611,10 @@ PrefabInstance:
     - target: {fileID: 7470539500459637865, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510635430318971973, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd01bc25bd43bd54ba83ff66d8537419, type: 3}
