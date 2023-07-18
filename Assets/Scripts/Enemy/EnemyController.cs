@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     public bool isDead = false;
     int EnemyHp = 0;
     Transform thisTransform;
+    HPController HpController;
 
     public int EnemyHpControll
     {
@@ -42,7 +43,7 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         thisTransform = transform;  //transformをキャッシュ(高速化)
-
+        HpController = GetComponent<HPController>();
 
         InitEnemy();
     }
@@ -53,7 +54,8 @@ public class EnemyController : MonoBehaviour
         {
             return;
         }
-        Move();
+        if(HpController.Hp>0)
+            Move();
         UpdateAnimator();
     }
 
@@ -105,13 +107,5 @@ public class EnemyController : MonoBehaviour
     void UpdateAnimator()
     {
         animator.SetFloat(SpeedHash, navmeshAgent.desiredVelocity.magnitude);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag=="AttackEnemy")
-        {
-            Debug.Log("右手が当たった！");
-        }
     }
 }

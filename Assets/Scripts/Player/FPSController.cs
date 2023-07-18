@@ -27,6 +27,8 @@ public class FPSController : MonoBehaviour
 
     //変数の宣言（角度の制限用）
     float minX = -90f, maxX = 90f;
+
+    HPController HpController;
     #endregion
 
     // Start is called before the first frame update
@@ -37,115 +39,123 @@ public class FPSController : MonoBehaviour
         characterRot = transform.localRotation;
         rb = GetComponent<Rigidbody>();
         anim = gameObject.GetComponent<Animator>();
+        HpController = GetComponent<HPController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name);
-        float xRot = Input.GetAxis("Mouse X") * Ysensityvity;
-        float yRot = Input.GetAxis("Mouse Y") * Xsensityvity;
 
-        fpscameraRot *= Quaternion.Euler(-yRot, 0, 0);
-        tpscameraRot *= Quaternion.Euler(-yRot, 0, 0);
-        characterRot *= Quaternion.Euler(0, xRot, 0);
-
-        //Updateの中で作成した関数を呼ぶ
-        fpscameraRot = ClampRotation(fpscameraRot);
-        tpscameraRot = ClampRotation(tpscameraRot);
-
-        fpscam.transform.localRotation = fpscameraRot;
-        tpscam.transform.localRotation = tpscameraRot;
-        transform.localRotation = characterRot;
-
-        //ジャンプ
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        if (HpController.Hp > 0)
         {
-            anim.SetBool("Run", false);
-            anim.SetBool("Walk", false);
-            rb.AddForce(new Vector3(0, jumpForce, 0));
-            anim.SetBool("Jump",true);
-            isGround = false;
+            //Debug.Log(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+            float xRot = Input.GetAxis("Mouse X") * Ysensityvity;
+            float yRot = Input.GetAxis("Mouse Y") * Xsensityvity;
+
+            fpscameraRot *= Quaternion.Euler(-yRot, 0, 0);
+            tpscameraRot *= Quaternion.Euler(-yRot, 0, 0);
+            characterRot *= Quaternion.Euler(0, xRot, 0);
+
+            //Updateの中で作成した関数を呼ぶ
+            fpscameraRot = ClampRotation(fpscameraRot);
+            tpscameraRot = ClampRotation(tpscameraRot);
+
+            fpscam.transform.localRotation = fpscameraRot;
+            tpscam.transform.localRotation = tpscameraRot;
+            transform.localRotation = characterRot;
+
+            //ジャンプ
+            if (Input.GetKeyDown(KeyCode.Space) && isGround)
+            {
+                anim.SetBool("Run", false);
+                anim.SetBool("Walk", false);
+                rb.AddForce(new Vector3(0, jumpForce, 0));
+                anim.SetBool("Jump",true);
+                isGround = false;
+            }
+
+            //ダッシュ
+            if (Input.GetKey(KeyCode.LeftShift) && canDash == true)
+            {
+                currentSpeed = dashSpeed;
+                anim.SetBool("Run", true);
+                //anim.SetBool("Walk", false);
+            }
+            else
+            {
+                currentSpeed = speed;
+                anim.SetBool("Run", false);
+            }
+
+            //攻撃
+            //if (Input.GetKeyDown(KeyCode.Mouse0))
+            //{
+            //    anim.SetBool("Attack", true);
+            //}
+
+            UpdateCursorLock();
+
+            CameraChange();
         }
-
-        //ダッシュ
-        if (Input.GetKey(KeyCode.LeftShift) && canDash == true)
-        {
-            currentSpeed = dashSpeed;
-            anim.SetBool("Run", true);
-            //anim.SetBool("Walk", false);
-        }
-        else
-        {
-            currentSpeed = speed;
-            anim.SetBool("Run", false);
-        }
-
-        //攻撃
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    anim.SetBool("Attack", true);
-        //}
-
-        UpdateCursorLock();
-
-        CameraChange();
     }
 
     private void FixedUpdate()
     {
-        playerX = 0;
-        playerZ = 0;
-
-        canDash = false;
-
-        playerX = Input.GetAxisRaw("Horizontal") * currentSpeed;
-        playerZ = Input.GetAxisRaw("Vertical") * currentSpeed;
-
-
-        if (playerX != 0 || playerZ != 0)
+        if (HpController.Hp > 0)
         {
-            anim.SetBool("Walk", true);
-            if (playerX != 0 && playerZ == 0)
+            playerX = 0;
+            playerZ = 0;
+
+            canDash = false;
+
+            playerX = Input.GetAxisRaw("Horizontal") * currentSpeed;
+            playerZ = Input.GetAxisRaw("Vertical") * currentSpeed;
+
+
+            if (playerX != 0 || playerZ != 0)
             {
-                anim.SetBool("Walk", false);
-                anim.SetBool("WalkSide", true);
-            }
-            else if (playerX == 0 && playerZ < 0)
-            {
-                anim.SetBool("Walk", false);
-                anim.SetBool("WalkSide", false);
-                anim.SetBool("WalkBack", true);
-            }
-            else if (playerX == 0 && playerZ > 0)
-            {
-                anim.SetBool("WalkBack", true);
-                canDash = true;
+                anim.SetBool("Walk", true);
+                if (playerX != 0 && playerZ == 0)
+                {
+                    anim.SetBool("Walk", false);
+                    anim.SetBool("WalkSide", true);
+                }
+                else if (playerX == 0 && playerZ < 0)
+                {
+                    anim.SetBool("Walk", false);
+                    anim.SetBool("WalkSide", false);
+                    anim.SetBool("WalkBack", true);
+                }
+                else if (playerX == 0 && playerZ > 0)
+                {
+                    anim.SetBool("WalkBack", true);
+                    canDash = true;
+                }
+                else
+                {
+                    anim.SetBool("WalkBack", false);
+                    if (playerX != 0 && playerZ > 0)
+                    {
+                        anim.SetBool("WalkSide", false);
+                        canDash = true;
+                    }
+                }
             }
             else
             {
+                anim.SetBool("Walk", false);
+                anim.SetBool("WalkSide", false);
                 anim.SetBool("WalkBack", false);
-                if (playerX != 0 && playerZ > 0)
-                {
-                    anim.SetBool("WalkSide", false);
-                    canDash = true;
-                }
             }
-        }
-        else
-        {
-            anim.SetBool("Walk", false);
-            anim.SetBool("WalkSide", false);
-            anim.SetBool("WalkBack", false);
-        }
 
-        if (playerX != 0 && playerZ != 0)
-        {
-            playerX /= 1.41421356f;
-            playerZ /= 1.41421356f;
-        }
+            if (playerX != 0 && playerZ != 0)
+            {
+                playerX /= 1.41421356f;
+                playerZ /= 1.41421356f;
+            }
 
-        transform.position += this.transform.forward * playerZ + this.transform.transform.right * playerX;
+            transform.position += this.transform.forward * playerZ + this.transform.transform.right * playerX;
+        }
     }
 
     public void UpdateCursorLock()

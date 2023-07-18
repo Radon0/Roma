@@ -22,7 +22,17 @@ public class HPController : MonoBehaviour
         {
             Hp -= 1;
             HpuiScript.HPUI(Hp);
-            Debug.Log("HP = " + Hp);
+        }
+        
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag=="AttackEnemy")
+        {
+            Hp -= 1;
+            HpuiScript.HPUI(Hp);
+            anim.SetBool("Damage", true);
+            Invoke("AnimatorReset", 1.0f);
         }
     }
     private void Update()
@@ -30,8 +40,11 @@ public class HPController : MonoBehaviour
         if(Hp <= 0)
         {
             isDead = true;
-            anim.SetBool("Death", true);
+            anim.Play("Death");
         }
     }
-
+    private void AnimatorReset()
+    {
+        anim.SetBool("Damage", false);
+    }
 }

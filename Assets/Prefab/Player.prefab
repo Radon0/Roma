@@ -6796,7 +6796,8 @@ GameObject:
   - component: {fileID: 2701448761894798263}
   - component: {fileID: 5990827082191807893}
   - component: {fileID: 6647632424068530736}
-  - component: {fileID: 1348232914}
+  - component: {fileID: 4580234080914337790}
+  - component: {fileID: 2297270371658946886}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6935,19 +6936,32 @@ MonoBehaviour:
   combo2time: 0
   combo3time: 0
   damage: 10
---- !u!65 &1348232914
+--- !u!65 &4580234080914337790
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6647632424068530743}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 53ba569123392a241af2e22e2a1754ac, type: 2}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 4.8, z: 1}
+  m_Center: {x: 0, y: 2.4, z: 0}
+--- !u!65 &2297270371658946886
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6647632424068530743}
+  m_Material: {fileID: 13400000, guid: 53ba569123392a241af2e22e2a1754ac, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3, z: 0.3}
-  m_Center: {x: 0, y: 0.15, z: 0}
+  m_Size: {x: 0.95, y: 0.95, z: 0.95}
+  m_Center: {x: 0, y: 0.48, z: 0}
 --- !u!1 &6647632424129353522
 GameObject:
   m_ObjectHideFlags: 0
