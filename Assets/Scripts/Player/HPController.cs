@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class HPController : MonoBehaviour
 {
-    public float Hp;    
+    public float Hp;
+    public float maxHp;
     public bool isDead;
     public Hpui HpuiScript;//
     Animator anim;
 
     private void Start()
     {
+        maxHp = Hp;
         isDead = false;
         anim = gameObject.GetComponent<Animator>();
     }
@@ -22,6 +24,10 @@ public class HPController : MonoBehaviour
         {
             Hp -= 1;
             HpuiScript.HPUI(Hp);
+        }
+        if(collision.gameObject.tag=="HealItem")
+        {
+            Hp += 10;
         }
         
     }
@@ -46,5 +52,10 @@ public class HPController : MonoBehaviour
     private void AnimatorReset()
     {
         anim.SetBool("Damage", false);
+    }
+
+    private void Healing(HPController hpController)
+    {
+
     }
 }

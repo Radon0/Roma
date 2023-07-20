@@ -6,9 +6,10 @@ public class HpHealing : MonoBehaviour
 {
     public GameObject playerObj;
     public GameObject enemyObj;
-    public HPController playerHpController;
-    public HPController enemyHpController;
+    public Hpui hpUI;
 
+    private HPController playerHpController;
+    private HPController enemyHpController;
     private bool playerHealable;
     private bool enemyHealable;
 
@@ -17,8 +18,6 @@ public class HpHealing : MonoBehaviour
     {
         playerHealable = false;
         enemyHealable = false;
-        //playerObj = GameObject.Find("Player");
-        //enemyObj = GameObject.Find("Enemy");
         playerHpController = playerObj.GetComponent<HPController>();
         enemyHpController = enemyObj.GetComponent<HPController>();
     }
@@ -26,13 +25,7 @@ public class HpHealing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerHealable)
-        {
-            Healing(playerHpController);
-            Debug.Log("player‚ÌHP‚ª‰ñ•œ‚µ‚½I");
-        }
-        if (enemyHealable)
-            Healing(enemyHpController);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,6 +34,7 @@ public class HpHealing : MonoBehaviour
         {
             playerHealable = true;
             Destroy(this.gameObject);
+            Healing(playerHpController,10);
         }
         if(collision.gameObject.tag=="Enemy")
         {
@@ -48,12 +42,13 @@ public class HpHealing : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    private void Healing(HPController hpController)
+    private void Healing(HPController hpController,float healingValue)
     {
-        hpController.Hp += 10;
-        if(hpController.Hp>10)
+        hpController.Hp += healingValue;
+        hpUI.HPUI(hpController.Hp);
+        if (hpController.Hp>hpController.maxHp)
         {
-            hpController.Hp = 10;
+            hpController.Hp = hpController.maxHp;
         }
     }
 }
