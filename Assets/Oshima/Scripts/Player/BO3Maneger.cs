@@ -9,17 +9,17 @@ public class BO3Maneger : MonoBehaviour
     public GameObject[] WinMark; // プレイヤー1の勝利マーク
     //public GameObject player2WinMark; // プレイヤー2の勝利マーク
     //private int winsCount = 0;
-    public Image[] parentVictoryMarks; // 親オブジェクトの勝利マークのImageコンポーネントの配列
+    //public Image[] parentVictoryMarks; // 親オブジェクトの勝利マークのImageコンポーネントの配列
     public Ready player1Wins; // プレイヤー1の勝利回数
     private void Start()
-    {  
+    {
         //ResetVictoryDisplay();
-        //winsCount = player1Wins.WinCount;
+
     }
     // 勝利マークをリセットするメソッド
     //private void ResetVictoryDisplay()
     //{
-    //    winsCount = 0;
+    //    player1Wins.WinCount = 0;
 
     //    // すべての親オブジェクトの勝利マークを非表示にする
     //    foreach (var mark in parentVictoryMarks)
@@ -27,9 +27,19 @@ public class BO3Maneger : MonoBehaviour
     //        mark.enabled = false;
     //    }
     //}
+    //public void AddWin()
+    //{
+    //    if (player1Wins.WinCount < 0)
+    //    {
+    //        parentVictoryMarks[player1Wins.WinCount].enabled = true;
+         
+    //    }
 
+    //}
     public void Update()
     {
+
+
         switch (player1Wins.WinCount)//勝った時
         {
             case 1:
@@ -57,33 +67,5 @@ public class BO3Maneger : MonoBehaviour
                     break;
                 }
         }
-        //        }
-        //    WinMark[0].SetActive(true);
-        //    if (player1Wins.WinCount == 2)
-        //    {
-        //        WinMark[1].SetActive(true);
-        //    }
-        //}
-        //if (player1Wins.LoseCount == 1)
-        //{
-        //    WinMark[2].SetActive(true);
-        //    if (player1Wins.LoseCount == 2)
-        //    {
-        //        WinMark[3].SetActive(true);
-        //    }
-        //}
-
-        //else if (player1Wins.LoseCount < 1)
-        //{
-        //    player2WinMark.SetActive(false);
-        //}
-        // if (player1Wins.WinCount == 3)
-        //{
-        //    // BO3で勝利した場合の処理を行う（例: ゲーム終了処理、勝利表示など）
-        //}
-        // else if (player1Wins.LoseCount == 3)
-        //{
-
-        //}
     }
 }

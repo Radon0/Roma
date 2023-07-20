@@ -13,7 +13,6 @@ public class BO31player : MonoBehaviour
     private void Start()
     {
         ResetVictoryDisplay();
-        winsCount = player1Wins.WinCount;
     }
 
     // 勝利マークをリセットするメソッド
@@ -32,10 +31,9 @@ public class BO31player : MonoBehaviour
     // 勝利回数を増やして子オブジェクトの勝利マークを表示するメソッド
     public void Update()
     {
-        if (winsCount < childVictoryMarks.Length)
+        if (player1Wins.WinCount < childVictoryMarks.Length)
         {
             childVictoryMarks[winsCount].enabled = true;
-            winsCount++;
         }
     }
 }
