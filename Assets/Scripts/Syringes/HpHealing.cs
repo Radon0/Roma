@@ -4,40 +4,56 @@ using UnityEngine;
 
 public class HpHealing : MonoBehaviour
 {
-    HPController HpController;
-    private bool healable;
+    public GameObject playerObj;
+    public GameObject enemyObj;
+    public HPController playerHpController;
+    public HPController enemyHpController;
+
+    private bool playerHealable;
+    private bool enemyHealable;
 
     // Start is called before the first frame update
     void Start()
     {
-        healable = false;   
+        playerHealable = false;
+        enemyHealable = false;
+        //playerObj = GameObject.Find("Player");
+        //enemyObj = GameObject.Find("Enemy");
+        playerHpController = playerObj.GetComponent<HPController>();
+        enemyHpController = enemyObj.GetComponent<HPController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(healable==true)
+        if (playerHealable)
         {
-            Healing();
+            Healing(playerHpController);
+            Debug.Log("player‚ÌHP‚ª‰ñ•œ‚µ‚½I");
         }
+        if (enemyHealable)
+            Healing(enemyHpController);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.gameObject.tag=="Player")
+        if(collision.gameObject.tag=="Player")
         {
-            healable = true;
-            Destroy(this);
+            playerHealable = true;
+            Destroy(this.gameObject);
         }
-        if(other.gameObject.tag=="Enemy")
+        if(collision.gameObject.tag=="Enemy")
         {
-            healable = true;
-            Destroy(this);
+            enemyHealable = true;
+            Destroy(this.gameObject);
         }
     }
-
-    private void Healing()
+    private void Healing(HPController hpController)
     {
-        HpController.Hp += 10;
+        hpController.Hp += 10;
+        if(hpController.Hp>10)
+        {
+            hpController.Hp = 10;
+        }
     }
 }

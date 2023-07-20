@@ -13,6 +13,6 @@ public class TurnObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(0, 0, 0.3f));
+        transform.Rotate(new Vector3(0.3f, 0, 0));
     }
 }
