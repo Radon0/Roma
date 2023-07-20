@@ -63,7 +63,7 @@ public class PlayerAttackKari : MonoBehaviour
             Invoke("ColliderReset", 0.1f);
 
             combo1time += Time.deltaTime;
-            if (combo1time > 0.1 && combo1time < 1)
+            if (combo1time > 0.1 && combo1time < 0.75)
             {
                 //入力受付期間
                 if (Input.GetMouseButtonDown(0))
@@ -76,7 +76,7 @@ public class PlayerAttackKari : MonoBehaviour
                     //タイマーを初期化し、コンボ１をオフにして、コンボ２をTrueにする
                 }
             }
-            if (combo1time > 1)
+            if (combo1time > 0.75)
             {
                 //入力されなかったときの処理
                 StartCoroutine("cancombocorutine");
@@ -97,7 +97,7 @@ public class PlayerAttackKari : MonoBehaviour
             Invoke("ColliderReset", 0.1f);
 
             combo2time += Time.deltaTime;
-            if (combo2time < 1 && combo2time > 0.1)
+            if (combo2time < 0.75 && combo2time > 0.1)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -106,7 +106,7 @@ public class PlayerAttackKari : MonoBehaviour
                     combo1enable = false;
                 }
             }
-            if (combo2time > 1)
+            if (combo2time > 0.75)
             {
                 combo1enable = false;
                 StartCoroutine("cancombocorutine");
@@ -128,7 +128,7 @@ public class PlayerAttackKari : MonoBehaviour
             Invoke("ColliderReset", 0.1f);
 
             combo3time += Time.deltaTime;
-            if (combo3time > 1)
+            if (combo3time > 0.75)
             {
                 StartCoroutine("cancombocorutine");
                 combo2enable = false;

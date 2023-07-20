@@ -35,6 +35,7 @@ public class EnemyController : MonoBehaviour
     private int EnemyHp = 0;
     Transform thisTransform;
     HPController HpController;
+    Ready ready;
     private EnemyState enemyState;
 
     public int EnemyHpControll
