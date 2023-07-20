@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     float deadWaitTime = 3;
 
+
     private enum EnemyState
     {
         Wait,
@@ -37,6 +38,7 @@ public class EnemyController : MonoBehaviour
     HPController HpController;
     Ready ready;
     private EnemyState enemyState;
+
 
     public int EnemyHpControll
     {
@@ -65,13 +67,14 @@ public class EnemyController : MonoBehaviour
             return;
         }
         if(HpController.Hp>0)
-            Move();
+        Move();
         UpdateAnimator();
     }
 
     void InitEnemy()
     {
         EnemyHp = maxHp;
+
     }
 
     //”íƒ_ƒ[ƒWˆ—

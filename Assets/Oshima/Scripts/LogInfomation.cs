@@ -47,6 +47,7 @@ public class LogInfomation : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		logText.enabled = false;
 		allLogs = new List<string>();
 		timerLogs = new List<string>();
 		eventLogs = new List<string>();
@@ -55,8 +56,10 @@ public class LogInfomation : MonoBehaviour
 	//　ログテキストの追加
 	public void AddLogText(string logText, LogType logType)
 	{
+		
 		//　ログテキストの追加
 		allLogs.Add(logText);
+		
 		if (logType == LogType.Event)
 		{
 			eventLogs.Add(logText);
@@ -86,12 +89,45 @@ public class LogInfomation : MonoBehaviour
 	}
 
 	//　上からログを追加するバージョン
-	//　ログテキストの表示
+	////　ログテキストの表示
+	//public void ViewLogText()
+	//{
+	//	logTextStringBuilder.Clear();
+	//	List<string> selectedLogs = new List<string>();
+	//	//　ログタイプによって表示するログを変える
+	//	if (logTypeToDisplay == LogType.All)
+	//	{
+	//		selectedLogs = allLogs;
+	//	}
+	//	else if (logTypeToDisplay == LogType.Event)
+	//	{
+	//		selectedLogs = eventLogs;
+	//	}
+	//	else if (logTypeToDisplay == LogType.Time)
+	//	{
+	//		selectedLogs = timerLogs;
+	//	}
+
+	//	foreach (var log in selectedLogs)
+	//	{
+	//		logTextStringBuilder.Insert(0, log + Environment.NewLine);
+	//	}
+	//	logText.text = logTextStringBuilder.ToString().TrimEnd();
+	//	UpdateScrollBar();
+	//}
+	//// スクロールバーの位置の更新
+	//public void UpdateScrollBar()
+	//{
+	//	verticalScrollbar.value = 1f;
+	//}
+
+	//　下からログを追加するバージョン
 	public void ViewLogText()
 	{
+		logText.enabled = true;
 		logTextStringBuilder.Clear();
 		List<string> selectedLogs = new List<string>();
-		//　ログタイプによって表示するログを変える
+
 		if (logTypeToDisplay == LogType.All)
 		{
 			selectedLogs = allLogs;
@@ -107,15 +143,15 @@ public class LogInfomation : MonoBehaviour
 
 		foreach (var log in selectedLogs)
 		{
-			logTextStringBuilder.Insert(0, log + Environment.NewLine);
+			logTextStringBuilder.Append(Environment.NewLine + log);
 		}
-		logText.text = logTextStringBuilder.ToString().TrimEnd();
+		logText.text = logTextStringBuilder.ToString().TrimStart();
 		UpdateScrollBar();
 	}
-	// スクロールバーの位置の更新
+
 	public void UpdateScrollBar()
 	{
-		verticalScrollbar.value = 1f;
+		verticalScrollbar.value = 0f;
 	}
 
 }

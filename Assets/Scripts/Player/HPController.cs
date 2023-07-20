@@ -11,6 +11,7 @@ public class HPController : MonoBehaviour
     public Hpui HpuiScript;//
     Animator anim;
 
+
     private void Start()
     {
         maxHp = Hp;

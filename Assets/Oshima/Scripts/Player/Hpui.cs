@@ -15,5 +15,6 @@ public class Hpui : MonoBehaviour
     public void HPUI(float Hp)
     {
         HpSlider.value = Hp;
+        
     }
 }

@@ -10,19 +10,16 @@ public class EventTag : MonoBehaviour
 	[SerializeField]
 	private string areaName;
 
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.CompareTag("Player"))
-		{
-			logSystem.AddLogText("<color=green>" + other.GetComponent<PlayerInfomation>().PlayerName + "</color>" + "‚ª<color=blue>" + areaName + "</color>" + "‚ÉN“ü‚µ‚Ü‚µ‚½B", LogInfomation.LogType.Event);
-		}
-	}
 
     private void OnCollisionEnter(Collision collision)
     {
 		if (collision.gameObject.tag=="Enemy")
 		{
-			logSystem.AddLogText("<color=green>" + collision.gameObject.GetComponent<PlayerInfomation>().PlayerName + "</color>" + "‚ª<color=blue>" + areaName + "</color>" + "‚ÉÚG‚µ‚Ü‚µ‚½", LogInfomation.LogType.Event);
+			logSystem.AddLogText("<color=green>" + collision.gameObject.GetComponent<PlayerInfomation>().EnemyName + "</color>" + "‚ª<color=blue>" + areaName + "</color>" + "‚ÉÚG‚µ‚Ü‚µ‚½B", LogInfomation.LogType.Event);
 		}
-	}
+        if (collision.gameObject.tag == "Player")
+        {
+            logSystem.AddLogText("<color=green>" + collision.gameObject.GetComponent<PlayerInfomation>().PlayerName + "</color>" + "‚ª<color=blue>" + areaName + "</color>" + "‚ÉÚG‚µ‚Ü‚µ‚½B", LogInfomation.LogType.Event);
+        }
+    }
 }
