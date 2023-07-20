@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SetPosition : MonoBehaviour
 {
+    //プレイヤーのオブジェクト
+    public GameObject playerObj;
     //初期位置
     private Vector3 startPosition;
     //目的地
@@ -17,13 +19,10 @@ public class SetPosition : MonoBehaviour
         SetDestination(transform.position);
     }
 
-    //ランダムな位置の作成
-    public void CreateRandomPosition()
+
+    private void Update()
     {
-        //ランダムなVector2の値を得る
-        var randDestination = Random.insideUnitCircle * 8;
-        //現在地にランダムな位置を足して目的地とする
-        SetDestination(startPosition + new Vector3(randDestination.x, 0, randDestination.y));
+        destination = playerObj.transform.position;
     }
 
     //目的地を設定する

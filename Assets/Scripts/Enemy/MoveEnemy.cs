@@ -43,7 +43,6 @@ public class MoveEnemy : MonoBehaviour
         enemyController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         setPosition = GetComponent<SetPosition>();
-        setPosition.CreateRandomPosition();
         velocity = Vector3.zero;
         arrived = false;
         elapsedTime = 0f;
@@ -71,7 +70,7 @@ public class MoveEnemy : MonoBehaviour
             }
 
             //@–Ú“I’n‚É“’…‚µ‚½‚©‚Ç‚¤‚©‚Ì”»’è
-            if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 0.5f)
+            if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 3.0f)
             {
                 SetState(EnemyState.Wait);
                 animator.SetFloat("Speed", 0.0f);
@@ -100,7 +99,6 @@ public class MoveEnemy : MonoBehaviour
             arrived = false;
             elapsedTime = 0f;
             state = tempState;
-            setPosition.CreateRandomPosition();
         }
         else if (tempState == EnemyState.Chase)
         {

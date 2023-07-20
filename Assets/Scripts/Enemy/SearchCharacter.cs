@@ -16,7 +16,7 @@ public class SearchCharacter : MonoBehaviour
     void OnTriggerStay(Collider col)
     {
         //　プレイヤーキャラクターを発見
-        if (col.tag == "Player")
+        if (col.CompareTag("Player"))
         {
             //　敵キャラクターの状態を取得
             MoveEnemy.EnemyState state = moveEnemy.GetState();
@@ -31,7 +31,7 @@ public class SearchCharacter : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        if (col.tag == "Player")
+        if (col.CompareTag("Player"))
         {
             //Debug.Log("見失う");
             moveEnemy.SetState(MoveEnemy.EnemyState.Wait);
