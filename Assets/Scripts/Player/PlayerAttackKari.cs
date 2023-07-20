@@ -19,14 +19,9 @@ public class PlayerAttackKari : MonoBehaviour
     Collider LeftHandCollider;
     Collider RightFootCollider;
 
-    GameObject RightHand;
-    GameObject LeftHand;
-    GameObject RightFoot;
-
-    GameObject armature, root, hips, spine, chest;
-    GameObject shoulderL, upperarmL, lowerarmL;
-    GameObject shoulderR, upperarmR, lowerarmR;
-    GameObject upperlegR, lowerlegR;
+    public GameObject RightHand;
+    public GameObject LeftHand;
+    public GameObject RightFoot;
 
     [Space()]
     public int damage = 10;
@@ -35,15 +30,8 @@ public class PlayerAttackKari : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        FindComponent();
-
-        RightHand = lowerarmR.GetComponent<Transform>().transform.GetChild(0).gameObject;
         RightHandCollider = RightHand.GetComponent<SphereCollider>();
-
-        LeftHand = lowerarmL.GetComponent<Transform>().transform.GetChild(0).gameObject;
         LeftHandCollider = LeftHand.GetComponent<SphereCollider>();
-
-        RightFoot = lowerlegR.GetComponent<Transform>().transform.GetChild(0).gameObject;
         RightFootCollider = RightFoot.GetComponent<SphereCollider>();
     }
 
@@ -181,26 +169,5 @@ public class PlayerAttackKari : MonoBehaviour
     private void AnimStop()
     {
         animator.SetBool("AttackUp", false);
-    }
-
-    private void FindComponent()
-    {
-        armature = transform.GetChild(0).gameObject;
-        root = armature.GetComponent<Transform>().transform.GetChild(0).gameObject;
-        hips = root.GetComponent<Transform>().transform.GetChild(0).gameObject;
-        spine = hips.GetComponent<Transform>().transform.GetChild(1).gameObject;
-        chest = spine.GetComponent<Transform>().transform.GetChild(0).gameObject;
-
-        shoulderR = chest.GetComponent<Transform>().transform.GetChild(4).gameObject;
-        upperarmR = shoulderR.GetComponent<Transform>().transform.GetChild(0).gameObject;
-        lowerarmR = upperarmR.GetComponent<Transform>().transform.GetChild(0).gameObject;
-
-        shoulderL = chest.GetComponent<Transform>().transform.GetChild(3).gameObject;
-        upperarmL = shoulderL.GetComponent<Transform>().transform.GetChild(0).gameObject;
-        lowerarmL = upperarmL.GetComponent<Transform>().transform.GetChild(0).gameObject;
-
-        upperlegR = hips.GetComponent<Transform>().transform.GetChild(3).gameObject;
-        lowerlegR = upperlegR.GetComponent<Transform>().transform.GetChild(0).gameObject;
-
     }
 }

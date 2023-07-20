@@ -20,20 +20,16 @@ public class HPController : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Weapon")
+        if (collision.gameObject.CompareTag("Weapon"))
         {
             Hp -= 1;
             HpuiScript.HPUI(Hp);
-        }
-        if(collision.gameObject.tag=="HealItem")
-        {
-            Hp += 10;
         }
         
     }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag=="AttackEnemy")
+        if(other.gameObject.CompareTag("AttackEnemy"))
         {
             Hp -= 1;
             HpuiScript.HPUI(Hp);

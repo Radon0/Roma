@@ -18,15 +18,24 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     float deadWaitTime = 3;
 
+    private enum EnemyState
+    {
+        Wait,
+        Move,
+        Attack,
+        Escape
+    }
+
     //アニメーターのパラメータのIDを取得(高速化のため)
     readonly int SpeedHash = Animator.StringToHash("Speed");
     readonly int AttackHash = Animator.StringToHash("Attack");
     readonly int DeadHash = Animator.StringToHash("Dead");
 
     public bool isDead = false;
-    int EnemyHp = 0;
+    private int EnemyHp = 0;
     Transform thisTransform;
     HPController HpController;
+    private EnemyState enemyState;
 
     public int EnemyHpControll
     {
@@ -44,7 +53,7 @@ public class EnemyController : MonoBehaviour
     {
         thisTransform = transform;  //transformをキャッシュ(高速化)
         HpController = GetComponent<HPController>();
-
+        enemyState = EnemyState.Wait;
         InitEnemy();
     }
 

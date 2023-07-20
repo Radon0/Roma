@@ -30,13 +30,13 @@ public class HpHealing : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="Player")
+        if(collision.gameObject.CompareTag("Player"))
         {
             playerHealable = true;
             Destroy(this.gameObject);
             Healing(playerHpController,10);
         }
-        if(collision.gameObject.tag=="Enemy")
+        if(collision.gameObject.CompareTag("Enemy"))
         {
             enemyHealable = true;
             Destroy(this.gameObject);
