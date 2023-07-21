@@ -10,7 +10,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     NavMeshAgent navmeshAgent = null;
     [SerializeField]
-    Transform target = null;
+    HPController plyHpController = null;
+    [SerializeField]
+    Transform player = null;
     [SerializeField]
     BoxCollider boxCollider = null;
     [SerializeField, Min(0)]
@@ -18,14 +20,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     float deadWaitTime = 3;
 
-
-    private enum EnemyState
-    {
-        Wait,
-        Move,
-        Attack,
-        Escape
-    }
 
     //アニメーターのパラメータのIDを取得(高速化のため)
     readonly int SpeedHash = Animator.StringToHash("Speed");
@@ -36,8 +30,9 @@ public class EnemyController : MonoBehaviour
     private int EnemyHp = 0;
     Transform thisTransform;
     HPController HpController;
-    Ready ready;
-    private EnemyState enemyState;
+
+    private bool isAttacking = false;
+    private bool judged = false;
 
 
     public int EnemyHpControll
@@ -56,7 +51,6 @@ public class EnemyController : MonoBehaviour
     {
         thisTransform = transform;  //transformをキャッシュ(高速化)
         HpController = GetComponent<HPController>();
-        enemyState = EnemyState.Wait;
         InitEnemy();
     }
 
@@ -66,8 +60,11 @@ public class EnemyController : MonoBehaviour
         {
             return;
         }
-        if(HpController.Hp>0)
-        Move();
+        if (HpController.Hp > 0)
+        {
+            Move();
+            Attack();
+        }
         UpdateAnimator();
     }
 
@@ -111,14 +108,50 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Move()
+    private void Move()
     {
-        navmeshAgent.SetDestination(target.position);
+        navmeshAgent.SetDestination(player.position);
     }
 
     //アニメーターのアップデート処理
     void UpdateAnimator()
     {
         animator.SetFloat(SpeedHash, navmeshAgent.desiredVelocity.magnitude);
+    }
+    private void Attack()
+    {
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            if(!judged&&animator.GetCurrentAnimatorStateInfo(0).normalizedTime>=0.4f)
+            {
+                if (Vector3.Distance(player.position, thisTransform.position) <= 3f &&
+                    Vector3.Dot(player.position - thisTransform.position, thisTransform.forward) >= 0.7f)
+                { 
+                    plyHpController.Hp -= 1; 
+                }
+            }
+            if(isAttacking&&animator.GetCurrentAnimatorStateInfo(0).normalizedTime>=0.95f)
+            {
+                isAttacking = false;
+                navmeshAgent.isStopped = false;
+
+                StartCoroutine("Groan");
+            }
+        }
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+        {
+            if(!isAttacking&&Vector3.Distance(player.position,thisTransform.position)<=2f&&Vector3.Dot(player.position-thisTransform.position,thisTransform.forward)>=0.9f)
+            {
+                navmeshAgent.isStopped = true;
+                isAttacking = true;
+                judged = false;
+                animator.SetTrigger("Attack");
+                StopCoroutine("Groan");
+            }
+        }
+    }
+    private IEnumerator Groan()
+    {
+        yield return new WaitForSeconds(Random.Range(1f, 5f));
     }
 }

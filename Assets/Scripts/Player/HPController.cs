@@ -25,6 +25,8 @@ public class HPController : MonoBehaviour
         {
             Hp -= 1;
             HpuiScript.HPUI(Hp);
+            anim.SetBool("Damage", true);
+            Invoke("AnimatorReset", 1.0f);
         }
         
     }
@@ -49,10 +51,5 @@ public class HPController : MonoBehaviour
     private void AnimatorReset()
     {
         anim.SetBool("Damage", false);
-    }
-
-    private void Healing(HPController hpController)
-    {
-
     }
 }
