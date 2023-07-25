@@ -9,7 +9,8 @@ public class MoveEnemy : MonoBehaviour
     {
         Walk,
         Wait,
-        Chase
+        Chase,
+        Attack
     };
 
     private CharacterController enemyController;
@@ -29,7 +30,7 @@ public class MoveEnemy : MonoBehaviour
     private SetPosition setPosition;
     //　待ち時間
     [SerializeField]
-    private float waitTime = 5f;
+    private float waitTime = 0.5f;
     //　経過時間
     private float elapsedTime;
     // 敵の状態
@@ -42,6 +43,8 @@ public class MoveEnemy : MonoBehaviour
 
     private int maxHp = 10;
     private int EnemyHp = 0;
+
+    public SphereCollider rightHandCollider;
     
 
     // Use this for initialization
@@ -97,10 +100,14 @@ public class MoveEnemy : MonoBehaviour
                 }
 
                 //　目的地に到着したかどうかの判定
-                if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 3.0f)
+                if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 2.0f)
                 {
                     SetState(EnemyState.Wait);
                     animator.SetFloat("Speed", 0.0f);
+                    SetState(EnemyState.Attack);
+                    animator.SetBool("Attack", true);
+                    rightHandCollider.enabled = true;
+                    Invoke("ColliderReset", 1.0f);
                 }
                 //　到着していたら一定時間待つ
             }
@@ -145,6 +152,19 @@ public class MoveEnemy : MonoBehaviour
         }
     }
 
+    public EnemyState GetState()
+    {
+        return state;
+    }
+
+    private void ColliderReset()
+    {
+        Debug.Log(rightHandCollider.enabled);
+        rightHandCollider.enabled = false;
+        animator.SetBool("Attack", false);
+        SetState(EnemyState.Wait);
+    }
+
     //被ダメージ処理
     //public void Damage(int value)
     //{
@@ -161,10 +181,6 @@ public class MoveEnemy : MonoBehaviour
     //    }
     //}
     //　敵キャラクターの状態取得メソッド
-    public EnemyState GetState()
-    {
-        return state;
-    }
     //死亡時の処理
     //void Dead()
     //{

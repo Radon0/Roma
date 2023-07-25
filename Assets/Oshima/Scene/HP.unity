@@ -311,6 +311,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2114954105251456088, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114954105251456088, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: 53ba569123392a241af2e22e2a1754ac, type: 2}
@@ -321,6 +325,10 @@ PrefabInstance:
     - target: {fileID: 3090105504523433151, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3090105504523433151, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
+      propertyPath: m_Center.y
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 4015381850668803626, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
       propertyPath: maxHp
@@ -601,6 +609,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 243.76447, y: 0, z: 157.96823}
   m_Center: {x: -61.958035, y: -59.14015, z: 0}
+--- !u!135 &404803662 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 6242571811910432896, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
+  m_PrefabInstance: {fileID: 196117283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &459287923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +1014,7 @@ MonoBehaviour:
   waitTime: 5
   hpController: {fileID: 753912650}
   isDead: 0
+  rightHandCollider: {fileID: 404803662}
 --- !u!114 &753912654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2563,6 +2577,14 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2194183536152354974, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 42.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194183536152354974, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194183536152354974, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.7071068
       objectReference: {fileID: 0}
@@ -2653,6 +2675,10 @@ PrefabInstance:
     - target: {fileID: 3819589779111194879, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580234080914337790, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4580234080914337790, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
       propertyPath: m_Material
