@@ -10,16 +10,29 @@ public class EventTag : MonoBehaviour
 	[SerializeField]
 	private string areaName;
 
+	public float time=90f;//í“¬ŠÔ
 
-    private void OnCollisionEnter(Collision collision)
+	private void OnCollisionEnter(Collision collision)
     {
 		if (collision.gameObject.tag=="Enemy")
 		{
-			logSystem.AddLogText("<color=green>" + collision.gameObject.GetComponent<PlayerInfomation>().EnemyName + "</color>" + "‚ª<color=blue>" + areaName + "</color>" + "‚ÉÚG‚µ‚Ü‚µ‚½B", LogInfomation.LogType.Event);
+			logSystem.AddLogText("<color=green>" + collision.gameObject.GetComponent<EnemyInfomation>().EnemyName + "</color>" + "‚ª<color=blue>" + areaName + "</color>" + "‚ÉÚG‚µ‚Ü‚µ‚½B", LogInfomation.LogType.Event);
 		}
         if (collision.gameObject.tag == "Player")
         {
             logSystem.AddLogText("<color=green>" + collision.gameObject.GetComponent<PlayerInfomation>().PlayerName + "</color>" + "‚ª<color=blue>" + areaName + "</color>" + "‚ÉÚG‚µ‚Ü‚µ‚½B", LogInfomation.LogType.Event);
         }
     }
+	void Update() 
+	{
+		time -= Time.deltaTime;
+        if (time == 58f)
+        {
+			logSystem.AddLogText("<color=green>" + gameObject.GetComponent<PlayerInfomation>().PlayerName + "</color>" + "‚ª<color=blue>" + areaName + "</color>" + "‚ÉÚG‚µ‚Ü‚µ‚½B", LogInfomation.LogType.Event);
+
+			logSystem.AddLogText("<color=green>"  + "</color>" + "‚ª<color=blue>" + areaName + "</color>" + "‚ÉÚG‚µ‚Ü‚µ‚½B", LogInfomation.LogType.Event);
+
+		}
+
+	}
 }

@@ -10,7 +10,8 @@ public class HPController : MonoBehaviour
     public bool isDead;
     public Hpui HpuiScript;//
     Animator anim;
-
+    [SerializeField]
+    private LogInfomation logSystem;//logÉVÉXÉeÉÄ
 
     private void Start()
     {
@@ -23,6 +24,8 @@ public class HPController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Weapon"))
         {
+            //logSystem.AddLogText("<color=green>" + gameObject.GetComponent<EnemyInfomation>().EnemyName + "</color>" + "HPîºï™Ç‹Ç≈Ç¢Ç¡ÇΩÇº!!Ç†Ç∆è≠Çµ!!", LogInfomation.LogType.Event);
+            //logSystem.AddLogText("<color=green>" + gameObject.GetComponent<PlayerInfomation>().PlayerName + "</color>" + "HPÇ™îºï™ÇµÇ©Ç»Ç¢Çº!!äÎåØ!!", LogInfomation.LogType.Event);
             Hp -= 1;
             HpuiScript.HPUI(Hp);
             anim.SetBool("Damage", true);
@@ -38,6 +41,12 @@ public class HPController : MonoBehaviour
             HpuiScript.HPUI(Hp);
             anim.SetBool("Damage", true);
             Invoke("AnimatorReset", 1.0f);
+            //if (Hp==5)
+            //{
+            //    logSystem.AddLogText("<color=green>" + gameObject.GetComponent<EnemyInfomation>().EnemyName + "</color>" + "HPîºï™Ç‹Ç≈Ç¢Ç¡ÇΩÇº!!Ç†Ç∆è≠Çµ!!", LogInfomation.LogType.Event);
+            //    logSystem.AddLogText("<color=green>" + gameObject.GetComponent<PlayerInfomation>().PlayerName + "</color>" + "HPÇ™îºï™ÇµÇ©Ç»Ç¢Çº!!äÎåØ!!", LogInfomation.LogType.Event);
+            //}
+
         }
         if(other.gameObject.CompareTag("AttackPlayer"))
         {

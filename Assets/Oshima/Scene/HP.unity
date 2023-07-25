@@ -636,6 +636,7 @@ GameObject:
   - component: {fileID: 459287924}
   - component: {fileID: 459287928}
   - component: {fileID: 459287929}
+  - component: {fileID: 459287930}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Weapon
@@ -749,6 +750,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logSystem: {fileID: 48919019}
   areaName: Cube
+  time: 90
+--- !u!114 &459287930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459287923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b6cc4b0da016549857cd9644d3021c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &655680961 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 960175388204027998, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
@@ -969,7 +983,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 753912642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b6cc4b0da016549857cd9644d3021c, type: 3}
+  m_Script: {fileID: 11500000, guid: d48856551c2c2744ab1093a2a2094785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &753912646 stripped
@@ -1339,7 +1353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 923708296453493246, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 400
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 976217477054674678, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
       propertyPath: m_IsActive
@@ -1514,8 +1528,12 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3790096573452218995, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
+      propertyPath: logSystem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790096573452218995, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
       propertyPath: totalTime
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3790096573452218995, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
       propertyPath: WinLoseText
@@ -2294,6 +2312,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 99387067951134567, guid: 46c15ca433c49314ba2631744a2f2f0d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 424512205940554530, guid: 46c15ca433c49314ba2631744a2f2f0d, type: 3}
       propertyPath: verticalScrollbar
       value: 
@@ -2356,6 +2378,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3464264381189012944, guid: 46c15ca433c49314ba2631744a2f2f0d, type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3566508814011472671, guid: 46c15ca433c49314ba2631744a2f2f0d, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3566508814011472671, guid: 46c15ca433c49314ba2631744a2f2f0d, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3566508814011472671, guid: 46c15ca433c49314ba2631744a2f2f0d, type: 3}
+      propertyPath: m_FontData.m_LineSpacing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992004813699104460, guid: 46c15ca433c49314ba2631744a2f2f0d, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5254620492021175726, guid: 46c15ca433c49314ba2631744a2f2f0d, type: 3}
@@ -2444,6 +2482,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6362635421968302165, guid: 46c15ca433c49314ba2631744a2f2f0d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875638315432896873, guid: 46c15ca433c49314ba2631744a2f2f0d, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8480101998511891332, guid: 46c15ca433c49314ba2631744a2f2f0d, type: 3}
@@ -2575,7 +2617,7 @@ PrefabInstance:
     - target: {fileID: 1909972818242952119, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
       propertyPath: plyaerSystem
       value: 
-      objectReference: {fileID: 753912644}
+      objectReference: {fileID: 0}
     - target: {fileID: 2059387903429802890, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
       propertyPath: m_CollisionDetection
       value: 1
