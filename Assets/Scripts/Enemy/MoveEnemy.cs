@@ -69,6 +69,7 @@ public class MoveEnemy : MonoBehaviour
         arrived = false;
         elapsedTime = 0f;
         SetState(EnemyState.Walk);
+        rightHandCollider.enabled = false;
     }
 
     //private void FixedUpdate()
@@ -104,10 +105,13 @@ public class MoveEnemy : MonoBehaviour
                 {
                     SetState(EnemyState.Wait);
                     animator.SetFloat("Speed", 0.0f);
-                    SetState(EnemyState.Attack);
-                    animator.SetBool("Attack", true);
-                    rightHandCollider.enabled = true;
-                    Invoke("ColliderReset", 1.0f);
+                    if (velocity.x<0.3f)
+                    {
+                        SetState(EnemyState.Attack);
+                        animator.SetBool("Attack", true);
+                        rightHandCollider.enabled = true;
+                        Invoke("ColliderReset", 1.0f);
+                    }
                 }
                 //@“ž’…‚µ‚Ä‚¢‚½‚çˆê’èŽžŠÔ‘Ò‚Â
             }

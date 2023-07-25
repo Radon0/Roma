@@ -374,6 +374,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7567017589691721468, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8336983911849028842, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -395,6 +399,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8716613947305968160, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139230325095347164, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
