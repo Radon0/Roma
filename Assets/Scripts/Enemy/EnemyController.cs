@@ -7,12 +7,12 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField]
     Animator animator = null;
-    [SerializeField]
-    NavMeshAgent navmeshAgent = null;
+    //[SerializeField]
+    //NavMeshAgent navmeshAgent = null;
     [SerializeField]
     HPController plyHpController = null;
-    [SerializeField]
-    Transform player = null;
+    //[SerializeField]
+    //Transform player = null;
     [SerializeField]
     BoxCollider boxCollider = null;
     [SerializeField, Min(0)]
@@ -62,8 +62,8 @@ public class EnemyController : MonoBehaviour
         }
         if (HpController.Hp > 0)
         {
-            Move();
-            Attack();
+            //Move();
+            //Attack();
         }
         UpdateAnimator();
     }
@@ -108,50 +108,50 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void Move()
-    {
-        navmeshAgent.SetDestination(player.position);
-    }
+    //private void Move()
+    //{
+    //    navmeshAgent.SetDestination(player.position);
+    //}
 
     //アニメーターのアップデート処理
     void UpdateAnimator()
     {
-        animator.SetFloat(SpeedHash, navmeshAgent.desiredVelocity.magnitude);
+        //animator.SetFloat(SpeedHash, navmeshAgent.desiredVelocity.magnitude);
     }
-    private void Attack()
-    {
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            if(!judged&&animator.GetCurrentAnimatorStateInfo(0).normalizedTime>=0.4f)
-            {
-                if (Vector3.Distance(player.position, thisTransform.position) <= 3f &&
-                    Vector3.Dot(player.position - thisTransform.position, thisTransform.forward) >= 0.7f)
-                { 
-                    plyHpController.Hp -= 1; 
-                }
-            }
-            if(isAttacking&&animator.GetCurrentAnimatorStateInfo(0).normalizedTime>=0.95f)
-            {
-                isAttacking = false;
-                navmeshAgent.isStopped = false;
+    //private void Attack()
+    //{
+    //    if(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+    //    {
+    //        if(!judged&&animator.GetCurrentAnimatorStateInfo(0).normalizedTime>=0.4f)
+    //        {
+    //            if (Vector3.Distance(player.position, thisTransform.position) <= 3f &&
+    //                Vector3.Dot(player.position - thisTransform.position, thisTransform.forward) >= 0.7f)
+    //            { 
+    //                plyHpController.Hp -= 1; 
+    //            }
+    //        }
+    //        if(isAttacking&&animator.GetCurrentAnimatorStateInfo(0).normalizedTime>=0.95f)
+    //        {
+    //            isAttacking = false;
+    //            navmeshAgent.isStopped = false;
 
-                StartCoroutine("Groan");
-            }
-        }
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
-        {
-            if(!isAttacking&&Vector3.Distance(player.position,thisTransform.position)<=2f&&Vector3.Dot(player.position-thisTransform.position,thisTransform.forward)>=0.9f)
-            {
-                navmeshAgent.isStopped = true;
-                isAttacking = true;
-                judged = false;
-                animator.SetTrigger("Attack");
-                StopCoroutine("Groan");
-            }
-        }
-    }
-    private IEnumerator Groan()
-    {
-        yield return new WaitForSeconds(Random.Range(1f, 5f));
-    }
+    //            StartCoroutine("Groan");
+    //        }
+    //    }
+    //    if(animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+    //    {
+    //        if(!isAttacking&&Vector3.Distance(player.position,thisTransform.position)<=2f&&Vector3.Dot(player.position-thisTransform.position,thisTransform.forward)>=0.9f)
+    //        {
+    //            navmeshAgent.isStopped = true;
+    //            isAttacking = true;
+    //            judged = false;
+    //            animator.SetTrigger("Attack");
+    //            StopCoroutine("Groan");
+    //        }
+    //    }
+    //}
+    //private IEnumerator Groan()
+    //{
+    //    yield return new WaitForSeconds(Random.Range(1f, 5f));
+    //}
 }

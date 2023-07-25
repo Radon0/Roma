@@ -17,6 +17,7 @@ public class Ready : MonoBehaviour
     [SerializeField] GameObject toatl;
     public HPController hpScript;//Ÿ‚¿•‰‚¯”»’è
     public EnemyController Enemy;
+    //public MoveEnemy moveEnemy;
     public int WinCount=0;
     public int LoseCount=0;
     void Start()
@@ -61,9 +62,7 @@ public class Ready : MonoBehaviour
 
     private void Win()//ƒvƒŒƒCƒ„[‚ªŸ‚Á‚½
     {
-    
-        
-        if (Enemy.isDead == true)//“G‚ª€‚ñ‚¾‚Æ‚«
+        if (Enemy.isDead==true)//“G‚ª€‚ñ‚¾‚Æ‚«
         {
             WinCount=+1;
             totalTime = 0;

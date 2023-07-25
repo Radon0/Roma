@@ -37,7 +37,26 @@ public class MoveEnemy : MonoBehaviour
     //　プレイヤーTransform
     private Transform playerTransform;
 
+    public HPController hpController;
+    public bool isDead = false;
+
+    private int maxHp = 10;
+    private int EnemyHp = 0;
+    
+
     // Use this for initialization
+
+    public int EnemyHpControll
+    {
+        set
+        {
+            EnemyHp = Mathf.Clamp(value, 0, maxHp);
+        }
+        get
+        {
+            return EnemyHp;
+        }
+    }
     void Start()
     {
         enemyController = GetComponent<CharacterController>();
@@ -49,6 +68,14 @@ public class MoveEnemy : MonoBehaviour
         SetState(EnemyState.Walk);
     }
 
+    private void FixedUpdate()
+    {
+        if(isDead)
+        {
+            Debug.Log("死んだ");
+            return;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -117,9 +144,33 @@ public class MoveEnemy : MonoBehaviour
             animator.SetFloat("Speed", 0f);
         }
     }
+
+    //被ダメージ処理
+    public void Damage(int value)
+    {
+        if (value <= 0)
+        {
+            return;
+        }
+
+        EnemyHp -= value;
+
+        if (EnemyHp <= 0)
+        {
+            Dead();
+        }
+    }
     //　敵キャラクターの状態取得メソッド
     public EnemyState GetState()
     {
         return state;
+    }
+    //死亡時の処理
+    void Dead()
+    {
+        isDead = true;
+        //boxCollider.enabled = false;
+        //animator.SetBool(DeadHash, true);
+
     }
 }

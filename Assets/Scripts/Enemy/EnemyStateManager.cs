@@ -9,10 +9,28 @@ public class EnemyStateManager : MonoBehaviour
         Wait,
         Move,
         Attack,
-        Escape
+        Escape,
+        Dead
     };
 
     EnemyState enemyState;
+    HPController hpController;
+    public bool isDead=false;
+
+    private int EnemyHp = 0;
+    private int maxHp = 10;
+
+    public int EnemyHpControll
+    {
+        set
+        {
+            EnemyHp = Mathf.Clamp(value, 0, maxHp);
+        }
+        get
+        {
+            return EnemyHp;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +41,11 @@ public class EnemyStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (hpController.Hp == 0)
+        {
+            enemyState = EnemyState.Dead;
+            isDead = true;
+            return;
+        }
     }
 }
