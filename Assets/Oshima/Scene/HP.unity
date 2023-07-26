@@ -1406,6 +1406,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: test
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8b837e8edcad4004db286bb2eba66bd9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b837e8edcad4004db286bb2eba66bd9, type: 3}
 --- !u!1 &988721285 stripped
@@ -1893,7 +1897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: eafe002c2a42edb4faafa32b1b02dd4f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1129496810705857465, guid: eafe002c2a42edb4faafa32b1b02dd4f, type: 3}
       propertyPath: m_CastShadows
