@@ -16,8 +16,8 @@ public class Ready : MonoBehaviour
     [SerializeField] Text callText;//時間が過ぎた時の文字
     [SerializeField] GameObject call;//時間が過ぎた時のゲームオブジェクト
     [SerializeField] GameObject toatl;
-    public HPController hpScript;//勝ち負け判定
-    public HPController Enemy;
+    [SerializeField] private HPController hpScript;//勝ち負け判定
+    [SerializeField] private HPController Enemy;
     //public MoveEnemy moveEnemy;
     public int WinCount=0;
     public int LoseCount=0;
