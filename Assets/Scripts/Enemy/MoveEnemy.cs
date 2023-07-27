@@ -163,7 +163,7 @@ public class MoveEnemy : MonoBehaviour
 
     private void ColliderReset()
     {
-        Debug.Log(rightHandCollider.enabled);
+        //Debug.Log(rightHandCollider.enabled);
         rightHandCollider.enabled = false;
         animator.SetBool("Attack", false);
         SetState(EnemyState.Wait);
