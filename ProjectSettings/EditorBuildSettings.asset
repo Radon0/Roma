@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Oshima/Scene/HP.unity
     guid: 2f36895db0d6fa24881853472367165f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Oshima/Scene/Vote.unity
     guid: 089e7de4b693cd84c8d0dd0118b31728
-  - enabled: 0
+  - enabled: 1
     path: Assets/Oshima/Scene/Spectator.unity
     guid: c90b9e81e2de90b4195589cbb2d7e5fe
   m_configObjects: {}

@@ -12,6 +12,8 @@ public class HpHealing : MonoBehaviour
     private HPController enemyHpController;
     private bool playerHealable;
     private bool enemyHealable;
+    [SerializeField]
+    private LogInfomation logSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,6 @@ public class HpHealing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     private void OnCollisionEnter(Collision collision)
