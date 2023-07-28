@@ -10,7 +10,7 @@ TagManager:
   - Enemy
   - AttackEnemy
   - AttackPlayer
-  - Syringes
+  - Item
   layers:
   - Default
   - TransparentFX
