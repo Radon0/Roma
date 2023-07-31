@@ -22,11 +22,13 @@ public class HpHealing : MonoBehaviour
         enemyHealable = false;
         playerHpController = playerObj.GetComponent<HPController>();
         enemyHpController = enemyObj.GetComponent<HPController>();
+      
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -36,9 +38,13 @@ public class HpHealing : MonoBehaviour
             playerHealable = true;
             Destroy(this.gameObject);
             Healing(playerHpController,10);
+            //logSystem.AddLogText("<color=blue>" + gameObject.GetComponent<ItemName>().syringesName + "</color>" + "が出現!回復のチャンスだ!!", LogInfomation.LogType.Event);
+            logSystem.AddLogText("<color=green>"+collision.gameObject.GetComponent<PlayerInfomation>().PlayerName + "</color>" + "が<color=blue>" + gameObject.GetComponent<ItemName>().syringesName + "</color>" + "を取得!!。", LogInfomation.LogType.Event);
+
         }
-        if(collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
+            logSystem.AddLogText("<color=green>" + collision.gameObject.GetComponent<EnemyInfomation>().EnemyName + "</color>" + "が<color=blue>" + gameObject.GetComponent<ItemName>().syringesName + "</color>" + "を取得!!。", LogInfomation.LogType.Event);
             enemyHealable = true;
             Destroy(this.gameObject);
         }
