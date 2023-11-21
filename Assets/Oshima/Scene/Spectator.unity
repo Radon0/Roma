@@ -134,8 +134,6 @@ GameObject:
   - component: {fileID: 811100329}
   - component: {fileID: 811100328}
   - component: {fileID: 811100327}
-  - component: {fileID: 811100330}
-  - component: {fileID: 811100331}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -178,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 68
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 233.6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -202,41 +200,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811100326}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8.1, y: 79.8, z: -1.9}
+  m_LocalPosition: {x: -69, y: 57, z: -1.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &811100330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811100326}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0822c6c855d75454bb70c95fcfaa0f23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 1501114253}
---- !u!114 &811100331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811100326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EventMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_MaxRayIntersections: 0
 --- !u!1001 &975847977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -250,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eafe002c2a42edb4faafa32b1b02dd4f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eafe002c2a42edb4faafa32b1b02dd4f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -489,11 +458,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 3.79, z: 2.15}
   m_Center: {x: 0.08, y: -0.25, z: -0.05}
---- !u!1 &1501114253 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6114070874455124987, guid: 4220593741da97d48af9d886b192b628, type: 3}
-  m_PrefabInstance: {fileID: 1322154910}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1553521488
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,7 +598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb3b11ca92abe0f49b2f1ec4477f2c77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -51
+      value: -54.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb3b11ca92abe0f49b2f1ec4477f2c77, type: 3}
       propertyPath: m_LocalPosition.z
