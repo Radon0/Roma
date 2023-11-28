@@ -6,12 +6,8 @@ using UnityEngine.UI;
 public class IineButton : MonoBehaviour
 {
     public float IineButom;//いいねボタン
-       Slider _slider;//いいねスライダー
+      public Slider _slider;//いいねスライダー
     // Start is called before the first frame update
-    void Start()
-    {
-        _slider = GameObject.Find("Slider").GetComponent<Slider>();
-    }
     // Update is called once per frame
     public void Onclick()
     {    IineButom += 1;

@@ -4,25 +4,39 @@ using UnityEngine;
 
 public class MainCameraMove : MonoBehaviour
 {
-    private Vector3 lastMousePosition;
-    private Vector3 newAngle = new Vector3(0, 0, 0);
-    public float y_rotate;
-    public float x_reverce;
-    public float x_rotate;
-    public float y_reverce;
-
-    void Start()
-    {
-        newAngle = this.transform.localEulerAngles;
-        lastMousePosition = Input.mousePosition;
-    }
-
+    public int count;    
     void Update()
     {
-        newAngle.y += (Input.mousePosition.x - lastMousePosition.x) * y_rotate * x_reverce;
-        newAngle.x -= (Input.mousePosition.y - lastMousePosition.y) * x_rotate * y_reverce;
-        this.gameObject.transform.localEulerAngles = newAngle;
-        lastMousePosition = Input.mousePosition;
+        // ‚à‚µSpaceƒL[‚ª‰Ÿ‚³‚ê‚½‚È‚ç‚ÎA
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            count++;
+            if (count > 4)
+            {
+                count = 0;
+            }
+            switch (count)
+            {
+                case 0:             
+                    transform.position = new Vector3(-60, 51, -80);
+                    transform.eulerAngles = new Vector3(52, 0, 0);
+                    break;
+                case 1:
+                    transform.position = new Vector3(0, 0, 0);           
+                    transform.eulerAngles = new Vector3(90, 0, 0);
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+                    break;
+                case 4:
+
+                    break;
+
+            }
+        }
+
     }
 
 }
