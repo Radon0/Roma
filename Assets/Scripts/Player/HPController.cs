@@ -26,7 +26,7 @@ public class HPController : MonoBehaviour
         {
             //logSystem.AddLogText("<color=green>" + gameObject.GetComponent<EnemyInfomation>().EnemyName + "</color>" + "HPîºï™Ç‹Ç≈Ç¢Ç¡ÇΩÇº!!Ç†Ç∆è≠Çµ!!", LogInfomation.LogType.Event);
             //logSystem.AddLogText("<color=green>" + gameObject.GetComponent<PlayerInfomation>().PlayerName + "</color>" + "HPÇ™îºï™ÇµÇ©Ç»Ç¢Çº!!äÎåØ!!", LogInfomation.LogType.Event);
-            Hp -= 1;
+            Hp -= 10;
             HpuiScript.HPUI(Hp);
             anim.SetBool("Damage", true);
             Invoke("AnimatorReset", 1.0f);
@@ -50,7 +50,7 @@ public class HPController : MonoBehaviour
         }
         if(other.gameObject.CompareTag("AttackPlayer"))
         {
-            Hp -= 1;
+            Hp -= 4;
             HpuiScript.HPUI(Hp);
             anim.SetBool("Damage", true);
             Invoke("AnimatorReset", 1.0f);

@@ -45,7 +45,12 @@ public class MoveEnemy : MonoBehaviour
     private int EnemyHp = 0;
 
     public SphereCollider rightHandCollider;
-    
+
+    readonly int sRunHash = Animator.StringToHash("Run_Start");
+    readonly int eRunHash = Animator.StringToHash("Run_End");
+    readonly int sPunch01Hash = Animator.StringToHash("Punch_01_Start");
+    readonly int ePunch01Hash = Animator.StringToHash("Punch_01_End");
+
 
     // Use this for initialization
 
@@ -94,7 +99,7 @@ public class MoveEnemy : MonoBehaviour
                 if (enemyController.isGrounded)
                 {
                     velocity = Vector3.zero;
-                    animator.SetFloat("Speed", 2.0f);
+                    animator.SetTrigger(sRunHash);
                     direction = (setPosition.GetDestination() - transform.position).normalized;
                     transform.LookAt(new Vector3(setPosition.GetDestination().x, transform.position.y, setPosition.GetDestination().z));
                     velocity = direction * walkSpeed;
@@ -104,11 +109,11 @@ public class MoveEnemy : MonoBehaviour
                 if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 2.0f)
                 {
                     SetState(EnemyState.Wait);
-                    animator.SetFloat("Speed", 0.0f);
+                    animator.SetTrigger(eRunHash);
                     if (velocity.x<0.3f)
                     {
                         SetState(EnemyState.Attack);
-                        animator.SetBool("Attack", true);
+                        animator.SetTrigger(sPunch01Hash);
                         rightHandCollider.enabled = true;
                         Invoke("ColliderReset", 1.0f);
                     }
@@ -152,7 +157,7 @@ public class MoveEnemy : MonoBehaviour
             state = tempState;
             arrived = true;
             velocity = Vector3.zero;
-            animator.SetFloat("Speed", 0f);
+            animator.SetTrigger(eRunHash);
         }
     }
 
@@ -165,7 +170,7 @@ public class MoveEnemy : MonoBehaviour
     {
         //Debug.Log(rightHandCollider.enabled);
         rightHandCollider.enabled = false;
-        animator.SetBool("Attack", false);
+        animator.SetTrigger(ePunch01Hash);
         SetState(EnemyState.Wait);
     }
 

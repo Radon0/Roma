@@ -267,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 960175388204027998, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: c2e3b0641a2946b4d9607eb632f44396, type: 2}
+      objectReference: {fileID: 9100000, guid: 290ebed4365f1e94c8d9219f4354453c, type: 2}
     - target: {fileID: 1180688218237024942, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
       propertyPath: Hp
       value: 100
@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304db5830473364479784c10a824e5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
+  walkSpeed: 15
   waitTime: 5
   hpController: {fileID: 753912650}
   isDead: 0
@@ -2948,6 +2948,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 553953649617613127, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f65f9c6cab195c74e9c5dd94a143f36c, type: 2}
     - target: {fileID: 1493320353153215342, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
       propertyPath: m_IsActive
       value: 1

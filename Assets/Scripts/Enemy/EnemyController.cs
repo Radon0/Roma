@@ -22,9 +22,18 @@ public class EnemyController : MonoBehaviour
 
 
     //アニメーターのパラメータのIDを取得(高速化のため)
-    readonly int SpeedHash = Animator.StringToHash("Speed");
-    readonly int AttackHash = Animator.StringToHash("Attack");
-    readonly int DeadHash = Animator.StringToHash("Dead");
+    //readonly int SpeedHash = Animator.StringToHash("Speed");
+    //readonly int AttackHash = Animator.StringToHash("Attack");
+    //readonly int DeadHash = Animator.StringToHash("Dead");
+
+    readonly int sJumpHash = Animator.StringToHash("Jamp_Start");
+    readonly int eJumpHash = Animator.StringToHash("Jamp_End");
+    readonly int sDamage01Hash = Animator.StringToHash("Damage_01_Start");
+    readonly int eDamage01Hash = Animator.StringToHash("Damage_01_End");
+    readonly int sDamage02Hash = Animator.StringToHash("Damage_02_Start");
+    readonly int sDamage03Hash = Animator.StringToHash("Damage_03_Start");
+    readonly int sDownHash = Animator.StringToHash("Down_Start");
+    readonly int eDownHash = Animator.StringToHash("Down_End");
 
     public bool isDead = false;
     private int EnemyHp = 0;
@@ -81,8 +90,9 @@ public class EnemyController : MonoBehaviour
         {
             return;
         }
-
+        
         EnemyHp -= value;
+        animator.SetTrigger(sDamage01Hash);
 
         if (EnemyHp <= 0)
         {
@@ -95,7 +105,7 @@ public class EnemyController : MonoBehaviour
     {
         isDead = true;
         boxCollider.enabled = false;
-        animator.SetBool(DeadHash, true);
+        animator.SetTrigger(sDownHash);
 
         StartCoroutine(nameof(DeadTimer));
     }
