@@ -114,6 +114,7 @@ public class MoveEnemy : MonoBehaviour
                     {
                         SetState(EnemyState.Attack);
                         animator.SetTrigger(sPunch01Hash);
+                        GetComponent<AudioSource>().Play();
                         rightHandCollider.enabled = true;
                         Invoke("ColliderReset", 1.0f);
                     }
@@ -171,6 +172,7 @@ public class MoveEnemy : MonoBehaviour
         //Debug.Log(rightHandCollider.enabled);
         rightHandCollider.enabled = false;
         animator.SetTrigger(ePunch01Hash);
+        GetComponent<AudioSource>().Stop();
         SetState(EnemyState.Wait);
     }
 
