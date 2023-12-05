@@ -45,8 +45,8 @@ public class FPSController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (HpController.Hp > 0)
+        float readyTime = Ready.Instance.Readytime;
+        if (HpController.Hp > 0 && readyTime <= 1)
         {
             //Debug.Log(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name);
             float xRot = Input.GetAxis("Mouse X") * Ysensityvity;

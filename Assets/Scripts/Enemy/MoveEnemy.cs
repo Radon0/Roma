@@ -51,6 +51,9 @@ public class MoveEnemy : MonoBehaviour
     readonly int sPunch01Hash = Animator.StringToHash("Punch_01_Start");
     readonly int ePunch01Hash = Animator.StringToHash("Punch_01_End");
 
+    public float attackCoolDown = 1.0f;
+    private float timeSinceLastAttack = 0.0f;
+    private bool canAttack = true;
 
     // Use this for initialization
 
@@ -88,51 +91,71 @@ public class MoveEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            //　見回りまたはキャラクターを追いかける状態
-            if (state == EnemyState.Walk || state == EnemyState.Chase)
+        if(!canAttack)
+        {
+            timeSinceLastAttack += Time.deltaTime;
+            if(timeSinceLastAttack>=attackCoolDown)
             {
-                //　キャラクターを追いかける状態であればキャラクターの目的地を再設定
-                if (state == EnemyState.Chase)
-                {
-                    setPosition.SetDestination(playerTransform.position);
-                }
-                if (enemyController.isGrounded)
-                {
-                    velocity = Vector3.zero;
-                    animator.SetTrigger(sRunHash);
-                    direction = (setPosition.GetDestination() - transform.position).normalized;
-                    transform.LookAt(new Vector3(setPosition.GetDestination().x, transform.position.y, setPosition.GetDestination().z));
-                    velocity = direction * walkSpeed;
-                }
-
-                //　目的地に到着したかどうかの判定
-                if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 2.0f)
-                {
-                    SetState(EnemyState.Wait);
-                    animator.SetTrigger(eRunHash);
-                    if (velocity.x<0.3f)
-                    {
-                        SetState(EnemyState.Attack);
-                        animator.SetTrigger(sPunch01Hash);
-                        GetComponent<AudioSource>().Play();
-                        rightHandCollider.enabled = true;
-                        Invoke("ColliderReset", 1.0f);
-                    }
-                }
-                //　到着していたら一定時間待つ
+                canAttack = true;
+                timeSinceLastAttack = 0.0f;
             }
-            else if (state == EnemyState.Wait)
+        }
+
+        float readyTime = Ready.Instance.Readytime;
+        if (readyTime > 1)
+        {
+            SetState(EnemyState.Wait);
+        }
+        else
+        {
+            SetState(EnemyState.Walk);
+        }
+        //　見回りまたはキャラクターを追いかける状態
+        if (state == EnemyState.Walk || state == EnemyState.Chase)
+        {
+            //　キャラクターを追いかける状態であればキャラクターの目的地を再設定
+            if (state == EnemyState.Chase)
             {
-                elapsedTime += Time.deltaTime;
+                setPosition.SetDestination(playerTransform.position);
+            }
+            if (enemyController.isGrounded)
+            {
+               velocity = Vector3.zero;
+               animator.SetTrigger(sRunHash);
+               direction = (setPosition.GetDestination() - transform.position).normalized;
+               transform.LookAt(new Vector3(setPosition.GetDestination().x, transform.position.y, setPosition.GetDestination().z));
+               velocity = direction * walkSpeed;
+            }
 
-                //　待ち時間を越えたら次の目的地を設定
-                if (elapsedTime > waitTime)
+            //　目的地に到着したかどうかの判定
+            if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 3.0f && canAttack)
+            {
+                SetState(EnemyState.Wait);
+                animator.SetTrigger(eRunHash);
+                if (velocity.x<0.3f)
                 {
-                    SetState(EnemyState.Walk);
+                    SetState(EnemyState.Attack);
+                    animator.SetTrigger(sPunch01Hash);
+                    GetComponent<AudioSource>().Play();
+                    rightHandCollider.enabled = true;
+                    Invoke("ColliderReset", 1.0f);
+                    canAttack = false;
                 }
             }
-            velocity.y += Physics.gravity.y * Time.deltaTime;
-            enemyController.Move(velocity * Time.deltaTime);
+        }
+        //　到着していたら一定時間待つ
+        else if (state == EnemyState.Wait)
+        {
+            elapsedTime += Time.deltaTime;
+
+            //　待ち時間を越えたら次の目的地を設定
+            if (elapsedTime > waitTime)
+            {
+                SetState(EnemyState.Walk);
+            }
+        }
+        velocity.y += Physics.gravity.y * Time.deltaTime;
+        enemyController.Move(velocity * Time.deltaTime);
     }
 
     //　敵キャラクターの状態変更メソッド

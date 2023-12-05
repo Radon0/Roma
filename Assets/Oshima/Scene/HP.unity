@@ -1258,11 +1258,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304db5830473364479784c10a824e5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 15
+  walkSpeed: 10
   waitTime: 5
   hpController: {fileID: 753912650}
   isDead: 0
   rightHandCollider: {fileID: 404803662}
+  attackCoolDown: 1
 --- !u!114 &753912654
 MonoBehaviour:
   m_ObjectHideFlags: 0

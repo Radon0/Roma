@@ -50,7 +50,7 @@ public class HPController : MonoBehaviour
         }
         if(other.gameObject.CompareTag("AttackPlayer"))
         {
-            Hp -= 4;
+            Hp -= 1;
             HpuiScript.HPUI(Hp);
             anim.SetBool("Damage", true);
             Invoke("AnimatorReset", 1.0f);

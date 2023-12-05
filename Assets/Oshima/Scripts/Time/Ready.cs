@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Ready : MonoBehaviour
 {
+    public static Ready Instance;
+
     private bool hasWon = false;
     public float Readytime = 3.0f;//始まる時間
     private Text ReadyText;//最初のテキスト
@@ -21,6 +23,12 @@ public class Ready : MonoBehaviour
     //public MoveEnemy moveEnemy;
     public int WinCount=0;
     public int LoseCount=0;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     { 
         ReadyText = GetComponent<Text>();
