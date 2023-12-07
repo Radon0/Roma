@@ -15,12 +15,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - MinMap
+  - 
   - Water
   - UI
+  - 
+  - MinMap
   - Stage
-  - 
-  - 
   - 
   - 
   - 
@@ -47,4 +47,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Stage
+    uniqueID: 3471609177
     locked: 0

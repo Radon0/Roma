@@ -5,48 +5,33 @@ using UnityEngine.UI;
 public class Gimmick : MonoBehaviour
 {
     [SerializeField] Slider iineSlider;
-    //public GameObject gimmick;
-    private Vector3 defaultPos;
-    public List<GameObject> myList = new List<GameObject>();//一応複数のギミックをやれるようにはしている        
-    private int GimimckCount;//ギミックの表示回数
-
-
+    public bool click=false;// クリックした位置座標
+    public Button button;
+    public GameObject game;
+    public bool Open=false;
     private void Start()
     {
-        defaultPos = new Vector3(-21, -54, 0);//位置
+        button = GetComponent<Button>();
     }
+    
     public void ClickStartButton()
-    {           
-        switch (iineSlider.value)
-        {         
-            case 10:
-                GimimckCount += 1;
-                if (GimimckCount <= 6)//6回ギミック表示
-                {
-                    Instantiate(myList[0]);
-                    myList[0].transform.position = defaultPos;
+    {
+        if (iineSlider.value == iineSlider.maxValue)
+        {
+               button.interactable = false;
+               click = true;
+            //if (!Open)
+            //{
+            //    Open = false; 
+            //    // ボタンが押されたときにインスタンスを生成
+            //   destroy= Instantiate(game, transform.position, Quaternion.identity);
+               
+            //}
+            //else if(Open==true)
+            //{
+            //    Destroy(destroy);
+            //}
 
-                }
-                iineSlider.value = 0;
-                break;
-            case 20:
-                GimimckCount += 1;
-                if (GimimckCount <= 3)
-                {
-                    Instantiate(myList[1]);
-                    myList[1].transform.position = defaultPos;
-                }
-                iineSlider.value = 0;
-                break;
-            case 30:
-                GimimckCount += 1;
-                if (GimimckCount <= 3)
-                {
-                    Instantiate(myList[2]);
-                    myList[2].transform.position = defaultPos;
-                }
-                iineSlider.value = 0;
-                break;
-        }
+        }       
     }
 }
