@@ -156,6 +156,9 @@ MonoBehaviour:
   myList:
   - {fileID: 9076753377233721811, guid: 0750399b0bdc3b64c87918ad72ab265e, type: 3}
   gimmick: {fileID: 1246345191}
+  game: {fileID: 0}
+  games:
+  - {fileID: 4419563026510859402, guid: ad83052bf503afc488bef72a3a82efe3, type: 3}
 --- !u!4 &648813094
 Transform:
   m_ObjectHideFlags: 0
@@ -164,7 +167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648813092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.16667, y: -71.87631, z: -18.197815}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -395,9 +398,17 @@ PrefabInstance:
       value: -423.9
       objectReference: {fileID: 0}
     - target: {fileID: 5842054270780434608, guid: 4220593741da97d48af9d886b192b628, type: 3}
+      propertyPath: game
+      value: 
+      objectReference: {fileID: 9076753377233721811, guid: 0750399b0bdc3b64c87918ad72ab265e, type: 3}
+    - target: {fileID: 5842054270780434608, guid: 4220593741da97d48af9d886b192b628, type: 3}
       propertyPath: click
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5842054270780434608, guid: 4220593741da97d48af9d886b192b628, type: 3}
+      propertyPath: games
+      value: 
+      objectReference: {fileID: 9076753377233721811, guid: 0750399b0bdc3b64c87918ad72ab265e, type: 3}
     - target: {fileID: 5842054270780434608, guid: 4220593741da97d48af9d886b192b628, type: 3}
       propertyPath: button
       value: 
@@ -498,9 +509,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Iine
       objectReference: {fileID: 0}
+    - target: {fileID: 6114070874570062003, guid: 4220593741da97d48af9d886b192b628, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114070874570062003, guid: 4220593741da97d48af9d886b192b628, type: 3}
+      propertyPath: m_Color.g
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114070874570062003, guid: 4220593741da97d48af9d886b192b628, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8465052
+      objectReference: {fileID: 0}
     - target: {fileID: 6114070875998037068, guid: 4220593741da97d48af9d886b192b628, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114070875998037071, guid: 4220593741da97d48af9d886b192b628, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114070875998037071, guid: 4220593741da97d48af9d886b192b628, type: 3}
+      propertyPath: m_Color.r
+      value: 0.1309793
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4220593741da97d48af9d886b192b628, type: 3}
@@ -692,7 +723,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 243.76447, y: 0, z: 157.96823}
-  m_Center: {x: -61.98, y: -55.8, z: 12.62}
+  m_Center: {x: -61.98, y: -59.6, z: 12.62}
 --- !u!1001 &1825175353
 PrefabInstance:
   m_ObjectHideFlags: 0

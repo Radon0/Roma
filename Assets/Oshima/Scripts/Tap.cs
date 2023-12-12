@@ -8,7 +8,7 @@ public class Tap : MonoBehaviour
     [SerializeField] Slider iineSlider;
     public List<GameObject> myList = new List<GameObject>();
     [SerializeField] Gimmick gimmick;
-    private GameObject game = null;
+   [SerializeField] private GameObject game = null;
     [SerializeField] GameObject[] games;
     private Vector3 mouse;
     private Vector3 target;
@@ -20,31 +20,38 @@ public class Tap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
+
         //{&& iineSlider.value == iineSlider.maxValue
         switch (iineSlider.value)
         {
             case 10:
-                if (  gimmick.click == true)
+                if (gimmick.click == true)
                 {
-                  
-                        
-                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                        int layerMask = 1 << LayerMask.NameToLayer("Stage");
-                        RaycastHit hit = new RaycastHit();
 
+                    if (gimmick.Open == true)
+                    {
+                        game = Instantiate(games[0], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.identity);
+                    }
+
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    int layerMask = 1 << LayerMask.NameToLayer("Stage");
+                    RaycastHit hit = new RaycastHit();
                     if (Input.GetMouseButtonDown(0))
                     {
+                     
+
                         if (Physics.Raycast(ray, out hit, layerMask))
                         {
+                            Destroy(game);
                             Debug.Log(hit.collider.gameObject.name);
                             Instantiate(myList[0], hit.point, Quaternion.identity);
                             gimmick.click = false;
-                            iineSlider.value = 0;
+                            iineSlider.value = 0;                           
                             gimmick.button.interactable = true;
 
                         }
                     }
+                   
                 }
                 break;
             case 20:
@@ -83,6 +90,9 @@ public class Tap : MonoBehaviour
                 }
                 break;
         }
+        mouse = Input.mousePosition;
+        target = Camera.main.ScreenToWorldPoint(new Vector3(mouse.x, mouse.y, 10));
+        game.transform.position = target;
         //game = Instantiate(games[0], transform.position, Quaternion.identity);
         //if (gimmick.click == true)
         //{
