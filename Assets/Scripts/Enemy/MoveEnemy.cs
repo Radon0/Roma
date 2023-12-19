@@ -94,15 +94,15 @@ public class MoveEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!canAttack)
-        {
-            timeSinceLastAttack += Time.deltaTime;
-            if(timeSinceLastAttack>=attackCoolDown)
-            {
-                canAttack = true;
-                timeSinceLastAttack = 0.0f;
-            }
-        }
+        //if(!canAttack)
+        //{
+        //    timeSinceLastAttack += Time.deltaTime;
+        //    if(timeSinceLastAttack>=attackCoolDown)
+        //    {
+        //        canAttack = true;
+        //        timeSinceLastAttack = 0.0f;
+        //    }
+        //}
 
         float readyTime = Ready.Instance.Readytime;
         if (readyTime > 1)
@@ -131,18 +131,21 @@ public class MoveEnemy : MonoBehaviour
             }
 
             //　目的地に到着したかどうかの判定
-            if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 3.0f && canAttack)
+            if (Vector3.Distance(transform.position, setPosition.GetDestination()) < Mathf.Abs(3.0f) && canAttack)
             {
                 SetState(EnemyState.Wait);
+                velocity = Vector3.zero;
                 animator.SetTrigger(eRunHash);
-                if (velocity.x>0.1f&&velocity.x<0.3f)
+                if (velocity.x<0.3f)
                 {
                     SetState(EnemyState.Attack);
                     animator.SetTrigger(sPunch01Hash);
-                    GetComponent<AudioSource>().Play();
+                    //punchAudio.PlayOneShot(punchAudio.clip);
                     rightHandCollider.enabled = true;
                     Invoke("ColliderReset", 1.0f);
                     canAttack = false;
+
+                    StartCoroutine(StanTimer());
                 }
             }
         }
@@ -198,13 +201,14 @@ public class MoveEnemy : MonoBehaviour
         //Debug.Log(rightHandCollider.enabled);
         rightHandCollider.enabled = false;
         animator.SetTrigger(ePunch01Hash);
-        GetComponent<AudioSource>().Stop();
+        //punchAudio.Stop();
         SetState(EnemyState.Wait);
     }
 
-    private void avoidMethod()
+    private IEnumerator StanTimer()
     {
-        
+        yield return new WaitForSeconds(1);
+        canAttack = true;
     }
 
     //被ダメージ処理
