@@ -199,6 +199,11 @@ public class MoveEnemy : MonoBehaviour
         SetState(EnemyState.Wait);
     }
 
+    private void avoidMethod()
+    {
+        
+    }
+
     //”íƒ_ƒ[ƒWˆ—
     //public void Damage(int value)
     //{

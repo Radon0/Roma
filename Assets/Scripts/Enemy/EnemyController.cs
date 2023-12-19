@@ -74,7 +74,6 @@ public class EnemyController : MonoBehaviour
             //Move();
             //Attack();
         }
-        UpdateAnimator();
     }
 
     void InitEnemy()
@@ -117,51 +116,4 @@ public class EnemyController : MonoBehaviour
 
         Destroy(gameObject);
     }
-
-    //private void Move()
-    //{
-    //    navmeshAgent.SetDestination(player.position);
-    //}
-
-    //アニメーターのアップデート処理
-    void UpdateAnimator()
-    {
-        //animator.SetFloat(SpeedHash, navmeshAgent.desiredVelocity.magnitude);
-    }
-    //private void Attack()
-    //{
-    //    if(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-    //    {
-    //        if(!judged&&animator.GetCurrentAnimatorStateInfo(0).normalizedTime>=0.4f)
-    //        {
-    //            if (Vector3.Distance(player.position, thisTransform.position) <= 3f &&
-    //                Vector3.Dot(player.position - thisTransform.position, thisTransform.forward) >= 0.7f)
-    //            { 
-    //                plyHpController.Hp -= 1; 
-    //            }
-    //        }
-    //        if(isAttacking&&animator.GetCurrentAnimatorStateInfo(0).normalizedTime>=0.95f)
-    //        {
-    //            isAttacking = false;
-    //            navmeshAgent.isStopped = false;
-
-    //            StartCoroutine("Groan");
-    //        }
-    //    }
-    //    if(animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
-    //    {
-    //        if(!isAttacking&&Vector3.Distance(player.position,thisTransform.position)<=2f&&Vector3.Dot(player.position-thisTransform.position,thisTransform.forward)>=0.9f)
-    //        {
-    //            navmeshAgent.isStopped = true;
-    //            isAttacking = true;
-    //            judged = false;
-    //            animator.SetTrigger("Attack");
-    //            StopCoroutine("Groan");
-    //        }
-    //    }
-    //}
-    //private IEnumerator Groan()
-    //{
-    //    yield return new WaitForSeconds(Random.Range(1f, 5f));
-    //}
 }
