@@ -55,6 +55,8 @@ public class MoveEnemy : MonoBehaviour
     private float timeSinceLastAttack = 0.0f;
     private bool canAttack = true;
 
+    private AudioSource punchAudio;
+
     // Use this for initialization
 
     public int EnemyHpControll
@@ -73,6 +75,7 @@ public class MoveEnemy : MonoBehaviour
         enemyController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         setPosition = GetComponent<SetPosition>();
+        punchAudio.Play();
         velocity = Vector3.zero;
         arrived = false;
         elapsedTime = 0f;
@@ -132,7 +135,7 @@ public class MoveEnemy : MonoBehaviour
             {
                 SetState(EnemyState.Wait);
                 animator.SetTrigger(eRunHash);
-                if (velocity.x<0.3f)
+                if (velocity.x>0.1f&&velocity.x<0.3f)
                 {
                     SetState(EnemyState.Attack);
                     animator.SetTrigger(sPunch01Hash);

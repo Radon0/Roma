@@ -6,9 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class Spectator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public void ClickStartButton()
+    private AudioSource audioSource;
+    private bool isAudioEnd;
+
+    private void Start()
     {
-        SceneManager.LoadScene("Vote");//次に移行するシーン
+        audioSource = GetComponent<AudioSource>();
     }
+
+    private void Update()
+    {
+        if (!audioSource.isPlaying && isAudioEnd)
+            SceneManager.LoadScene("Vote");
+
+    }
+
+    public void Onclick()
+    {
+        audioSource.Play();
+        isAudioEnd = true;
+    }
+    //public void ClickStartButton()
+    //{
+    //    SceneManager.LoadScene("Vote");//次に移行するシーン
+    //}
 }

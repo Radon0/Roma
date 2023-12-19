@@ -6,9 +6,29 @@ using UnityEngine.SceneManagement;
 
 public class Mode : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public void ClickStartButton()
+    private AudioSource audioSource;
+    private bool isAudioEnd;
+
+    private void Start()
     {
-        SceneManager.LoadScene("HP");//次に移行するシーン
+        audioSource = GetComponent<AudioSource>();
     }
+
+    private void Update()
+    {
+        if (!audioSource.isPlaying && isAudioEnd)
+            SceneManager.LoadScene("HP");
+
+    }
+
+    public void Onclick()
+    {
+        audioSource.Play();
+        isAudioEnd = true;
+    }
+
+    //public void ClickStartButton()
+    //{
+    //    SceneManager.LoadScene("HP");//次に移行するシーン
+    //}
 }

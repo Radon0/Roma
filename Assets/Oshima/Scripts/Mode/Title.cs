@@ -6,8 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-    public void ClickStartButton()
+    private AudioSource audioSource;
+    private bool isAudioEnd;
+
+    private void Start()
     {
-        SceneManager.LoadScene("Mode");//Ÿ‚ÉˆÚs‚·‚éƒV[ƒ“
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        if (!audioSource.isPlaying && isAudioEnd)
+            SceneManager.LoadScene("Mode");
+
+    }
+
+    public void Onclick()
+    {
+        audioSource.Play();
+        isAudioEnd = true;
     }
 }

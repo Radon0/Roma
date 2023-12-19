@@ -5,12 +5,17 @@ using UnityEngine;
 public class ShellDestroy : MonoBehaviour
 {
     
-    void Update()
+    //void Update()
+    //{
+    //    if(transform.position.z >= 50.0f)
+    //        //弾を消すスクリプトF
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if(transform.position.z >= 50.0f)
-            //弾を消すスクリプトF
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }
