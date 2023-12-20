@@ -7,6 +7,7 @@ public class BO3Maneger : MonoBehaviour
 {
     //public int winsNeeded = 2; // BO3形式なので2勝必要
     public GameObject[] WinMark; // プレイヤー1の勝利マーク
+    public GameObject[] LoseMark;
     //public GameObject player2WinMark; // プレイヤー2の勝利マーク
     //private int winsCount = 0;
     //public Image[] parentVictoryMarks; // 親オブジェクトの勝利マークのImageコンポーネントの配列
@@ -57,13 +58,13 @@ public class BO3Maneger : MonoBehaviour
         {
             case 1:
                 {
-                    WinMark[2].SetActive(true);
+                   LoseMark[0].SetActive(true);
                     break;
 
                 }
             case 2:
                 {
-                    WinMark[3].SetActive(true);
+                    LoseMark[1].SetActive(true);
                     break;
                 }
         }

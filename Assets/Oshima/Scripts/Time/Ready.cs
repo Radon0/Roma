@@ -7,156 +7,114 @@ using UnityEngine.UI;
 public class Ready : MonoBehaviour
 {
     public static Ready Instance;
-
     private bool hasWon = false;
     public float Readytime = 3.0f;//始まる時間
     private Text ReadyText;//最初のテキスト
     public Text timerText;//戦闘での制限時間
     [SerializeField] Text WinLoseText;//勝った時負けた時
-    [SerializeField] GameObject WinLose;//勝った時負けた時ゲームオブジェクト
     public float totalTime;
     [SerializeField] Text callText;//時間が過ぎた時の文字
-    [SerializeField] GameObject call;//時間が過ぎた時のゲームオブジェクト
-    [SerializeField] GameObject toatl;
+    [SerializeField] Text toatl;//ゲーム時間
     [SerializeField] private HPController hpScript;//勝ち負け判定
     [SerializeField] private HPController Enemy;
+    public bool winLose=false;//初期位置リセットのため
+    public bool Round=false;//処理をリセット
     //public MoveEnemy moveEnemy;
-    public int WinCount=0;
-    public int LoseCount=0;
-
+    public int WinCount=0;//勝ち数
+    public int LoseCount=0;//負け数
+    public int RoundCount;//ラウンド
     private void Awake()
     {
         Instance = this;
     }
 
     void Start()
-    { 
+    {
+        
+        WinLoseText.enabled = false;
         ReadyText = GetComponent<Text>();
+        callText.enabled = false;
     }
     void Update()
     {
-        if (1 < Readytime)
-        {
-            Readytime -= Time.deltaTime;
-            ReadyText.text = Readytime.ToString("READY\n     0");//改行するための空白けさないで
-        }
-        else if (Readytime <= 1f)
-        {
-            ReadyText.text = Readytime.ToString("   GO!!");
-            Destroy(ReadyText, 2f);
-        }
-        if (!ReadyText)
-        {
-            if (!hasWon) // 勝利判定が成立していない場合にのみ判定を行う
-            {
-                toatl.SetActive(true);
-                totalTime -= Time.deltaTime;
-                timerText.text = totalTime.ToString("00");
-                //Win();
-                //Lose();
-                //Double();
-                if (totalTime <= 0f)
-                {
-                    totalTime = 0;
-                    call.SetActive(true);
-                    timerText.enabled = false;
-                    callText.text = "TIME UP";
-                    Destroy(callText, 3f);
-                    //Win();
-                    //Lose();
-                    //Double();
-
-                }
-
-            }
-        CheckWinCondition();
         hasWon = false;
-    }
+        if (Round == false)
+        {
+           
+           
+            if (1 < Readytime)
+            {
+                ReadyText.enabled = true;
+                Readytime -= Time.deltaTime;
+                ReadyText.text = Readytime.ToString("Round"+(RoundCount)+"\n     0");//改行するための空白けさないで
+            }
+            else if (Readytime <= 1f)
+            {
+                timerText.enabled = false;
+                ReadyText.text = Readytime.ToString("   GO!!");
+                Invoke("Timeup", 2f);
+            }
+            if (!ReadyText.enabled)
+            {
+                if (!hasWon) // 勝利判定が成立していない場合にのみ判定を行う
+                {
+                    toatl.enabled = true;
+                    totalTime -= Time.deltaTime;
+                    timerText.enabled = true;
+                    timerText.text = totalTime.ToString("00");
+                    if (totalTime <= 0f)
+                    {
+                        totalTime = 0;
+                        callText.enabled = true;
+                        timerText.enabled = false;
+                        callText.text = "TIME UP";
+                        Invoke("Timer", 3f);
+                    }
+                    
+                }
+                CheckWinCondition();
+                hasWon = false;
+                
+            }
+    
+        }
 }
 
     private void Win()//プレイヤーが勝った時
     {
         hasWon = true;
-        WinCount = +1;
+        WinCount += 1;
         totalTime = 0;
-        WinLose.SetActive(true);
+        WinLoseText.enabled = true;
         WinLoseText.text = "YOUWIN";
-        Destroy(WinLoseText, 4f);
-        Destroy(callText);
-        Destroy(toatl);
-        //if (Enemy.isDead == true)//敵が死んだとき
-        //{
-        //    WinCount = +1;
-        //    totalTime = 0;
-        //    WinLose.SetActive(true);
-        //    WinLoseText.text = "YOUWIN";
-        //    Destroy(WinLoseText, 4f);
-        //    Destroy(callText);
-        //    Destroy(toatl);
-        //}
-
-        //if (!callText && Enemy.Hp < hpScript.Hp)//敵よりHpが多い時
-        //{
-        //    WinCount = +1;
-        //    WinLose.SetActive(true);
-        //    WinLoseText.text = "YOUWIN";
-        //    Destroy(WinLoseText, 4f);
-
-        //}
+        Invoke("win", 4f);
+        Invoke("Destroy", 0f);
+        winLose = true;
+        Round = true;
+        Invoke("SceneChange", 6f);
     }
     private void Lose()
     {
         hasWon = true;
-        LoseCount = +1;
+        LoseCount += 1;
         totalTime = 0;
-        WinLose.SetActive(true);
+        WinLoseText.enabled = true;
         WinLoseText.text = "YOULOSE";
-        Destroy(WinLoseText, 4f);
-        Destroy(callText);
-        Destroy(toatl);
-
-        //if (hpScript.isDead == true)//死んだとき
-        //{
-        //    LoseCount = +1;
-        //    totalTime = 0;
-        //    WinLose.SetActive(true);
-        //    WinLoseText.text = "YOULOSE";
-        //    Destroy(WinLoseText, 4f);
-        //    Destroy(callText);
-        //    Destroy(toatl);
-        //}
-        //if (!callText && Enemy.Hp > hpScript.Hp)
-        //{
-        //    LoseCount = +1;
-        //    WinLose.SetActive(true);
-        //    WinLoseText.text = "YOULOSE";
-        //    Destroy(WinLoseText, 4f);
-        //}//敵よりHpが多い時
+        Invoke("win", 4f);
+        Invoke("Destroy", 0f);
+        winLose = true;
+        Round = true;
     }
     private void Double()//相打ち
     {
         hasWon = true;
-        WinLose.SetActive(true);
+        WinLoseText.enabled = true;
         WinLoseText.text = "DOUBLE";
-        Destroy(callText, 4f);
-        Destroy(callText);
-        Destroy(toatl);
-        //if (Enemy.Hp == 0 && hpScript.Hp == 0)//同じ時
-        //{
-        //    WinLose.SetActive(true);
-        //    WinLoseText.text = "DOUBLE";
-        //    Destroy(callText, 4f);
-        //    Destroy(callText);
-        //    Destroy(toatl);
-        //}
-
-        //if (!callText && Enemy.Hp == hpScript.Hp)//同じ時
-        //{
-        //    WinLose.SetActive(true);
-        //    WinLoseText.text = "DOUBLE";
-        //    Destroy(callText, 4f);
-        //}
-    }
+        Invoke("win",4f);
+        Invoke("Destroy",0f);
+        winLose = true;
+         Round = true;
+}
     private void CheckWinCondition()
     {
 
@@ -178,8 +136,43 @@ public class Ready : MonoBehaviour
             Double();
         }
     }
-
-
+    public void Timer()
+    {
+        timerText.enabled = false;
+    }
+    public void Timeup()
+    {
+       
+        ReadyText.enabled = false;
+    }
+    private void win()
+    {
+        //Destroy(WinLoseText, 4f);
+        WinLoseText.enabled = false;
+       
+    }
+    private void Destroy()
+    {
+        // Destroy(callText);
+        //Destroy(toatl);
+        callText.enabled = false;
+        toatl.enabled = false;
+    }
+    private void SceneChange()
+    {
+        if (WinCount == 1)
+        {
+            SceneManager.LoadScene(3);
+        }
+        //if (WinCount == 1 && LoseCount == 1)
+        //{
+        //    SceneManager.LoadScene(2);
+        //}
+        //if (LoseCount == 1)
+        //{
+        //    SceneManager.LoadScene(2);
+        //}
+    }
 
 }
 

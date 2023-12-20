@@ -5,123 +5,106 @@ using UnityEngine.UI;
 
 public class Tap : MonoBehaviour
 {
-    [SerializeField] Slider iineSlider;
+    [SerializeField] Slider[] iineSlider;
     public List<GameObject> myList = new List<GameObject>();
-    [SerializeField] Gimmick gimmick;
-   [SerializeField] private GameObject game = null;
+    [SerializeField] Gimmick[] gimmick;
+    private GameObject game = null;
     [SerializeField] GameObject[] games;
     private Vector3 mouse;
     private Vector3 target;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
+    public bool click=false;
     // Update is called once per frame
     void Update()
     {
-
-        //{&& iineSlider.value == iineSlider.maxValue
-        switch (iineSlider.value)
+        if (gimmick[0].click == true)
         {
-            case 10:
-                if (gimmick.click == true)
+            click = true;
+            if (gimmick[0].Open == true)
+            {
+                game = Instantiate(games[0], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.identity);
+            }
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            int layerMask = 1 << LayerMask.NameToLayer("Stage");
+            RaycastHit hit = new RaycastHit();
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Physics.Raycast(ray, out hit, layerMask))
                 {
+                    click =false;
+                    Destroy(game);
+                    Debug.Log(hit.collider.gameObject.name);
+                    Instantiate(myList[0], hit.point, Quaternion.identity);
+                    gimmick[0].click = false;
+                    iineSlider[0].value = 0;
+                    gimmick[0].button.interactable = true;
 
-                    if (gimmick.Open == true)
-                    {
-                        game = Instantiate(games[0], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.identity);
-                    }
-
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    int layerMask = 1 << LayerMask.NameToLayer("Stage");
-                    RaycastHit hit = new RaycastHit();
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                     
-
-                        if (Physics.Raycast(ray, out hit, layerMask))
-                        {
-                            Destroy(game);
-                            Debug.Log(hit.collider.gameObject.name);
-                            Instantiate(myList[0], hit.point, Quaternion.identity);
-                            gimmick.click = false;
-                            iineSlider.value = 0;                           
-                            gimmick.button.interactable = true;
-
-                        }
-                    }
-                   
                 }
-                break;
-            case 20:
-                if (gimmick.click == true)
-                {
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit = new RaycastHit();
-                    int layerMask = 1 << LayerMask.NameToLayer("Stage");
-                    if (Input.GetMouseButtonDown(0))
-                    {
-
-                        if (Physics.Raycast(ray, out hit, layerMask))
-                        {
-                            Instantiate(myList[1], hit.point, Quaternion.identity);
-                            gimmick.click = false;
-                            iineSlider.value = 0;
-                        }
-                    }
-                }
-                break;
-            case 30:
-                if (gimmick.click == true)
-                {
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit = new RaycastHit();
-                    int layerMask = 1 << LayerMask.NameToLayer("Stage");
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        if (Physics.Raycast(ray, out hit, layerMask))
-                        {
-                            Instantiate(myList[2], hit.point, Quaternion.identity);
-                            gimmick.click = false;
-                            iineSlider.value = 0;
-                        }
-                    }
-                }
-                break;
+            }
         }
+        if (gimmick[1].click == true)
+        {
+            click = true;
+            if (gimmick[1].Open == true)
+            {
+                game = Instantiate(games[1], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.identity);
+            }
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            int layerMask = 1 << LayerMask.NameToLayer("Stage");
+            RaycastHit hit = new RaycastHit();
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Physics.Raycast(ray, out hit, layerMask))
+                {
+                    click = false;
+                    Destroy(game);
+                    Instantiate(myList[1], hit.point, Quaternion.identity);
+                    gimmick[1].click = false;
+                    iineSlider[1].value = 0;
+                    gimmick[1].button.interactable = true;
+
+                }
+            }
+        }
+        if (gimmick[2].click == true)
+        {
+            click = true;
+
+            if (gimmick[2].Open == true)
+            {
+                game = Instantiate(games[2], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.identity);
+            }
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            int layerMask = 1 << LayerMask.NameToLayer("Stage");
+            RaycastHit hit = new RaycastHit();
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Physics.Raycast(ray, out hit, layerMask))
+                {
+                    click = false;
+                    Destroy(game);
+                    Instantiate(myList[2], hit.point, Quaternion.identity);
+                    gimmick[2].click = false;
+                    iineSlider[2].value = 0;
+                    gimmick[2].button.interactable = true;
+
+                }
+            }
+        }
+
         mouse = Input.mousePosition;
         target = Camera.main.ScreenToWorldPoint(new Vector3(mouse.x, mouse.y, 10));
-        game.transform.position = target;
-        //game = Instantiate(games[0], transform.position, Quaternion.identity);
-        //if (gimmick.click == true)
-        //{
-        //    mouse = Input.mousePosition;
-        //    target = Camera.main.ScreenToWorldPoint(new Vector3(mouse.x, mouse.y, 10));
-        //    game.transform.position = target;
-        //}
-        //else if (gimmick.click == false)
-        //{
-        //    Destroy(game);
-        //}
-        //switch (iineSlider.value)
-        //{
-        //    case 10:
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //int layerMask = 1 << LayerMask.NameToLayer("Stage");
-        //RaycastHit hit2D = Physics.Raycast();
-        //if (hit2D && hit2D.transform.gameObject == gameObject)
-        //{
-        //    clickPosition = Input.mousePosition;
-        //    // Vector3でマウスがクリックした位置座標を取得する
-        //    // Z軸修正
-        //    clickPosition.z = 10f;
-        //    //スクリーン座標をワールド座標に変換する
-        //    Instantiate(myList[0], Camera.main.ScreenToWorldPoint(clickPosition), myList[0].transform.rotation);
-        //    iineSlider.value = 0;
-        //}
-        //break;
-        //}
+        if (game != null)
+        {
+            game.transform.position = target;
+        }
+
+        if (game == null)
+        {
+            return;
+        }
     }
 }
 

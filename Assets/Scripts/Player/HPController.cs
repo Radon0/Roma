@@ -13,6 +13,7 @@ public class HPController : MonoBehaviour
     [SerializeField]
     private LogInfomation logSystem;//logƒVƒXƒeƒ€
 
+
     private void Start()
     {
         maxHp = Hp;

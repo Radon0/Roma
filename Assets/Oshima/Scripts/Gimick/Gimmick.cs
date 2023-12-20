@@ -5,41 +5,23 @@ using UnityEngine.UI;
 public class Gimmick : MonoBehaviour
 {
     [SerializeField] Slider iineSlider;
-    public bool click=false;// クリックした位置座標
+    public bool click = false;// クリックした位置座標
     public Button button;
-    public GameObject game;
-    public bool Open=false;
-    
+    public bool Open = false;
+    public Tap tap;
     private void Start()
     {
         button = GetComponent<Button>();
     }
-    
     public void ClickStartButton()
     {
-        if (iineSlider.value == iineSlider.maxValue)
-        {     
-               button.interactable = false;
-               click = true;
-               Open = true;
+        if (iineSlider.value == iineSlider.maxValue && tap.click == false)
+        {
+            button.interactable = false;
+            click = true;
+            Open = true;
             Invoke("DisableButton", 0.0001f);
-
-
-
-            //if (!Open)
-            //{
-            //    Open = false; 
-            //    // ボタンが押されたときにインスタンスを生成
-            //   destroy= Instantiate(game, transform.position, Quaternion.identity);
-
-            //}
-            //else if(Open==true)
-            //{
-            //    Destroy(destroy);
-            //}
-
         }
-
     }
     private void DisableButton()
     {
