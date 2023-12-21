@@ -10,7 +10,9 @@ public class MoveEnemy : MonoBehaviour
         Walk,
         Wait,
         Chase,
-        Attack
+        Attack,
+        Damage,
+        Dead
     };
 
     private CharacterController enemyController;
@@ -37,12 +39,15 @@ public class MoveEnemy : MonoBehaviour
     private EnemyState state;
     //　プレイヤーTransform
     private Transform playerTransform;
+    //敵のBoxCollider
+    [SerializeField]
+    BoxCollider boxCollider = null;
+    //deadWaitTimer
+    [SerializeField]
+    float deadWaitTime = 3.0f;
 
     public HPController hpController;
     public bool isDead = false;
-
-    private int maxHp = 10;
-    private int EnemyHp = 0;
 
     public SphereCollider rightHandCollider;
 
@@ -50,6 +55,14 @@ public class MoveEnemy : MonoBehaviour
     readonly int eRunHash = Animator.StringToHash("Run_End");
     readonly int sPunch01Hash = Animator.StringToHash("Punch_01_Start");
     readonly int ePunch01Hash = Animator.StringToHash("Punch_01_End");
+    readonly int sJumpHash = Animator.StringToHash("Jamp_Start");
+    readonly int eJumpHash = Animator.StringToHash("Jamp_End");
+    readonly int sDamage01Hash = Animator.StringToHash("Damage_01_Start");
+    readonly int eDamage01Hash = Animator.StringToHash("Damage_01_End");
+    readonly int sDamage02Hash = Animator.StringToHash("Damage_02_Start");
+    readonly int sDamage03Hash = Animator.StringToHash("Damage_03_Start");
+    readonly int sDownHash = Animator.StringToHash("Down_Start");
+    readonly int eDownHash = Animator.StringToHash("Down_End");
 
     public float attackCoolDown = 1.0f;
     private float timeSinceLastAttack = 0.0f;
@@ -57,19 +70,12 @@ public class MoveEnemy : MonoBehaviour
 
     private AudioSource punchAudio;
 
+    //HP
+    private float enemyHp = 0.0f;
+    private bool deathCheck = false;
+
     // Use this for initialization
 
-    public int EnemyHpControll
-    {
-        set
-        {
-            EnemyHp = Mathf.Clamp(value, 0, maxHp);
-        }
-        get
-        {
-            return EnemyHp;
-        }
-    }
     void Start()
     {
         enemyController = GetComponent<CharacterController>();
@@ -81,6 +87,7 @@ public class MoveEnemy : MonoBehaviour
         elapsedTime = 0f;
         SetState(EnemyState.Walk);
         rightHandCollider.enabled = false;
+        enemyHp = hpController.Hp;
     }
 
     //private void FixedUpdate()
@@ -94,6 +101,7 @@ public class MoveEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enemyHp = hpController.Hp;
         //if(!canAttack)
         //{
         //    timeSinceLastAttack += Time.deltaTime;
@@ -103,11 +111,18 @@ public class MoveEnemy : MonoBehaviour
         //        timeSinceLastAttack = 0.0f;
         //    }
         //}
-
+        Debug.Log(walkSpeed);
+        Debug.Log(state);
         float readyTime = Ready.Instance.Readytime;
         if (readyTime > 1)
         {
             SetState(EnemyState.Wait);
+        }
+        else if (enemyHp <= 0)
+        {
+            if (!isDead)
+                isDead = true;
+                SetState(EnemyState.Dead);
         }
         else
         {
@@ -131,10 +146,12 @@ public class MoveEnemy : MonoBehaviour
             }
 
             //　目的地に到着したかどうかの判定
-            if (Vector3.Distance(transform.position, setPosition.GetDestination()) < Mathf.Abs(3.0f) && canAttack)
+            if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 3.0f && canAttack)
             {
+                Debug.Log(Vector3.Distance(transform.position, setPosition.GetDestination()));
                 SetState(EnemyState.Wait);
                 velocity = Vector3.zero;
+                walkSpeed = 0;
                 animator.SetTrigger(eRunHash);
                 if (velocity.x<0.3f)
                 {
@@ -183,11 +200,19 @@ public class MoveEnemy : MonoBehaviour
         }
         else if (tempState == EnemyState.Wait)
         {
-            elapsedTime = 0f;
             state = tempState;
             arrived = true;
             velocity = Vector3.zero;
             animator.SetTrigger(eRunHash);
+        }
+        else if(tempState==EnemyState.Dead)
+        {
+            isDead = true;
+            state = tempState;
+            arrived = true;
+            velocity = Vector3.zero;
+            //StartCoroutine(Dead());
+            animator.SetBool("Dead", true);
         }
     }
 
@@ -212,27 +237,45 @@ public class MoveEnemy : MonoBehaviour
     }
 
     //被ダメージ処理
-    //public void Damage(int value)
-    //{
-    //    if (value <= 0)
-    //    {
-    //        return;
-    //    }
+    public void Damage(int value)
+    {
+        if (value <= 0)
+        {
+            return;
+        }
 
-    //    EnemyHp -= value;
+        enemyHp -= value;
+        animator.SetTrigger(sDamage01Hash);
 
-    //    if (EnemyHp <= 0)
-    //    {
-    //        Dead();
-    //    }
-    //}
-    //　敵キャラクターの状態取得メソッド
+    }
+
     //死亡時の処理
-    //void Dead()
-    //{
-    //    isDead = true;
-    //    //boxCollider.enabled = false;
-    //    //animator.SetBool(DeadHash, true);
+    private IEnumerator Dead()
+    {
+        isDead = true;
+        boxCollider.enabled = false;
+        animator.SetTrigger(sDamage02Hash);
+        yield return new WaitForSeconds(1f);
+        animator.SetTrigger(sDamage03Hash);
+        yield return new WaitForSeconds(1f);
+        animator.SetTrigger(sDownHash);
 
+        //StartCoroutine(nameof(DeadTimer));
+    }
+    //public void DamageAnimation02End()
+    //{
+    //    animator.SetTrigger(sDamage03Hash);
+    //}
+    //public void DamageAnimation03End()
+    //{
+    //    animator.SetTrigger(sDownHash);
+    //}
+
+    //死亡してから数秒間待つ処理
+    //IEnumerator DeadTimer()
+    //{
+    //    yield return new WaitForSeconds(deadWaitTime);
+
+    //    Destroy(gameObject);
     //}
 }

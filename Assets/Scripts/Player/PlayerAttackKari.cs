@@ -22,9 +22,7 @@ public class PlayerAttackKari : MonoBehaviour
     public GameObject RightHand;
     public GameObject LeftHand;
     public GameObject RightFoot;
-
-    [Space()]
-    public int damage = 10;
+        
 
     void Start()
     {

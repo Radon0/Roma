@@ -2675,6 +2675,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: stage 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7071182760956848314, guid: b5018f99702dc6e4f811c1eff621b27e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ecae69771db0b90428c5e83e60f7aa25, type: 2}
     - target: {fileID: 8513859187771203891, guid: b5018f99702dc6e4f811c1eff621b27e, type: 3}
       propertyPath: m_TagString
       value: Ground
@@ -3258,7 +3262,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397733954}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: daec1bc55550ec744ab064bcaf7fc74e, type: 3}
   m_Name: 
@@ -3290,6 +3294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 10
   waitTime: 5
+  boxCollider: {fileID: 0}
+  deadWaitTime: 3
   hpController: {fileID: 1397733955}
   isDead: 0
   rightHandCollider: {fileID: 689398202}

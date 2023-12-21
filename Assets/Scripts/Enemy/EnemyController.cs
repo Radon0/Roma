@@ -15,8 +15,8 @@ public class EnemyController : MonoBehaviour
     //Transform player = null;
     [SerializeField]
     BoxCollider boxCollider = null;
-    [SerializeField, Min(0)]
-    int maxHp = 3;
+    //[SerializeField, Min(0)]
+    //int maxHp = 3;
     [SerializeField]
     float deadWaitTime = 3;
 
@@ -36,50 +36,52 @@ public class EnemyController : MonoBehaviour
     readonly int eDownHash = Animator.StringToHash("Down_End");
 
     public bool isDead = false;
-    private int EnemyHp = 0;
+    private float EnemyHp = 0.0f;
     Transform thisTransform;
-    HPController HpController;
+    public HPController HpController;
 
     private bool isAttacking = false;
     private bool judged = false;
 
 
-    public int EnemyHpControll
-    {
-        set
-        {
-            EnemyHp = Mathf.Clamp(value, 0, maxHp);
-        }
-        get
-        {
-            return EnemyHp;
-        }
-    }
+    //public int EnemyHpControll
+    //{
+    //    set
+    //    {
+    //        EnemyHp = Mathf.Clamp(value, 0, maxHp);
+    //    }
+    //    get
+    //    {
+    //        return EnemyHp;
+    //    }
+    //}
 
     private void Start()
     {
         thisTransform = transform;  //transformをキャッシュ(高速化)
-        HpController = GetComponent<HPController>();
+        //HpController = GetComponent<HPController>();
         InitEnemy();
     }
 
     private void Update()
     {
+        EnemyHp=HpController.Hp;
+        Debug.Log(EnemyHp);
         if (isDead)
         {
             return;
         }
-        if (HpController.Hp > 0)
-        {
-            //Move();
-            //Attack();
-        }
+        //if (HpController.Hp > 0)
+        //{
+        //    //Move();
+        //    //Attack();
+        //}
     }
 
     void InitEnemy()
     {
-        EnemyHp = maxHp;
-
+        //EnemyHp = maxHp;
+        EnemyHp = HpController.Hp;
     }
 
     //被ダメージ処理
