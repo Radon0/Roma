@@ -14,7 +14,6 @@ public class Ready : MonoBehaviour
     [SerializeField] Text WinLoseText;//勝った時負けた時
     public float totalTime;
     [SerializeField] Text callText;//時間が過ぎた時の文字
-    [SerializeField] Text toatl;//ゲーム時間
     [SerializeField] private HPController hpScript;//勝ち負け判定
     [SerializeField] private HPController Enemy;
     public bool winLose=false;//初期位置リセットのため
@@ -58,21 +57,24 @@ public class Ready : MonoBehaviour
             {
                 if (!hasWon) // 勝利判定が成立していない場合にのみ判定を行う
                 {
-                    toatl.enabled = true;
+                   
                     totalTime -= Time.deltaTime;
                     timerText.enabled = true;
                     timerText.text = totalTime.ToString("00");
                     if (totalTime <= 0f)
                     {
+                        Destroy(timerText);
                         totalTime = 0;
                         callText.enabled = true;
                         timerText.enabled = false;
                         callText.text = "TIME UP";
-                        Invoke("Timer", 3f);
+                        //Invoke("Timer", 3f);
+                        Destroy(callText, 3f);
+                        Invoke("CheckWinCondition",4f);
                     }
                     
                 }
-                CheckWinCondition();
+                //CheckWinCondition();
                 hasWon = false;
                 
             }
@@ -119,19 +121,19 @@ public class Ready : MonoBehaviour
     {
 
         // プレイヤーが勝利したとき
-        if (Enemy.isDead == true || (Enemy.Hp < hpScript.Hp && !hpScript.isDead && !callText))
+        if (Enemy.isDead == true || (Enemy.Hp < hpScript.Hp && !hpScript.isDead && totalTime == 0))
         {
             Win();
         }
 
         // プレイヤーが敗北したとき
-        if (hpScript.isDead == true || (Enemy.Hp > hpScript.Hp && !Enemy.isDead&&!callText))
+        if (hpScript.isDead == true || (Enemy.Hp > hpScript.Hp && !Enemy.isDead&& totalTime == 0))
         {
              Lose();
         }
 
         // 相打ちの場合
-        if (Enemy.Hp == 0 && hpScript.Hp == 0 || (!callText && Enemy.Hp == hpScript.Hp))
+        if (Enemy.Hp == 0 && hpScript.Hp == 0 || (totalTime==0&& Enemy.Hp == hpScript.Hp))
         {
             Double();
         }
@@ -156,7 +158,7 @@ public class Ready : MonoBehaviour
         // Destroy(callText);
         //Destroy(toatl);
         callText.enabled = false;
-        toatl.enabled = false;
+        timerText.enabled = false;
     }
     private void SceneChange()
     {
@@ -164,14 +166,14 @@ public class Ready : MonoBehaviour
         {
             SceneManager.LoadScene(3);
         }
-        //if (WinCount == 1 && LoseCount == 1)
-        //{
-        //    SceneManager.LoadScene(2);
-        //}
-        //if (LoseCount == 1)
-        //{
-        //    SceneManager.LoadScene(2);
-        //}
+        if (WinCount == 1 && LoseCount == 1)
+        {
+            SceneManager.LoadScene(2);
+        }
+        if (LoseCount == 1)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
 }
