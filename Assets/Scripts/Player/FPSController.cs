@@ -15,18 +15,15 @@ public class FPSController : MonoBehaviour
     };
 
     #region •Ï”
-    public float playerX;
-    public float playerZ;
+    private float playerX;
+    private float playerZ;
     public float speed = 0.1f;
-    public float dashSpeed;
     public int jumpForce = 300;
 
     private Rigidbody rb;
     private Animator anim;
     private Ready ready;
-    private float currentSpeed;
     private bool isGround;
-    private bool canDash = false;
 
 
     public GameObject fpscam , tpscam;
@@ -53,6 +50,7 @@ public class FPSController : MonoBehaviour
     //UŒ‚
     private bool isAttackable;
     private float lapseTime;
+    public GameObject rightHand;
 
     #endregion
 
@@ -101,18 +99,6 @@ public class FPSController : MonoBehaviour
                 isGround = false;
             }
 
-            //ƒ_ƒbƒVƒ…
-            if (Input.GetKey(KeyCode.LeftShift) && canDash == true)
-            {
-                currentSpeed = dashSpeed;
-                //anim.SetTrigger(sRunHash);
-                //anim.SetBool("Walk", false);
-            }
-            else
-            {
-                currentSpeed = speed;
-            }
-
             //UŒ‚
             if (Input.GetKeyDown(KeyCode.Mouse0) && isAttackable)
             {
@@ -138,15 +124,14 @@ public class FPSController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (HpController.Hp > 0)
+        float readyTime = Ready.Instance.Readytime;
+        if (HpController.Hp > 0 && readyTime <= 1)
         {
             playerX = 0;
             playerZ = 0;
 
-            canDash = false;
-
-            playerX = Input.GetAxisRaw("Horizontal") * currentSpeed;
-            playerZ = Input.GetAxisRaw("Vertical") * currentSpeed;
+            playerX = Input.GetAxisRaw("Horizontal") * speed;
+            playerZ = Input.GetAxisRaw("Vertical") * speed;
             if (playerX!=0||playerZ!=0)
             {
                 anim.SetBool(Run,true);
