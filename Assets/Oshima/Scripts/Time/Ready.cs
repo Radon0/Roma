@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Ready : MonoBehaviour
 {
     public static Ready Instance;
-    private bool hasWon = false;
     public float Readytime = 3.0f;//始まる時間
     private Text ReadyText;//最初のテキスト
     public Text timerText;//戦闘での制限時間
@@ -29,14 +28,13 @@ public class Ready : MonoBehaviour
 
     void Start()
     {
-        
         WinLoseText.enabled = false;
         ReadyText = GetComponent<Text>();
         callText.enabled = false;
     }
     void Update()
     {
-        hasWon = false;
+       
         if (Round == false)
         {
            
@@ -55,8 +53,7 @@ public class Ready : MonoBehaviour
             }
             if (!ReadyText.enabled)
             {
-                if (!hasWon) // 勝利判定が成立していない場合にのみ判定を行う
-                {
+
                    
                     totalTime -= Time.deltaTime;
                     timerText.enabled = true;
@@ -64,6 +61,7 @@ public class Ready : MonoBehaviour
                     if (Enemy.isDead == true)
                     {
                         Win();
+                       
                     }
                     if(hpScript.isDead == true)
                     {
@@ -82,23 +80,19 @@ public class Ready : MonoBehaviour
                         callText.text = "TIME UP";
                         //Invoke("Timer", 3f);
                         Destroy(callText, 3f);
-                        Invoke("CheckWinCondition",4f);
+                        Invoke("CheckWinCondition", 4f);
                     }
-                    
-                }
-                
-                hasWon = false;
-                
+                         
+
             }
     
         }
-}
+
+    }
 
     private void Win()//プレイヤーが勝った時
     {
-        hasWon = true;
         WinCount += 1;
-        totalTime = 0;
         WinLoseText.enabled = true;
         WinLoseText.text = "YOUWIN";
         Invoke("win", 4f);
@@ -109,9 +103,7 @@ public class Ready : MonoBehaviour
     }
     private void Lose()
     {
-        hasWon = true;
         LoseCount += 1;
-        totalTime = 0;
         WinLoseText.enabled = true;
         WinLoseText.text = "YOULOSE";
         Invoke("win", 4f);
@@ -121,7 +113,6 @@ public class Ready : MonoBehaviour
     }
     private void Double()//相打ち
     {
-        hasWon = true;
         WinLoseText.enabled = true;
         WinLoseText.text = "DOUBLE";
         Invoke("win",4f);
@@ -133,13 +124,13 @@ public class Ready : MonoBehaviour
     {
 
         // プレイヤーが勝利したとき
-        if (Enemy.Hp < hpScript.Hp && !hpScript.isDead && totalTime == 0)
+        if (Enemy.Hp < hpScript.Hp &&totalTime == 0)
         {
             Win();
         }
 
         // プレイヤーが敗北したとき
-        if (Enemy.Hp > hpScript.Hp && !Enemy.isDead&& totalTime == 0)
+        if (Enemy.Hp > hpScript.Hp && totalTime == 0)
         {
              Lose();
         }

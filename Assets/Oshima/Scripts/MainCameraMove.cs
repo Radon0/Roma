@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class MainCameraMove : MonoBehaviour
 {
-    public int count;    
+    public int count;
+    private void Start()
+    {
+        transform.position = new Vector3(-9, 50, 4.9f);
+        transform.eulerAngles = new Vector3(90, 0, 0);
+    }
     void Update()
     {
         // Ç‡ÇµSpaceÉLÅ[Ç™âüÇ≥ÇÍÇΩÇ»ÇÁÇŒÅA
@@ -18,20 +23,24 @@ public class MainCameraMove : MonoBehaviour
             switch (count)
             {
                 case 0:             
-                    transform.position = new Vector3(-60, 51, -80);
-                    transform.eulerAngles = new Vector3(52, 0, 0);
-                    break;
-                case 1:
-                    transform.position = new Vector3(0, 0, 0);           
+                    transform.position = new Vector3(-9,50,4.9f);
                     transform.eulerAngles = new Vector3(90, 0, 0);
                     break;
+                case 1:
+                    transform.position = new Vector3(-9, 45, -72);           
+                    transform.eulerAngles = new Vector3(60, 0, 0);
+                    break;
                 case 2:
-
+                    transform.position = new Vector3(81, 45, -3.3f);
+                    transform.eulerAngles = new Vector3(60, -90, 0);
                     break;
                 case 3:
+                    transform.position = new Vector3(0, 50, 90);
+                    transform.eulerAngles = new Vector3(60, 180, 0);
                     break;
                 case 4:
-
+                    transform.position = new Vector3(-81, 50, 0);
+                    transform.eulerAngles = new Vector3(60, 90, 0);
                     break;
 
             }
