@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class FPSController : MonoBehaviour
 {
+    public enum PlayerState
+    {
+        Wait,
+        Run,
+        Jamp,
+        Punch,
+        Damage,
+        Down
+    };
+
     #region ïœêî
     public float playerX;
     public float playerZ;
@@ -29,6 +39,21 @@ public class FPSController : MonoBehaviour
     float minX = -90f, maxX = 90f;
 
     HPController HpController;
+
+    readonly int Run = Animator.StringToHash("Run");
+    readonly int Punch01 = Animator.StringToHash("Punch_01_Trigger");
+    readonly int Jump = Animator.StringToHash("Jump_Trigger");
+    readonly int Damage01 = Animator.StringToHash("Damage_01_Trigger");
+    readonly int Damage02 = Animator.StringToHash("Damage_02_Trigger");
+    readonly int Damage03 = Animator.StringToHash("Damage_03_Trigger");
+    readonly int Down = Animator.StringToHash("Down_Trigger");
+
+    private PlayerState state;
+
+    //çUåÇ
+    private bool isAttackable;
+    private float lapseTime;
+
     #endregion
 
     // Start is called before the first frame update
@@ -40,6 +65,9 @@ public class FPSController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = gameObject.GetComponent<Animator>();
         HpController = GetComponent<HPController>();
+
+        isAttackable = true;
+        lapseTime = 0.0f;
     }
 
     // Update is called once per frame
@@ -67,10 +95,9 @@ public class FPSController : MonoBehaviour
             //ÉWÉÉÉìÉv
             if (Input.GetKeyDown(KeyCode.Space) && isGround)
             {
-                anim.SetBool("Run", false);
-                anim.SetBool("Walk", false);
+                anim.SetBool(Run,false);
                 rb.AddForce(new Vector3(0, jumpForce, 0));
-                anim.SetBool("Jump",true);
+                anim.SetTrigger(Jump);
                 isGround = false;
             }
 
@@ -78,20 +105,30 @@ public class FPSController : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift) && canDash == true)
             {
                 currentSpeed = dashSpeed;
-                anim.SetBool("Run", true);
+                //anim.SetTrigger(sRunHash);
                 //anim.SetBool("Walk", false);
             }
             else
             {
                 currentSpeed = speed;
-                anim.SetBool("Run", false);
             }
 
             //çUåÇ
-            //if (Input.GetKeyDown(KeyCode.Mouse0))
-            //{
-            //    anim.SetBool("Attack", true);
-            //}
+            if (Input.GetKeyDown(KeyCode.Mouse0) && isAttackable)
+            {
+                anim.SetTrigger(Punch01);
+                isAttackable = false;
+            }
+
+            if(!isAttackable)
+            {
+                lapseTime += Time.deltaTime;
+                if(lapseTime >= 1)
+                {
+                    isAttackable = true;
+                    lapseTime = 0.0f;
+                }
+            }
 
             UpdateCursorLock();
 
@@ -110,43 +147,50 @@ public class FPSController : MonoBehaviour
 
             playerX = Input.GetAxisRaw("Horizontal") * currentSpeed;
             playerZ = Input.GetAxisRaw("Vertical") * currentSpeed;
-
-
-            if (playerX != 0 || playerZ != 0)
+            if (playerX!=0||playerZ!=0)
             {
-                anim.SetBool("Walk", true);
-                if (playerX != 0 && playerZ == 0)
-                {
-                    anim.SetBool("Walk", false);
-                    anim.SetBool("WalkSide", true);
-                }
-                else if (playerX == 0 && playerZ < 0)
-                {
-                    anim.SetBool("Walk", false);
-                    anim.SetBool("WalkSide", false);
-                    anim.SetBool("WalkBack", true);
-                }
-                else if (playerX == 0 && playerZ > 0)
-                {
-                    anim.SetBool("WalkBack", true);
-                    canDash = true;
-                }
-                else
-                {
-                    anim.SetBool("WalkBack", false);
-                    if (playerX != 0 && playerZ > 0)
-                    {
-                        anim.SetBool("WalkSide", false);
-                        canDash = true;
-                    }
-                }
+                anim.SetBool(Run,true);
             }
             else
             {
-                anim.SetBool("Walk", false);
-                anim.SetBool("WalkSide", false);
-                anim.SetBool("WalkBack", false);
+                anim.SetBool(Run, false);
             }
+
+            //if (playerX != 0 || playerZ != 0)
+            //{
+            //    anim.SetBool("Walk", true);
+            //    if (playerX != 0 && playerZ == 0)
+            //    {
+            //        anim.SetBool("Walk", false);
+            //        anim.SetBool("WalkSide", true);
+            //    }
+            //    else if (playerX == 0 && playerZ < 0)
+            //    {
+            //        anim.SetBool("Walk", false);
+            //        anim.SetBool("WalkSide", false);
+            //        anim.SetBool("WalkBack", true);
+            //    }
+            //    else if (playerX == 0 && playerZ > 0)
+            //    {
+            //        anim.SetBool("WalkBack", true);
+            //        canDash = true;
+            //    }
+            //    else
+            //    {
+            //        anim.SetBool("WalkBack", false);
+            //        if (playerX != 0 && playerZ > 0)
+            //        {
+            //            anim.SetBool("WalkSide", false);
+            //            canDash = true;
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    anim.SetBool("Walk", false);
+            //    anim.SetBool("WalkSide", false);
+            //    anim.SetBool("WalkBack", false);
+            //}
 
             if (playerX != 0 && playerZ != 0)
             {

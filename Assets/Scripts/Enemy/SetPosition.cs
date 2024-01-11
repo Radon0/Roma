@@ -22,7 +22,9 @@ public class SetPosition : MonoBehaviour
 
     private void Update()
     {
-        destination = playerObj.transform.position;
+        destination.x = playerObj.transform.position.x;
+        destination.y = this.transform.position.y;
+        destination.z = playerObj.transform.position.z;
     }
 
     //–Ú“I’n‚ğİ’è‚·‚é

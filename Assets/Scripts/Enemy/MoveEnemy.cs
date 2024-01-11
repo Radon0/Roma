@@ -111,8 +111,6 @@ public class MoveEnemy : MonoBehaviour
         //        timeSinceLastAttack = 0.0f;
         //    }
         //}
-        Debug.Log(walkSpeed);
-        Debug.Log(state);
         float readyTime = Ready.Instance.Readytime;
         if (readyTime > 1)
         {
@@ -151,7 +149,6 @@ public class MoveEnemy : MonoBehaviour
                 Debug.Log(Vector3.Distance(transform.position, setPosition.GetDestination()));
                 SetState(EnemyState.Wait);
                 velocity = Vector3.zero;
-                walkSpeed = 0;
                 animator.SetTrigger(eRunHash);
                 if (velocity.x<0.3f)
                 {
@@ -211,8 +208,7 @@ public class MoveEnemy : MonoBehaviour
             state = tempState;
             arrived = true;
             velocity = Vector3.zero;
-            //StartCoroutine(Dead());
-            animator.SetBool("Dead", true);
+            animator.SetTrigger(sDownHash);
         }
     }
 
