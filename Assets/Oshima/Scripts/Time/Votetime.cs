@@ -17,7 +17,7 @@ public class Votetime : MonoBehaviour
         }
         else if (time < 0)
         {
-            SceneManager.LoadScene("Spectator");
+            SceneManager.LoadScene("Mode");
 
         }
     }

@@ -17,7 +17,7 @@ public class Mode : MonoBehaviour
     private void Update()
     {
         if (!audioSource.isPlaying && isAudioEnd)
-            SceneManager.LoadScene("HP");
+            SceneManager.LoadScene("Round1");
 
     }
 

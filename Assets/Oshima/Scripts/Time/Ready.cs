@@ -61,6 +61,18 @@ public class Ready : MonoBehaviour
                     totalTime -= Time.deltaTime;
                     timerText.enabled = true;
                     timerText.text = totalTime.ToString("00");
+                    if (Enemy.isDead == true)
+                    {
+                        Win();
+                    }
+                    if(hpScript.isDead == true)
+                    {
+                        Lose();
+                    }
+                    if (Enemy.Hp == 0 && hpScript.Hp == 0)
+                    {
+                        Double();
+                    }
                     if (totalTime <= 0f)
                     {
                         Destroy(timerText);
@@ -74,7 +86,7 @@ public class Ready : MonoBehaviour
                     }
                     
                 }
-                //CheckWinCondition();
+                
                 hasWon = false;
                 
             }
@@ -121,19 +133,19 @@ public class Ready : MonoBehaviour
     {
 
         // プレイヤーが勝利したとき
-        if (Enemy.isDead == true || (Enemy.Hp < hpScript.Hp && !hpScript.isDead && totalTime == 0))
+        if (Enemy.Hp < hpScript.Hp && !hpScript.isDead && totalTime == 0)
         {
             Win();
         }
 
         // プレイヤーが敗北したとき
-        if (hpScript.isDead == true || (Enemy.Hp > hpScript.Hp && !Enemy.isDead&& totalTime == 0))
+        if (Enemy.Hp > hpScript.Hp && !Enemy.isDead&& totalTime == 0)
         {
              Lose();
         }
 
         // 相打ちの場合
-        if (Enemy.Hp == 0 && hpScript.Hp == 0 || (totalTime==0&& Enemy.Hp == hpScript.Hp))
+        if (totalTime==0&& Enemy.Hp == hpScript.Hp)
         {
             Double();
         }
