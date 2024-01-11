@@ -13,6 +13,7 @@ public class Tap : MonoBehaviour
     private Vector3 mouse;
     private Vector3 target;
     public bool click=false;
+    [SerializeField] Text text;
     // Update is called once per frame
     void Update()
     {
@@ -22,6 +23,7 @@ public class Tap : MonoBehaviour
             if (gimmick[0].Open == true)
             {
                 game = Instantiate(games[0], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.identity);
+                text.enabled = true;
             }
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -31,6 +33,7 @@ public class Tap : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out hit, layerMask))
                 {
+                    text.enabled = false;
                     click =false;
                     Destroy(game);
                     Debug.Log(hit.collider.gameObject.name);
@@ -47,6 +50,7 @@ public class Tap : MonoBehaviour
             click = true;
             if (gimmick[1].Open == true)
             {
+                text.enabled = true;
                 game = Instantiate(games[1], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.identity);
             }
 
@@ -57,6 +61,7 @@ public class Tap : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out hit, layerMask))
                 {
+                    text.enabled = false;
                     click = false;
                     Destroy(game);
                     Instantiate(myList[1], hit.point, Quaternion.identity);
@@ -73,6 +78,7 @@ public class Tap : MonoBehaviour
 
             if (gimmick[2].Open == true)
             {
+                text.enabled = true;
                 game = Instantiate(games[2], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.identity);
             }
 
@@ -83,6 +89,7 @@ public class Tap : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out hit, layerMask))
                 {
+                    text.enabled = false;
                     click = false;
                     Destroy(game);
                     Instantiate(myList[2], hit.point, Quaternion.identity);

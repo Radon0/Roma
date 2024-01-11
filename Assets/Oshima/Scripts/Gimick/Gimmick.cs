@@ -25,7 +25,6 @@ public class Gimmick : MonoBehaviour
     }
     private void DisableButton()
     {
-        // Set the interactable property to false after 3 seconds
         Open = false;
     }
 }
