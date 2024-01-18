@@ -336,6 +336,8 @@ GameObject:
   - component: {fileID: 2836063644939629522}
   - component: {fileID: 2841855922977306814}
   - component: {fileID: 2769735695261605862}
+  - component: {fileID: 4056427798361327797}
+  - component: {fileID: 2524624877830863900}
   m_Layer: 0
   m_Name: Small_Cannon
   m_TagString: Untagged
@@ -350,9 +352,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2821174691766578974}
-  m_LocalRotation: {x: -0, y: -0.91621256, z: 0, w: -0.4006926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 2823185521192450116}
   - {fileID: 2823097204029126518}
@@ -360,7 +362,7 @@ Transform:
   - {fileID: 2824383462699833724}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -227.243, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2836063644939629522
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -429,3 +431,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4056427798361327797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821174691766578974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4755a24d77b01f04e8ba8108d3986f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stop: 0
+  ShellPrefab: {fileID: 2171312151508768849, guid: b8a180dffe50bec428ecd53b6f22203c, type: 3}
+--- !u!114 &2524624877830863900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821174691766578974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24184edc3178a7f4185728d9d324e56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxTime: 5
+  target: {fileID: 6647632424068530743, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
+  speed: 0.01
