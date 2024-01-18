@@ -13,11 +13,19 @@ public class HPController : MonoBehaviour
     [SerializeField]
     private LogInfomation logSystem;//logÉVÉXÉeÉÄ
 
+    readonly int Damage01 = Animator.StringToHash("Damage_01_Trigger");
+    readonly int Damage03 = Animator.StringToHash("Damage_03_Trigger");
+    readonly int Down = Animator.StringToHash("Down_Trigger");
+
+    bool isHit;
+
+    public GameObject attackEffect;
 
     private void Start()
     {
         maxHp = Hp;
         isDead = false;
+        isHit = false;
         anim = gameObject.GetComponent<Animator>();
     }
 
@@ -36,12 +44,14 @@ public class HPController : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("AttackEnemy"))
+        if(other.gameObject.CompareTag("AttackEnemy")&&!isHit)
         {
-            Hp -= 1;
+            GenerateEffect();
+            Hp -= 5;
             HpuiScript.HPUI(Hp);
-            anim.SetBool("Damage", true);
-            Invoke("AnimatorReset", 1.0f);
+            anim.SetTrigger(Damage01);
+
+            isHit = true;
             //if (Hp==5)
             //{
             //    logSystem.AddLogText("<color=green>" + gameObject.GetComponent<EnemyInfomation>().EnemyName + "</color>" + "HPîºï™Ç‹Ç≈Ç¢Ç¡ÇΩÇº!!Ç†Ç∆è≠Çµ!!", LogInfomation.LogType.Event);
@@ -49,12 +59,35 @@ public class HPController : MonoBehaviour
             //}
 
         }
-        if(other.gameObject.CompareTag("AttackPlayer"))
+        if(other.gameObject.CompareTag("AttackPlayer")&&!isHit)
         {
             Hp -= 1;
             HpuiScript.HPUI(Hp);
-            anim.SetBool("Damage", true);
-            Invoke("AnimatorReset", 1.0f);
+            anim.SetTrigger(Damage01);
+            isHit = true;
+        }
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.CompareTag("AttackEnemy"))
+        {
+            isHit = false;
+        }
+        if (other.gameObject.CompareTag("AttackPlayer"))
+        {
+            isHit = false;
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("AttackEnemy"))
+        {
+            isHit = false;
+        }
+        if (other.gameObject.CompareTag("AttackPlayer"))
+        {
+            isHit = false;
         }
     }
     private void Update()
@@ -62,11 +95,13 @@ public class HPController : MonoBehaviour
         if(Hp <= 0)
         {
             isDead = true;
-            anim.Play("Death");
+            anim.SetTrigger(Down);
         }
     }
-    private void AnimatorReset()
+
+    void GenerateEffect()
     {
-        anim.SetBool("Damage", false);
+        GameObject effect = Instantiate(attackEffect) as GameObject;
+        effect.transform.position = gameObject.transform.position;
     }
 }

@@ -51,18 +51,12 @@ public class MoveEnemy : MonoBehaviour
 
     public SphereCollider rightHandCollider;
 
-    readonly int sRunHash = Animator.StringToHash("Run_Start");
-    readonly int eRunHash = Animator.StringToHash("Run_End");
-    readonly int sPunch01Hash = Animator.StringToHash("Punch_01_Start");
-    readonly int ePunch01Hash = Animator.StringToHash("Punch_01_End");
-    readonly int sJumpHash = Animator.StringToHash("Jamp_Start");
-    readonly int eJumpHash = Animator.StringToHash("Jamp_End");
-    readonly int sDamage01Hash = Animator.StringToHash("Damage_01_Start");
-    readonly int eDamage01Hash = Animator.StringToHash("Damage_01_End");
-    readonly int sDamage02Hash = Animator.StringToHash("Damage_02_Start");
-    readonly int sDamage03Hash = Animator.StringToHash("Damage_03_Start");
-    readonly int sDownHash = Animator.StringToHash("Down_Start");
-    readonly int eDownHash = Animator.StringToHash("Down_End");
+    readonly int Run = Animator.StringToHash("Run");
+    readonly int Punch01 = Animator.StringToHash("Punch_01_Trigger");
+    readonly int Damage01 = Animator.StringToHash("Damage_01_Trigger");
+    readonly int Damage02 = Animator.StringToHash("Damage_02_Trigger");
+    readonly int Damage03 = Animator.StringToHash("Damage_03_Trigger");
+    readonly int Down = Animator.StringToHash("Down_Trigger");
 
     public float attackCoolDown = 1.0f;
     private float timeSinceLastAttack = 0.0f;
@@ -119,8 +113,11 @@ public class MoveEnemy : MonoBehaviour
         else if (enemyHp <= 0)
         {
             if (!isDead)
+            {
                 isDead = true;
+                animator.SetTrigger(Down);
                 SetState(EnemyState.Dead);
+            }
         }
         else
         {
@@ -134,26 +131,23 @@ public class MoveEnemy : MonoBehaviour
             {
                 setPosition.SetDestination(playerTransform.position);
             }
-            if (enemyController.isGrounded)
-            {
+            //if (enemyController.isGrounded)
+            //{
                velocity = Vector3.zero;
-               animator.SetTrigger(sRunHash);
+               animator.SetTrigger(Run);
                direction = (setPosition.GetDestination() - transform.position).normalized;
                transform.LookAt(new Vector3(setPosition.GetDestination().x, transform.position.y, setPosition.GetDestination().z));
                velocity = direction * walkSpeed;
-            }
-
+            //}
             //@–Ú“I’n‚É“ž’…‚µ‚½‚©‚Ç‚¤‚©‚Ì”»’è
-            if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 3.0f && canAttack)
+            if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 3.0f )
             {
-                Debug.Log(Vector3.Distance(transform.position, setPosition.GetDestination()));
                 SetState(EnemyState.Wait);
                 velocity = Vector3.zero;
-                animator.SetTrigger(eRunHash);
-                if (velocity.x<0.3f)
+                if (canAttack)
                 {
                     SetState(EnemyState.Attack);
-                    animator.SetTrigger(sPunch01Hash);
+                    animator.SetTrigger(Punch01);
                     //punchAudio.PlayOneShot(punchAudio.clip);
                     rightHandCollider.enabled = true;
                     Invoke("ColliderReset", 1.0f);
@@ -200,7 +194,6 @@ public class MoveEnemy : MonoBehaviour
             state = tempState;
             arrived = true;
             velocity = Vector3.zero;
-            animator.SetTrigger(eRunHash);
         }
         else if(tempState==EnemyState.Dead)
         {
@@ -208,7 +201,7 @@ public class MoveEnemy : MonoBehaviour
             state = tempState;
             arrived = true;
             velocity = Vector3.zero;
-            animator.SetTrigger(sDownHash);
+            animator.SetTrigger(Down);
         }
     }
 
@@ -221,7 +214,6 @@ public class MoveEnemy : MonoBehaviour
     {
         //Debug.Log(rightHandCollider.enabled);
         rightHandCollider.enabled = false;
-        animator.SetTrigger(ePunch01Hash);
         //punchAudio.Stop();
         SetState(EnemyState.Wait);
     }
@@ -241,7 +233,7 @@ public class MoveEnemy : MonoBehaviour
         }
 
         enemyHp -= value;
-        animator.SetTrigger(sDamage01Hash);
+        animator.SetTrigger(Damage01);
 
     }
 
@@ -250,11 +242,11 @@ public class MoveEnemy : MonoBehaviour
     {
         isDead = true;
         boxCollider.enabled = false;
-        animator.SetTrigger(sDamage02Hash);
+        animator.SetTrigger(Damage02);
         yield return new WaitForSeconds(1f);
-        animator.SetTrigger(sDamage03Hash);
+        animator.SetTrigger(Damage03);
         yield return new WaitForSeconds(1f);
-        animator.SetTrigger(sDownHash);
+        animator.SetTrigger(Down);
 
         //StartCoroutine(nameof(DeadTimer));
     }

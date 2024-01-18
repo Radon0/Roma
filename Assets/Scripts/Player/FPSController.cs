@@ -41,16 +41,13 @@ public class FPSController : MonoBehaviour
     readonly int Punch01 = Animator.StringToHash("Punch_01_Trigger");
     readonly int Jump = Animator.StringToHash("Jump_Trigger");
     readonly int Damage01 = Animator.StringToHash("Damage_01_Trigger");
-    readonly int Damage02 = Animator.StringToHash("Damage_02_Trigger");
-    readonly int Damage03 = Animator.StringToHash("Damage_03_Trigger");
-    readonly int Down = Animator.StringToHash("Down_Trigger");
 
     private PlayerState state;
 
     //çUåÇ
     private bool isAttackable;
     private float lapseTime;
-    public GameObject rightHand;
+    public Collider rightHand;
 
     #endregion
 
@@ -103,6 +100,8 @@ public class FPSController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0) && isAttackable)
             {
                 anim.SetTrigger(Punch01);
+                rightHand.enabled = true;
+                Invoke("ColliderReset", 0.3f);
                 isAttackable = false;
             }
 
@@ -253,7 +252,7 @@ public class FPSController : MonoBehaviour
         {
             isGround = true;
             //Debug.Log("ìñÇΩÇ¡ÇƒÇ¢ÇÈ");
-            anim.SetBool("Jump",false);
+            //anim.SetBool("Jump",false);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -263,5 +262,10 @@ public class FPSController : MonoBehaviour
             isGround = false;
             //Debug.Log("ìñÇΩÇ¡ÇƒÇ¢Ç»Ç¢");
         }
+    }
+
+    private void ColliderReset()
+    {
+        rightHand.enabled = false;
     }
 }
