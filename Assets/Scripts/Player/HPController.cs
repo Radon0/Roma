@@ -20,6 +20,7 @@ public class HPController : MonoBehaviour
     bool isHit;
 
     public GameObject attackEffect;
+    public GameObject rightHand;
 
     private void Start()
     {
@@ -61,7 +62,7 @@ public class HPController : MonoBehaviour
         }
         if(other.gameObject.CompareTag("AttackPlayer")&&!isHit)
         {
-            Hp -= 1;
+            Hp -= 4;
             HpuiScript.HPUI(Hp);
             anim.SetTrigger(Damage01);
             isHit = true;
@@ -92,16 +93,18 @@ public class HPController : MonoBehaviour
     }
     private void Update()
     {
-        if(Hp <= 0)
+        if(Hp <= 0&&!isDead)
         {
+            //Debug.Log("Ž€‚ñ‚¾");
             isDead = true;
-            anim.SetTrigger(Down);
+            //anim.SetTrigger(Down);
+            return;
         }
     }
 
     void GenerateEffect()
     {
         GameObject effect = Instantiate(attackEffect) as GameObject;
-        effect.transform.position = gameObject.transform.position;
+        effect.transform.position = rightHand.transform.position;
     }
 }

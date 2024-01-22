@@ -1660,6 +1660,7 @@ MonoBehaviour:
   boxCollider: {fileID: 753912646}
   deadWaitTime: 3
   hpController: {fileID: 753912650}
+  playerHp: {fileID: 0}
   isDead: 0
   rightHandCollider: {fileID: 404803662}
   attackCoolDown: 1
@@ -2006,6 +2007,7 @@ MonoBehaviour:
   HpuiScript: {fileID: 2035269334}
   logSystem: {fileID: 48919019}
   attackEffect: {fileID: 6924191023204972585, guid: 340314727c7e3b74eab0a2fc2291c2ea, type: 3}
+  rightHand: {fileID: 1559433941}
 --- !u!114 &802785344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2037,6 +2039,7 @@ MonoBehaviour:
   Xsensityvity: 3
   Ysensityvity: 3
   rightHand: {fileID: 1559433943}
+  boxCol: {fileID: 802785340}
 --- !u!4 &802785346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: de723e110f1171d4c892679ac34bd4f6, type: 3}
@@ -5055,6 +5058,7 @@ MonoBehaviour:
   boxCollider: {fileID: 2120713713}
   deadWaitTime: 3
   hpController: {fileID: 2120713709}
+  playerHp: {fileID: 802785343}
   isDead: 0
   rightHandCollider: {fileID: 1398073485}
   attackCoolDown: 1
@@ -5088,6 +5092,7 @@ MonoBehaviour:
   HpuiScript: {fileID: 1930229249}
   logSystem: {fileID: 48919019}
   attackEffect: {fileID: 6924191023204972585, guid: 340314727c7e3b74eab0a2fc2291c2ea, type: 3}
+  rightHand: {fileID: 1398073484}
 --- !u!95 &2120713710
 Animator:
   serializedVersion: 3

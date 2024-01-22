@@ -41,6 +41,7 @@ public class FPSController : MonoBehaviour
     readonly int Punch01 = Animator.StringToHash("Punch_01_Trigger");
     readonly int Jump = Animator.StringToHash("Jump_Trigger");
     readonly int Damage01 = Animator.StringToHash("Damage_01_Trigger");
+    readonly int Down = Animator.StringToHash("Down_Trigger");
 
     private PlayerState state;
 
@@ -48,6 +49,11 @@ public class FPSController : MonoBehaviour
     private bool isAttackable;
     private float lapseTime;
     public Collider rightHand;
+
+    //Ž€–S
+    private bool isDead;
+    public BoxCollider boxCol;
+    private Rigidbody rigid;
 
     #endregion
 
@@ -60,6 +66,7 @@ public class FPSController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = gameObject.GetComponent<Animator>();
         HpController = GetComponent<HPController>();
+        rigid = GetComponent<Rigidbody>();
 
         isAttackable = true;
         lapseTime = 0.0f;
@@ -68,6 +75,13 @@ public class FPSController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (HpController.Hp <= 0)
+        {
+            isDead = true;
+            anim.SetTrigger(Down);
+            boxCol.enabled = false;
+        }
+
         float readyTime = Ready.Instance.Readytime;
         if (HpController.Hp > 0 && readyTime <= 1)
         {
@@ -115,10 +129,12 @@ public class FPSController : MonoBehaviour
                 }
             }
 
+
             UpdateCursorLock();
 
             CameraChange();
         }
+
     }
 
     private void FixedUpdate()

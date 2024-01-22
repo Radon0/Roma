@@ -47,6 +47,7 @@ public class MoveEnemy : MonoBehaviour
     float deadWaitTime = 3.0f;
 
     public HPController hpController;
+    public HPController playerHp;
     public bool isDead = false;
 
     public SphereCollider rightHandCollider;
@@ -68,6 +69,9 @@ public class MoveEnemy : MonoBehaviour
     private float enemyHp = 0.0f;
     private bool deathCheck = false;
 
+    //Dead
+    private Rigidbody rigid;
+
     // Use this for initialization
 
     void Start()
@@ -75,6 +79,7 @@ public class MoveEnemy : MonoBehaviour
         enemyController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         setPosition = GetComponent<SetPosition>();
+        rigid = GetComponent<Rigidbody>();
         punchAudio.Play();
         velocity = Vector3.zero;
         arrived = false;
@@ -84,14 +89,6 @@ public class MoveEnemy : MonoBehaviour
         enemyHp = hpController.Hp;
     }
 
-    //private void FixedUpdate()
-    //{
-    //    if(isDead)
-    //    {
-    //        Debug.Log("Ž€‚ñ‚¾");
-    //        return;
-    //    }
-    //}
     // Update is called once per frame
     void Update()
     {
@@ -106,7 +103,7 @@ public class MoveEnemy : MonoBehaviour
         //    }
         //}
         float readyTime = Ready.Instance.Readytime;
-        if (readyTime > 1)
+        if (readyTime > 1||playerHp.Hp<=0)
         {
             SetState(EnemyState.Wait);
         }
@@ -117,7 +114,9 @@ public class MoveEnemy : MonoBehaviour
                 isDead = true;
                 animator.SetTrigger(Down);
                 SetState(EnemyState.Dead);
+                rigid.isKinematic=true;
             }
+            return;
         }
         else
         {
