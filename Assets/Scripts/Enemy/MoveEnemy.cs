@@ -103,11 +103,8 @@ public class MoveEnemy : MonoBehaviour
         //    }
         //}
         float readyTime = Ready.Instance.Readytime;
-        if (readyTime > 1||playerHp.Hp<=0)
-        {
-            SetState(EnemyState.Wait);
-        }
-        else if (enemyHp <= 0)
+
+        if (enemyHp <= 0)
         {
             if (!isDead)
             {
@@ -117,6 +114,10 @@ public class MoveEnemy : MonoBehaviour
                 rigid.isKinematic=true;
             }
             return;
+        }
+        else if (readyTime > 1 || playerHp.Hp <= 0)
+        {
+            SetState(EnemyState.Wait);
         }
         else
         {
