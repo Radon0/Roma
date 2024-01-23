@@ -19,9 +19,9 @@ public class HPController : MonoBehaviour
 
     bool isHit;
 
-    public GameObject effectPrefab;
-    //public ParticleSystem effect;
-    public GameObject currentEffect;
+    //public GameObject effectPrefab;
+    public ParticleSystem effect;
+    //public GameObject currentEffect;
 
     private void Start()
     {
@@ -29,8 +29,8 @@ public class HPController : MonoBehaviour
         isDead = false;
         isHit = false;
         anim = gameObject.GetComponent<Animator>();
-        currentEffect = Instantiate(effectPrefab, transform.position, Quaternion.identity);
-        currentEffect.SetActive(false);
+        //currentEffect = Instantiate(effectPrefab, transform.position, Quaternion.identity);
+        //currentEffect.SetActive(false);
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -118,6 +118,17 @@ public class HPController : MonoBehaviour
 
     public void PlayEffect()
     {
-        currentEffect.SetActive(true);
+        //currentEffect.SetActive(true);
+        effect.Play();
+    }
+
+
+    public bool playEffect;
+    private void OnValidate()
+    {
+        if (!playEffect) return;
+        playEffect = false;
+
+        this.PlayEffect();
     }
 }
