@@ -19,8 +19,9 @@ public class HPController : MonoBehaviour
 
     bool isHit;
 
-    public GameObject attackEffect;
-    public GameObject rightHand;
+    //public GameObject effectPrefab;
+    public ParticleSystem effect;
+    //public GameObject currentEffect;
 
     private void Start()
     {
@@ -28,6 +29,8 @@ public class HPController : MonoBehaviour
         isDead = false;
         isHit = false;
         anim = gameObject.GetComponent<Animator>();
+        //currentEffect = Instantiate(effectPrefab, transform.position, Quaternion.identity);
+        //currentEffect.SetActive(false);
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -47,7 +50,6 @@ public class HPController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("AttackEnemy")&&!isHit)
         {
-            GenerateEffect();
             Hp -= 5;
             HpuiScript.HPUI(Hp);
             anim.SetTrigger(Damage01);
@@ -59,6 +61,7 @@ public class HPController : MonoBehaviour
             //    logSystem.AddLogText("<color=green>" + gameObject.GetComponent<PlayerInfomation>().PlayerName + "</color>" + "HP‚ª”¼•ª‚µ‚©‚È‚¢‚¼!!ŠëŒ¯!!", LogInfomation.LogType.Event);
             //}
 
+            PlayEffect();
         }
         if(other.gameObject.CompareTag("AttackPlayer")&&!isHit)
         {
@@ -102,9 +105,30 @@ public class HPController : MonoBehaviour
         }
     }
 
-    void GenerateEffect()
+    //void GenerateEffect()
+    //{
+    //    GameObject effect = Instantiate(attackEffect) as GameObject;
+    //    effect.transform.position = rightHand.transform.position;
+
+    //    //ParticleSystem newParticle = Instantiate(effect);
+    //    //newParticle.transform.position = rightHand.transform.position;
+    //    //newParticle.Play();
+    //    //Destroy(newParticle.gameObject, 1.5f);
+    //}
+
+    public void PlayEffect()
     {
-        GameObject effect = Instantiate(attackEffect) as GameObject;
-        effect.transform.position = rightHand.transform.position;
+        //currentEffect.SetActive(true);
+        effect.Play();
+    }
+
+
+    public bool playEffect;
+    private void OnValidate()
+    {
+        if (!playEffect) return;
+        playEffect = false;
+
+        this.PlayEffect();
     }
 }
