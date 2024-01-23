@@ -34,7 +34,7 @@ public class EnemyShot : MonoBehaviour
             count=0;
             //AudioSource.PlayClipAtPoint(sound, transform.position);
 
-            //Destroy(Shell, 5.0f);
+            Destroy(Shell, 5.0f);
             //’e‚ğŒ‚‚Á‚½Œã‚É”j‰ó‚·‚éF ãè‚­‚¢‚©‚È‚¢‚Ì‚ÅShellDestroy‚ğì¬
         }
 

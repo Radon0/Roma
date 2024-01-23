@@ -445,6 +445,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stop: 0
   ShellPrefab: {fileID: 2171312151508768849, guid: b8a180dffe50bec428ecd53b6f22203c, type: 3}
+  MaxTime: 5
+  target: {fileID: 100000, guid: 5fa239dc902776240b919279dd6748f5, type: 3}
+  speed: 0.01
+  count: 0
 --- !u!114 &2524624877830863900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +461,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24184edc3178a7f4185728d9d324e56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxTime: 5
-  target: {fileID: 6647632424068530743, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
-  speed: 0.01
