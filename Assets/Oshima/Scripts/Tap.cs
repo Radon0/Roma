@@ -14,6 +14,7 @@ public class Tap : MonoBehaviour
     private Vector3 target;
     public bool click=false;
     [SerializeField] Text text;
+    public MainCameraMove cameraMove;
     // Update is called once per frame
     void Update()
     {
@@ -31,7 +32,7 @@ public class Tap : MonoBehaviour
             RaycastHit hit = new RaycastHit();
             if (Input.GetMouseButtonDown(0))
             {
-                if (Physics.Raycast(ray, out hit, layerMask))
+                if (Physics.Raycast(ray, out hit, layerMask))//レイキャストでマウスの位置を取得
                 {
                     text.enabled = false;
                     click =false;
@@ -51,25 +52,68 @@ public class Tap : MonoBehaviour
             if (gimmick[1].Open == true)
             {
                 text.enabled = true;
-                game = Instantiate(games[1], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.identity);
+
+                if (cameraMove.count == 1)
+                {
+                    game = Instantiate(games[1], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.Euler(0,90,0));
+                }
+                else if (cameraMove.count == 2)
+                {
+
+                }
+                else if (cameraMove.count == 3)
+                {
+
+                }
+                else if (cameraMove.count == 4)
+                {
+
+                }
+                else if (cameraMove.count == 0)
+                {
+
+                }
             }
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             int layerMask = 1 << LayerMask.NameToLayer("Stage");
             RaycastHit hit = new RaycastHit();
+
             if (Input.GetMouseButtonDown(0))
             {
+
                 if (Physics.Raycast(ray, out hit, layerMask))
                 {
                     text.enabled = false;
                     click = false;
                     Destroy(game);
-                    Instantiate(myList[1], hit.point, Quaternion.identity);
+                    if (cameraMove.count == 1)
+                    {
+                        Instantiate(myList[1], hit.point, Quaternion.Euler(60,90,0));
+                    }
+                    else if (cameraMove.count == 2)
+                    {
+
+                    }
+                    else if (cameraMove.count == 3)
+                    {
+
+                    }
+                    else if (cameraMove.count == 4)
+                    {
+
+                    }
+                    else if (cameraMove.count == 0)
+                    {
+
+                    }
+                    
                     gimmick[1].click = false;
                     iineSlider[1].value = 0;
                     gimmick[1].button.interactable = true;
 
                 }
+        
             }
         }
         if (gimmick[2].click == true)
@@ -98,9 +142,11 @@ public class Tap : MonoBehaviour
                     gimmick[2].button.interactable = true;
 
                 }
+
+
             }
         }
-
+        //マウスの移動
         mouse = Input.mousePosition;
         target = Camera.main.ScreenToWorldPoint(new Vector3(mouse.x, mouse.y, 10));
         if (game != null)

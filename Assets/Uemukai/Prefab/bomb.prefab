@@ -786,7 +786,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8182997500385829533}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
@@ -803,7 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e533f5be9a8a5d44488aa829d78d1cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExploadObj: {fileID: 2000239935958977982, guid: 43fbddba216e86e48b3cc36d234c4b95, type: 3}
+  ExploadObj: {fileID: 0}
 --- !u!1 &8557633701669186984
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,12 +26,14 @@ public class ShotCross : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         count += 1;
         if (count == 1000)
         //”­ŽËŠÔŠuF
         {
+          
             Vector3 bulletPosition = firingPoint.transform.position;
-            GameObject newBall = Instantiate(bullet, bulletPosition, transform.rotation);
+            GameObject newBall = Instantiate(bullet, bulletPosition, Quaternion.Euler(-90, 0, 0));
             Vector3 direction = newBall.transform.up;
             newBall.GetComponent<Rigidbody>().AddForce(direction * speed, ForceMode.Impulse);
             newBall.name = bullet.name;

@@ -364,6 +364,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 77763f6391102da48bb5f2c08e4755fe, type: 3}
   m_PrefabInstance: {fileID: 125434444}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &175724605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5022656705589475413, guid: aa408b020f6a78f41a78bc6349dbaacf, type: 3}
+  m_PrefabInstance: {fileID: 872788508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &196117283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1098,6 +1103,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &627266968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5022656705458765671, guid: aa408b020f6a78f41a78bc6349dbaacf, type: 3}
+  m_PrefabInstance: {fileID: 872788508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &655680961 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 960175388204027998, guid: 03d9f7283eefdbb4e8fc6067cf23ccea, type: 3}
@@ -2109,6 +2119,30 @@ PrefabInstance:
       propertyPath: player1Wins
       value: 
       objectReference: {fileID: 1249388993}
+    - target: {fileID: 5022656706507284226, guid: aa408b020f6a78f41a78bc6349dbaacf, type: 3}
+      propertyPath: WinMark.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5022656706507284226, guid: aa408b020f6a78f41a78bc6349dbaacf, type: 3}
+      propertyPath: LoseMark.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5022656706507284226, guid: aa408b020f6a78f41a78bc6349dbaacf, type: 3}
+      propertyPath: WinMark.Array.data[1]
+      value: 
+      objectReference: {fileID: 175724605}
+    - target: {fileID: 5022656706507284226, guid: aa408b020f6a78f41a78bc6349dbaacf, type: 3}
+      propertyPath: WinMark.Array.data[2]
+      value: 
+      objectReference: {fileID: 627266968}
+    - target: {fileID: 5022656706507284226, guid: aa408b020f6a78f41a78bc6349dbaacf, type: 3}
+      propertyPath: LoseMark.Array.data[0]
+      value: 
+      objectReference: {fileID: 1575713101}
+    - target: {fileID: 5022656706507284226, guid: aa408b020f6a78f41a78bc6349dbaacf, type: 3}
+      propertyPath: LoseMark.Array.data[1]
+      value: 
+      objectReference: {fileID: 627266968}
     - target: {fileID: 5022656706507284233, guid: aa408b020f6a78f41a78bc6349dbaacf, type: 3}
       propertyPath: m_Name
       value: WinLose
@@ -2762,7 +2796,7 @@ PrefabInstance:
     - target: {fileID: 3790096573452218995, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
       propertyPath: Enemy
       value: 
-      objectReference: {fileID: 753912650}
+      objectReference: {fileID: 2120713709}
     - target: {fileID: 3790096573452218995, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
       propertyPath: toatl
       value: 
@@ -2778,7 +2812,7 @@ PrefabInstance:
     - target: {fileID: 3790096573452218995, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
       propertyPath: hpScript
       value: 
-      objectReference: {fileID: 1537213760}
+      objectReference: {fileID: 802785343}
     - target: {fileID: 3790096573452218995, guid: 2c7c5ca08cf6c3348931d84b9378d173, type: 3}
       propertyPath: Readytime
       value: 3
@@ -3283,6 +3317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 266088659373546905, guid: e0cf3decb8685c741a57749442fb55d9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 266088659373546909, guid: e0cf3decb8685c741a57749442fb55d9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3681,17 +3719,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 555d6a5d1bac5714b85d603545ad0e3d, type: 3}
   m_PrefabInstance: {fileID: 1508928696}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1537213760 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1909972818242952119, guid: cd4767b288b1d3f4197281afa7edcc11, type: 3}
-  m_PrefabInstance: {fileID: 1902421688}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30813139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bca7579b287439a41a340d14ffee000a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1559433941 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5963643097460523721, guid: de723e110f1171d4c892679ac34bd4f6, type: 3}
@@ -3752,6 +3779,11 @@ CapsuleCollider:
   m_Height: 4.3810678
   m_Direction: 1
   m_Center: {x: 0.00048471987, y: 0.16018844, z: -0.0030287355}
+--- !u!1 &1575713101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5022656706071023368, guid: aa408b020f6a78f41a78bc6349dbaacf, type: 3}
+  m_PrefabInstance: {fileID: 872788508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1634931712
 GameObject:
   m_ObjectHideFlags: 0

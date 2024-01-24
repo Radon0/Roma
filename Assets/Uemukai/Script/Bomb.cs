@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    private CapsuleCollider capsule;
+
     public GameObject ExploadObj;
     // Start is called before the first frame update
     void Start()
     {
-        capsule=GetComponent<CapsuleCollider>();
-        Invoke("Explode", 5f);
-        Destroy(gameObject, 5.5f);
+
+
+
     }
-    private void Update()
+
+
+    public void OnTriggerEnter(Collider other)
     {
-    
-    }
-    private void Explode()
-    {
-        Instantiate(ExploadObj, transform.position, Quaternion.identity);
-        capsule.enabled = true;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            
+                //エフェクトを生成する
+                GameObject effect = Instantiate(ExploadObj) as GameObject;
+                //エフェクトが発生する場所を決定する(敵オブジェクトの場所)
+                effect.transform.position = gameObject.transform.position;
+
+                Destroy(gameObject,4f);
+            
+        }
     }
 }

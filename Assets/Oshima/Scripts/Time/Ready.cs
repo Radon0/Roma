@@ -110,6 +110,7 @@ public class Ready : MonoBehaviour
         Invoke("Destroy", 0f);
         winLose = true;
         Round = true;
+        Invoke("SceneChange", 6f);
     }
     private void Double()//‘Š‘Å‚¿
     {
@@ -119,7 +120,8 @@ public class Ready : MonoBehaviour
         Invoke("Destroy",0f);
         winLose = true;
          Round = true;
-}
+        Invoke("SceneChange", 6f);
+    }
     private void CheckWinCondition()
     {
 
@@ -169,13 +171,13 @@ public class Ready : MonoBehaviour
         {
             SceneManager.LoadScene(3);
         }
-        if (WinCount == 1 && LoseCount == 1)
-        {
-            SceneManager.LoadScene(2);
-        }
         if (LoseCount == 1)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(5);
+        }
+        if (WinCount == 1 && LoseCount == 1)
+        {
+            SceneManager.LoadScene(4);
         }
     }
 

@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Oshima/Scene/PlayerWin1.unity
     guid: 4376308d5b4b52645beffc8b75091213
   - enabled: 1
+    path: Assets/Oshima/Scene/Douten.unity
+    guid: e31cd109bc022b845914d755b1afebd7
+  - enabled: 1
+    path: Assets/Oshima/Scene/PlayerLose.unity
+    guid: 14c8133894a4e074e8c7abb363dd3c83
+  - enabled: 1
     path: Assets/Oshima/Scene/Vote.unity
     guid: 089e7de4b693cd84c8d0dd0118b31728
   - enabled: 1
