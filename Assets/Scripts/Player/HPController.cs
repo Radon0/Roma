@@ -23,6 +23,8 @@ public class HPController : MonoBehaviour
     public ParticleSystem effect;
     //public GameObject currentEffect;
 
+    float time = 0.0f;
+
     private void Start()
     {
         maxHp = Hp;
@@ -45,12 +47,21 @@ public class HPController : MonoBehaviour
             Invoke("AnimatorReset", 1.0f);
         }
         
+        if(collision.gameObject.CompareTag("Heal"))
+        {
+            Hp += 25;
+            if(Hp>maxHp)
+            {
+                Hp = maxHp;
+            }
+            HpuiScript.HPUI(Hp);
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("AttackEnemy")&&!isHit)
         {
-            Hp -= 5;
+            Hp -= 2;
             HpuiScript.HPUI(Hp);
             anim.SetTrigger(Damage01);
 
@@ -65,10 +76,11 @@ public class HPController : MonoBehaviour
         }
         if(other.gameObject.CompareTag("AttackPlayer")&&!isHit)
         {
-            Hp -= 4;
+            Hp -= 2;
             HpuiScript.HPUI(Hp);
             anim.SetTrigger(Damage01);
             isHit = true;
+            Debug.Log(Hp);
         }
     }
 
@@ -76,22 +88,26 @@ public class HPController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("AttackEnemy"))
         {
-            isHit = false;
+            //isHit = false;
+            Invoke("HitFalse", 0.3f);
         }
         if (other.gameObject.CompareTag("AttackPlayer"))
         {
-            isHit = false;
+            //isHit = false;
+            Invoke("HitFalse", 0.3f);
         }
     }
     public void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("AttackEnemy"))
         {
-            isHit = false;
+            //isHit = false;
+            Invoke("HitFalse", 0.3f);
         }
         if (other.gameObject.CompareTag("AttackPlayer"))
         {
-            isHit = false;
+            //isHit = false;
+            Invoke("HitFalse", 0.3f);
         }
     }
     private void Update()
@@ -130,5 +146,10 @@ public class HPController : MonoBehaviour
         playEffect = false;
 
         this.PlayEffect();
+    }
+
+    private void HitFalse()
+    {
+        isHit = false;
     }
 }
