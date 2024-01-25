@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class ShellDestroy : MonoBehaviour
 {
-    
-    //void Update()
-    //{
-    //    if(transform.position.z >= 50.0f)
-    //        //弾を消すスクリプトF
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+
+    private void Start()
+    {
+        this.gameObject.GetComponent<Renderer>().material.color = Color.black;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

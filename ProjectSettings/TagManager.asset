@@ -12,6 +12,7 @@ TagManager:
   - AttackPlayer
   - Item
   - Effect
+  - Heal
   layers:
   - Default
   - TransparentFX

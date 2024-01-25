@@ -52,26 +52,25 @@ public class Tap : MonoBehaviour
             if (gimmick[1].Open == true)
             {
                 text.enabled = true;
-
-                if (cameraMove.count == 1)
+                if (cameraMove.count == 0)
                 {
-                    game = Instantiate(games[1], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.Euler(0,90,0));
+                    game = Instantiate(games[1], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.Euler(0, 0, 0));
+                }
+                else if (cameraMove.count == 1)
+                {
+                    game = Instantiate(games[1], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.Euler(0,180,0));
                 }
                 else if (cameraMove.count == 2)
                 {
-
+                    game = Instantiate(games[1], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.Euler(0, 90, 0));
                 }
                 else if (cameraMove.count == 3)
                 {
-
+                    game = Instantiate(games[1], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.Euler(0, 0, 0));
                 }
                 else if (cameraMove.count == 4)
                 {
-
-                }
-                else if (cameraMove.count == 0)
-                {
-
+                    game = Instantiate(games[1], new Vector3(5.0f, 0.0f, 0.0f), Quaternion.Euler(0, -90, 0));
                 }
             }
 
@@ -87,26 +86,27 @@ public class Tap : MonoBehaviour
                     text.enabled = false;
                     click = false;
                     Destroy(game);
-                    if (cameraMove.count == 1)
+                    if (cameraMove.count == 0)
                     {
-                        Instantiate(myList[1], hit.point, Quaternion.Euler(60,90,0));
+                        Instantiate(myList[1], hit.point, Quaternion.Euler(0, 0, 0));
+                    }
+                    else if (cameraMove.count == 1)
+                    {
+                        Instantiate(myList[1], hit.point, Quaternion.Euler(0,180,0));
                     }
                     else if (cameraMove.count == 2)
                     {
-
+                         Instantiate(myList[1], hit.point, Quaternion.Euler(0,90,0));
                     }
                     else if (cameraMove.count == 3)
                     {
-
+                        Instantiate(myList[1], hit.point, Quaternion.Euler(0, 0, 0));
                     }
                     else if (cameraMove.count == 4)
                     {
-
+                        Instantiate(myList[1], hit.point, Quaternion.Euler(0, -90, 0));
                     }
-                    else if (cameraMove.count == 0)
-                    {
-
-                    }
+                 
                     
                     gimmick[1].click = false;
                     iineSlider[1].value = 0;
