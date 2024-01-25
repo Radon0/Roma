@@ -80,7 +80,8 @@ public class HPController : MonoBehaviour
             HpuiScript.HPUI(Hp);
             anim.SetTrigger(Damage01);
             isHit = true;
-            Debug.Log(Hp);
+
+            PlayEffect();
         }
     }
 
