@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e391f00234292cc4f935308c11cf0e54, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4021681, g: 0.34784567, b: 0.2811594, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: c2745f4d113a01549b5d538b04b2a64c, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -3251,8 +3251,8 @@ MonoBehaviour:
   isDead: 0
   HpuiScript: {fileID: 1848568058}
   logSystem: {fileID: 1748239702}
-  attackEffect: {fileID: 6924191023204972585, guid: 340314727c7e3b74eab0a2fc2291c2ea, type: 3}
-  rightHand: {fileID: 724109270}
+  effect: {fileID: 0}
+  playEffect: 0
 --- !u!95 &1307853451
 Animator:
   serializedVersion: 3
@@ -3985,8 +3985,8 @@ MonoBehaviour:
   isDead: 0
   HpuiScript: {fileID: 674454091}
   logSystem: {fileID: 1748239702}
-  attackEffect: {fileID: 6924191023204972585, guid: 340314727c7e3b74eab0a2fc2291c2ea, type: 3}
-  rightHand: {fileID: 2139256087}
+  effect: {fileID: 0}
+  playEffect: 0
 --- !u!114 &1592906419
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,7 +47,6 @@ public class MoveEnemy : MonoBehaviour
     float deadWaitTime = 3.0f;
 
     public HPController hpController;
-    public HPController playerHp;
     public bool isDead = false;
 
     public SphereCollider rightHandCollider;
@@ -69,6 +68,9 @@ public class MoveEnemy : MonoBehaviour
     private float enemyHp = 0.0f;
     private bool deathCheck = false;
 
+    private GameObject ply;
+    FPSController fpsController;
+
     //Dead
     private Rigidbody rigid;
 
@@ -87,6 +89,9 @@ public class MoveEnemy : MonoBehaviour
         SetState(EnemyState.Walk);
         rightHandCollider.enabled = false;
         enemyHp = hpController.Hp;
+
+        ply = GameObject.Find("Player1");
+        fpsController = ply.GetComponent<FPSController>();
     }
 
     // Update is called once per frame
@@ -103,7 +108,6 @@ public class MoveEnemy : MonoBehaviour
         //    }
         //}
         float readyTime = Ready.Instance.Readytime;
-
         if (enemyHp <= 0)
         {
             if (!isDead)
@@ -115,7 +119,7 @@ public class MoveEnemy : MonoBehaviour
             }
             return;
         }
-        else if (readyTime > 1 || playerHp.Hp <= 0)
+        else if (readyTime > 1)
         {
             SetState(EnemyState.Wait);
         }
@@ -192,6 +196,7 @@ public class MoveEnemy : MonoBehaviour
         else if (tempState == EnemyState.Wait)
         {
             state = tempState;
+            animator.Play("C_wait");
             arrived = true;
             velocity = Vector3.zero;
         }
@@ -220,7 +225,7 @@ public class MoveEnemy : MonoBehaviour
 
     private IEnumerator StanTimer()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         canAttack = true;
     }
 

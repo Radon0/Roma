@@ -51,7 +51,7 @@ public class FPSController : MonoBehaviour
     public Collider rightHand;
 
     //Ž€–S
-    private bool isDead;
+    public bool isDead;
     public BoxCollider boxCol;
     private Rigidbody rigid;
 
