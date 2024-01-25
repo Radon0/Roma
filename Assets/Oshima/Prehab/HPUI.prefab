@@ -411,15 +411,15 @@ MonoBehaviour:
   Readytime: 3
   timerText: {fileID: 2377323512638318627}
   WinLoseText: {fileID: 0}
-  WinLose: {fileID: 0}
   totalTime: 0
   callText: {fileID: 5910285986566877167}
-  call: {fileID: 1023190486369768359}
-  toatl: {fileID: 1106737635212534022}
   hpScript: {fileID: 0}
   Enemy: {fileID: 0}
+  winLose: 0
+  Round: 0
   WinCount: 0
   LoseCount: 0
+  RoundCount: 0
 --- !u!1 &1760198005434558538
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1760198007155452882
 RectTransform:
   m_ObjectHideFlags: 0
