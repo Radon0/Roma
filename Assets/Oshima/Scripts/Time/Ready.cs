@@ -47,7 +47,7 @@ public class Ready : MonoBehaviour
             }
             else if (Readytime <= 1f)
             {
-                timerText.enabled = false;
+                //timerText.enabled = false;
                 ReadyText.text = Readytime.ToString("   GO!!");
                 Invoke("Timeup", 2f);
             }
