@@ -92,6 +92,7 @@ public class MoveEnemy : MonoBehaviour
 
         ply = GameObject.Find("Player1");
         fpsController = ply.GetComponent<FPSController>();
+        deathCheck = fpsController.isDead;
     }
 
     // Update is called once per frame
@@ -110,6 +111,7 @@ public class MoveEnemy : MonoBehaviour
         float readyTime = Ready.Instance.Readytime;
         if (enemyHp <= 0)
         {
+            Debug.Log(state);
             if (!isDead)
             {
                 isDead = true;
@@ -121,10 +123,18 @@ public class MoveEnemy : MonoBehaviour
         }
         else if (readyTime > 1)
         {
+            //animator.Play("C_Wait");
+            rigid.isKinematic = true;
+            SetState(EnemyState.Wait);
+        }
+        else if(deathCheck)
+        {
+            rigid.isKinematic = false;
             SetState(EnemyState.Wait);
         }
         else
         {
+            rigid.isKinematic = false;
             SetState(EnemyState.Walk);
         }
         //　見回りまたはキャラクターを追いかける状態

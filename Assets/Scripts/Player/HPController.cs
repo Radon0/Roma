@@ -25,6 +25,10 @@ public class HPController : MonoBehaviour
 
     float time = 0.0f;
 
+    //Attack
+    //int playerAttackValue = 2;
+    bool buffCheck = false;
+
     private void Start()
     {
         maxHp = Hp;
@@ -56,12 +60,21 @@ public class HPController : MonoBehaviour
             }
             HpuiScript.HPUI(Hp);
         }
+
+        if(collision.gameObject.CompareTag("Buff"))
+        {
+            buffCheck = true;
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("AttackEnemy")&&!isHit)
         {
-            Hp -= 2;
+            if (buffCheck)
+                Hp -= 1;
+            else
+                Hp -= 2;
+
             HpuiScript.HPUI(Hp);
             anim.SetTrigger(Damage01);
 
