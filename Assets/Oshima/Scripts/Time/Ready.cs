@@ -21,6 +21,7 @@ public class Ready : MonoBehaviour
     public int WinCount=0;//勝ち数
     public int LoseCount=0;//負け数
     public int RoundCount;//ラウンド
+    private bool isGameOver = false;
     private void Awake()
     {
         Instance = this;
@@ -71,9 +72,10 @@ public class Ready : MonoBehaviour
                     {
                         Double();
                     }
-                    if (totalTime <= 0f)
-                    {
-                        Destroy(timerText);
+                    if (!isGameOver&&totalTime <= 0)
+                       {
+                        isGameOver = true;
+                      //Destroy(timerText);
                         totalTime = 0;
                         callText.enabled = true;
                         timerText.enabled = false;
@@ -82,6 +84,12 @@ public class Ready : MonoBehaviour
                         Destroy(callText, 3f);
                         Invoke("CheckWinCondition", 4f);
                     }
+                    else if (totalTime < 0)
+                {
+                    totalTime = 0;
+                    timerText.enabled = false;
+
+                }
                          
 
             }
@@ -92,6 +100,7 @@ public class Ready : MonoBehaviour
 
     private void Win()//プレイヤーが勝った時
     {
+        isGameOver = false;
         WinCount += 1;
         WinLoseText.enabled = true;
         WinLoseText.text = "YOUWIN";
@@ -103,6 +112,7 @@ public class Ready : MonoBehaviour
     }
     private void Lose()
     {
+        isGameOver = false;
         LoseCount += 1;
         WinLoseText.enabled = true;
         WinLoseText.text = "YOULOSE";
@@ -114,6 +124,9 @@ public class Ready : MonoBehaviour
     }
     private void Double()//相打ち
     {
+        isGameOver = false;
+        WinCount += 1;
+        LoseCount += 1;
         WinLoseText.enabled = true;
         WinLoseText.text = "DOUBLE";
         Invoke("win",4f);
@@ -126,19 +139,19 @@ public class Ready : MonoBehaviour
     {
 
         // プレイヤーが勝利したとき
-        if (Enemy.Hp < hpScript.Hp &&totalTime == 0)
+        if (Enemy.Hp < hpScript.Hp)
         {
             Win();
         }
 
         // プレイヤーが敗北したとき
-        if (Enemy.Hp > hpScript.Hp && totalTime == 0)
+        if (Enemy.Hp > hpScript.Hp )
         {
              Lose();
         }
 
         // 相打ちの場合
-        if (totalTime==0&& Enemy.Hp == hpScript.Hp)
+        if ( Enemy.Hp == hpScript.Hp)
         {
             Double();
         }
@@ -149,14 +162,8 @@ public class Ready : MonoBehaviour
     }
     public void Timeup()
     {
-       
+
         ReadyText.enabled = false;
-    }
-    private void win()
-    {
-        //Destroy(WinLoseText, 4f);
-        WinLoseText.enabled = false;
-       
     }
     private void Destroy()
     {
