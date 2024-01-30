@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BombDestroy : MonoBehaviour
 {
-    public ParticleSystem effect;
+    //public ParticleSystem effect;
     public GameObject ExploadObj;
 
     private AudioSource audio;
@@ -31,19 +31,19 @@ public class BombDestroy : MonoBehaviour
 
         }
     }
-    public void PlayExplode()
-    {
-        //currentEffect.SetActive(true);
-        effect.Play();
-    }
+    //public void PlayExplode()
+    //{
+    //    //currentEffect.SetActive(true);
+    //    effect.Play();
+    //}
 
 
-    public bool playEffect;
-    private void OnValidate()
-    {
-        if (!playEffect) return;
-        playEffect = false;
+    //public bool playEffect;
+    //private void OnValidate()
+    //{
+    //    if (!playEffect) return;
+    //    playEffect = false;
 
-        this.PlayExplode();
-    }
+    //    this.PlayExplode();
+    //}
 }
