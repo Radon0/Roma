@@ -45,13 +45,29 @@ public class HPController : MonoBehaviour
         {
             //logSystem.AddLogText("<color=green>" + gameObject.GetComponent<EnemyInfomation>().EnemyName + "</color>" + "HPîºï™Ç‹Ç≈Ç¢Ç¡ÇΩÇº!!Ç†Ç∆è≠Çµ!!", LogInfomation.LogType.Event);
             //logSystem.AddLogText("<color=green>" + gameObject.GetComponent<PlayerInfomation>().PlayerName + "</color>" + "HPÇ™îºï™ÇµÇ©Ç»Ç¢Çº!!äÎåØ!!", LogInfomation.LogType.Event);
+            Hp -= 7;
+            HpuiScript.HPUI(Hp);
+            anim.SetBool("Damage", true);
+            Invoke("AnimatorReset", 1.0f);
+        }
+
+        if(collision.gameObject.CompareTag("bomb"))
+        {
             Hp -= 10;
             HpuiScript.HPUI(Hp);
             anim.SetBool("Damage", true);
             Invoke("AnimatorReset", 1.0f);
         }
-        
-        if(collision.gameObject.CompareTag("Heal"))
+
+        if(collision.gameObject.CompareTag("bolt"))
+        {
+            Hp -= 5;
+            HpuiScript.HPUI(Hp);
+            anim.SetBool("Damage", true);
+            Invoke("AnimatorReset", 1.0f);
+        }
+
+        if (collision.gameObject.CompareTag("Heal"))
         {
             Hp += 25;
             if(Hp>maxHp)
@@ -86,6 +102,7 @@ public class HPController : MonoBehaviour
             //}
 
             PlayEffect();
+            Invoke("HitFalse", 0.3f);
         }
         if(other.gameObject.CompareTag("AttackPlayer")&&!isHit)
         {
@@ -95,6 +112,7 @@ public class HPController : MonoBehaviour
             isHit = true;
 
             PlayEffect();
+            Invoke("HitFalse", 0.3f);
         }
     }
 

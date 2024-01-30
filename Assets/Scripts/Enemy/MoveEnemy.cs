@@ -111,7 +111,6 @@ public class MoveEnemy : MonoBehaviour
         float readyTime = Ready.Instance.Readytime;
         if (enemyHp <= 0)
         {
-            Debug.Log(state);
             if (!isDead)
             {
                 isDead = true;
