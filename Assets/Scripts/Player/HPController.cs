@@ -51,14 +51,6 @@ public class HPController : MonoBehaviour
             Invoke("AnimatorReset", 1.0f);
         }
 
-        if(collision.gameObject.CompareTag("bomb"))
-        {
-            Hp -= 10;
-            HpuiScript.HPUI(Hp);
-            anim.SetBool("Damage", true);
-            Invoke("AnimatorReset", 1.0f);
-        }
-
         if(collision.gameObject.CompareTag("bolt"))
         {
             Hp -= 5;
@@ -84,12 +76,20 @@ public class HPController : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("AttackEnemy")&&!isHit)
+        if (other.gameObject.CompareTag("bomb"))
+        {
+            Hp -= 10;
+            HpuiScript.HPUI(Hp);
+            anim.SetBool("Damage", true);
+            Invoke("AnimatorReset", 1.0f);
+        }
+
+        if (other.gameObject.CompareTag("AttackEnemy")&&!isHit)
         {
             if (buffCheck)
-                Hp -= 1;
-            else
                 Hp -= 2;
+            else
+                Hp -= 3;
 
             HpuiScript.HPUI(Hp);
             anim.SetTrigger(Damage01);
@@ -106,7 +106,10 @@ public class HPController : MonoBehaviour
         }
         if(other.gameObject.CompareTag("AttackPlayer")&&!isHit)
         {
-            Hp -= 2;
+            if (buffCheck)
+                Hp -= 2;
+            else
+                Hp -= 3;
             HpuiScript.HPUI(Hp);
             anim.SetTrigger(Damage01);
             isHit = true;
